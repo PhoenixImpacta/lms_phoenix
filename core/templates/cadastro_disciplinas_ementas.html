@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro de Curso{% endblock %}
+{% block content %}
+<h1>Cadastro de Curso</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <label id="txtDisciplina">Disciplina</label>
+    <input type="text" name="disciplina" id="txtDisciplina" maxlength="40" required>
+    <label id="txtEmenta">Ementa:</label>
+    <textarea name="ementa" id="txtEmenta" maxlength="300" required></textarea>
+    <button type="submit" class="save btn btn-default">Salvar</button>
+</form>
+{% endblock %}

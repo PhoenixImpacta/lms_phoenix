@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<nav>
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'cadastro_usuario' %}">Cadastro de Usuarios</a></li>
+    <li><a href="{% url 'cadastro_curso' %}">Cadastro de Cursos</a></li>
+    <li><a href="{% url 'cadastro_perfis' %}">Cadastro de Perfis</a></li>
+    <li><a href="{% url 'cadastro_disciplinas_ementas' %}">Cadastro de disciplinas e ementas</a></li>
+    <li><a href="{% url 'cadastro_planos_ensinos' %}">Cadastro de Planos Ensinos</a></li>
+    <li><a href="{% url 'cadastro_disciplinas_planos_ensinos' %}">Cadastro de Disciplinas Planos Ensinos</a></li>
+    <li><a href="{% url 'cadastro_cursos_disciplinas' %}">Cadastro de Cursos Disciplinas</a></li>
+</nav>
+<br>
+<br>
+
+{% block content %}
+
+{% endblock %}
+
+<br>
+<br>
+<footer>
+    Todos direitos reservados
+</footer>
+</body>
+</html>
