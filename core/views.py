@@ -1,8 +1,4 @@
 from django.shortcuts import render
-from core.forms import UsuariosForm, CursosForm, PerfisForm, DisciplinasEmentasForm, PlanosEnsinosForm, \
-    DisciplinasPlanosEnsinosForm, CursosDisciplinasForm
-from core.models import Usuarios, Cursos, Perfis, DisciplinasEmentas, PlanosEnsinos, DisciplinasPlanosEnsinos, \
-    CursosDisciplinas
 from core.util.connection_db_mysql import abrirConexao, fecharConexao
 
 
@@ -32,23 +28,28 @@ def index(request):
 
 
 def cadastro_usuario(request):
-    if request.POST:
-        cnx = abrirConexao()
-        cursor = None
+    cnx = abrirConexao()
+    cursor = None
 
-        if cnx:
-            cursor = cnx.cursor()
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
 
-        try:
-            query = ("INSERT INTO Cursos(CUR_DssCurso)VALUES({})".format(request.POST.get('curso')))
+    try:
 
-            cursor.execute(query)
+        cursor.execute("SELECT * FROM Perfis")
+        context = {'perfis': cursor.fetchall()}
 
-            cnx.commit()
-        finally:
-            fecharConexao(cursor, cnx)
+        if request.POST:
 
-    return render(request, 'cadastro_usuarios.html')
+                query = ("INSERT INTO Usuarios(USR_IdRA, USR_DssNome, USR_DssSenha, USR_IdPerfil)VALUES({}, '{}', '{}', {})".format(request.POST.get('ra'), request.POST.get('nome'), request.POST.get('senha'), request.POST.get('perfil')))
+
+                cursor.execute(query)
+
+                cnx.commit()
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'cadastro_usuarios.html', context)
 
 
 def cadastro_curso(request):
@@ -73,13 +74,22 @@ def cadastro_curso(request):
 
 def cadastro_perfis(request):
     if request.POST:
-        form = PerfisForm(request.POST)
-        if form.is_valid():
-            form.save()
-    else:
-        form = PerfisForm()
+        cnx = abrirConexao()
+        cursor = None
 
-    return render(request, 'cadastro_perfis.html', {'form': form})
+        if cnx:
+            cursor = cnx.cursor()
+
+        try:
+            query = ("INSERT INTO Perfis(PRF_DSSPerfil)VALUES('{}')".format(request.POST.get('perfil')))
+
+            cursor.execute(query)
+
+            cnx.commit()
+        finally:
+            fecharConexao(cursor, cnx)
+
+    return render(request, 'cadastro_perfis.html')
 
 
 def cadastro_disciplinas_ementas(request):

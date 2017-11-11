@@ -4,7 +4,8 @@
 <h1>Cadastro de Perfis</h1>
 <form action="" method="post">
     {% csrf_token %}
-    {{form.as_p}}
+    <label id="txtPerfil">Perfil:</label>
+    <input type="text" name="perfil" id="txtPerfil"  maxlength="15" required>
     <button type="submit" class="save btn btn-default">Salvar</button>
 </form>
 {% endblock %}
