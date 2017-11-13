@@ -4,18 +4,16 @@ from core.util.connection_db_mysql import abrirConexao, fecharConexao
 
 # Create your views here.
 def index(request):
-    cnx = abrirConexao()
     cursor = None
+    cnx = abrirConexao()
 
     if cnx:
         cursor = cnx.cursor(buffered=True, dictionary=True)
-
         # perfis = {}
         # for (PRF_IdPerfil, PRF_DssPerfil) in cursor:
 
     try:
         cursor.execute("SELECT * FROM Perfis")
-
         context = {'perfis': cursor.fetchall()}
 
         # context = {'usuarios': Usuarios.objects.all(), 'cursos': Cursos.objects.all(), 'perfis': cursor, 'disciplinas_ementas': DisciplinasEmentas.objects.all(), 'planos_ensinos': PlanosEnsinos.objects.all(), 'disciplinas_planos_ensinos': DisciplinasPlanosEnsinos.objects.all(), 'cursos_disciplinas': CursosDisciplinas.objects.all()}
@@ -52,7 +50,7 @@ def cadastro_usuario(request):
             if senha.strip() == '':
                 erros.append("Senha inválida")
 
-            if not(erros):
+            if not (erros):
                 query = (
                     "INSERT INTO Usuarios(USR_IdRA, USR_DssNome, USR_DssSenha, USR_IdPerfil)VALUES({}, '{}', '{}', {})".format(
                         ra, nome, senha, perfil
@@ -63,16 +61,14 @@ def cadastro_usuario(request):
                 cnx.commit()
             else:
                 context["erros"] = erros
-                print("***************** ", context)
-                print("***************** ", erros)
     finally:
         fecharConexao(cursor, cnx)
 
-    print("============ ", context)
     return render(request, 'cadastro_usuarios.html', context)
 
 
 def cadastro_curso(request):
+    context = {}
     if request.POST:
         cnx = abrirConexao()
         cursor = None
@@ -81,15 +77,24 @@ def cadastro_curso(request):
             cursor = cnx.cursor()
 
         try:
-            query = ("INSERT INTO Cursos(CUR_DssCurso)VALUES('{}');".format(request.POST.get('curso')))
+            erros = []
+            curso = request.POST.get("curso")
 
-            cursor.execute(query)
+            if curso.strip() == '':
+                erros.append("Curso inválido!")
 
-            cnx.commit()
+            if not (erros):
+                query = ("INSERT INTO Cursos(CUR_DssCurso)VALUES('{}');".format(curso))
+
+                cursor.execute(query)
+
+                cnx.commit()
+            else:
+                context["erros"] = erros
         finally:
             fecharConexao(cursor, cnx)
 
-    return render(request, 'cadastro_cursos.html')
+    return render(request, 'cadastro_cursos.html', context)
 
 
 def cadastro_perfis(request):
@@ -113,6 +118,7 @@ def cadastro_perfis(request):
 
 
 def cadastro_disciplinas_ementas(request):
+    context = {}
     if request.POST:
         cnx = abrirConexao()
         cursor = None
@@ -121,12 +127,26 @@ def cadastro_disciplinas_ementas(request):
             cursor = cnx.cursor()
 
         try:
-            query = ("INSERT INTO DisciplinasEmentas(DIS_DssDisciplina, DIS_DssEmenta)VALUES('{}', '{}');".format(
-                request.POST.get('disciplina'), request.POST.get('ementa')))
+            erros = []
 
-            cursor.execute(query)
+            disciplina = request.POST.get('disciplina')
+            ementa = request.POST.get('ementa')
 
-            cnx.commit()
+            if disciplina.strip() == '':
+                erros.append("Disciplina inválida!")
+
+            if ementa.strip() == '':
+                erros.append("Ementa inválida!")
+
+            if not (erros):
+                query = ("INSERT INTO DisciplinasEmentas(DIS_DssDisciplina, DIS_DssEmenta)VALUES('{}', '{}');".format(
+                    disciplina, ementa))
+
+                cursor.execute(query)
+
+                cnx.commit()
+            else:
+                context["erros"] = erros
         finally:
             fecharConexao(cursor, cnx)
 
@@ -134,6 +154,7 @@ def cadastro_disciplinas_ementas(request):
 
 
 def cadastro_planos_ensinos(request):
+    context = {}
     if request.POST:
         cnx = abrirConexao()
         cursor = None
@@ -142,12 +163,22 @@ def cadastro_planos_ensinos(request):
             cursor = cnx.cursor()
 
         try:
-            query = (
-                "INSERT INTO PlanosEnsinos(PLE_DssPlanoEnsino)VALUES('{}');".format(request.POST.get('planoEnsino')))
+            erros = []
+            planoEnsino = request.POST.get('planoEnsino')
 
-            cursor.execute(query)
+            if planoEnsino.strip() == '':
+                erros.append("Plano Ensino inválido!")
 
-            cnx.commit()
+            if not (erros):
+
+                query = (
+                    "INSERT INTO PlanosEnsinos(PLE_DssPlanoEnsino)VALUES('{}');".format(planoEnsino))
+
+                cursor.execute(query)
+
+                cnx.commit()
+            else:
+                context["erros"] = erros
         finally:
             fecharConexao(cursor, cnx)
 

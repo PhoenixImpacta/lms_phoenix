@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'lms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'projeto_phoenix',
-        'USER': 'phoenix',
-        'PASSWORD': 'aq1sw2de3fr4',
-        'HOST': 'localhost',
+        'NAME': 'phoen598_desenv',
+        'USER': 'phoen598_admin',
+        'PASSWORD': 'phoenix',
+        'HOST': '192.185.217.18',
         'PORT': '3306',
     }
 }
