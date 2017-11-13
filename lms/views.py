@@ -2,7 +2,7 @@ from lms.forms import *
 from lms.models import *
 from django.shortcuts import render_to_response
 
-
+#Fazer Login
 def login(request):
         logado = False
 
@@ -17,6 +17,7 @@ def login(request):
         return render_to_response('rango/login.html', {'uform': uform, 'logado': logado, 'usuario': usuario })
 
 
+#Registrar
 def register(request):
         registered = False
         if request.method == 'POST':
