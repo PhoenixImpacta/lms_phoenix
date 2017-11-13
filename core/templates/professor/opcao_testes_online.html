@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Testes online{% endblock %}
+{% block content %}
+<li><a href="{% url 'teste_aberto' %}">Teste Aberto</a></li>
+<li><a href="{% url 'teste_escolha' %}">Teste Multipla escolha</a></li>
+<li><a href="{% url 'teste_v_f' %}">Teste Verdadeiro ou Falso</a></li>
+{% endblock %}
