@@ -9,5 +9,10 @@
     <label id="txtEmenta">Ementa:</label>
     <textarea name="ementa" id="txtEmenta" maxlength="300" required></textarea>
     <button type="submit" class="save btn btn-default">Salvar</button>
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
 </form>
 {% endblock %}

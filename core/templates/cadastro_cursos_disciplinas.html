@@ -18,7 +18,11 @@
         {% endfor %}
     </select>
 
-
     <button type="submit" class="save btn btn-default">Salvar</button>
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
 </form>
 {% endblock %}

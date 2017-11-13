@@ -5,7 +5,7 @@
 <form action="" method="post">
     {% csrf_token %}
     <label id="txtRa">RA</label>
-    <input type="number" name="ra" id="txtRa" required>
+    <input type="number" name="ra" id="txtRa" min="1000" required>
     <br>
     <label id="txtNome">Nome</label>
     <input type="text" name="nome" id="txtNome" required>
@@ -21,5 +21,11 @@
     </select>
     <br>
     <button type="submit" class="save btn btn-default">Salvar</button>
+
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
 </form>
 {% endblock %}

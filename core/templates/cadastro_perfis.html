@@ -7,5 +7,10 @@
     <label id="txtPerfil">Perfil:</label>
     <input type="text" name="perfil" id="txtPerfil"  maxlength="15" required>
     <button type="submit" class="save btn btn-default">Salvar</button>
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
 </form>
 {% endblock %}

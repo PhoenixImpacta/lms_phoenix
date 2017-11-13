@@ -7,5 +7,10 @@
     <label id="txtPlanoEnsino">Plano de ensino:</label>
     <input type="text" name="planoEnsino" id="txtPlanoEnsino"  maxlength="30" required>
     <button type="submit" class="save btn btn-default">Salvar</button>
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
 </form>
 {% endblock %}
