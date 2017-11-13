@@ -1,14 +1,10 @@
 from django.forms import ModelForm
-from lms.models import Perfil
-from django.contrib.auth.models import User
+from lms.models import Usuario
+
+
 
 class UserForm(ModelForm):
     class Meta:
-        model = User
-        fields = ["username", "email", "password"]
+        model = Usuario
+        fields = ["USR_IdRA", "USR_IdPerfil", "USR_DssSenha"]
 
-
-class PerfilForm(ModelForm):
-    class Meta:
-        model = Perfil
-        fields = ['perfil']

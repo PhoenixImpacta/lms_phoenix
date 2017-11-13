@@ -1,12 +1,11 @@
 <BODY>
 {% if registered %}
-        <A href="/rango/">Rango</A> says: thank you for registering.
+        <A href="/rango/">Phoenix</A> diz: Obrigado por registrar.
 {% else %}
-        rango says: register here!
+        Phoenix diz: Registre-se aqui!
         <FORM id="user_form" method="post" action="/rango/register/" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ uform.as_p }}
-                {{ pform.as_p }}
+                {{ uform }}
                 <INPUT type="submit" name="submit" value="submit" />
         </FORM>
 {% endif %}
