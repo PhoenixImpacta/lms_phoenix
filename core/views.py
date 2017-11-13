@@ -25,6 +25,49 @@ def index(request):
         fecharConexao(cursor, cnx)
 
 
+def login(request):
+    cnx = abrirConexao()
+    cursor = None
+
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+
+    try:
+        erros = []
+        cursor.execute("SELECT * FROM Usuarios")
+        context = {'usuarios': cursor.fetchall()}
+
+        if request.POST:
+            ra = request.POST.get('ra')
+            senha = request.POST.get('senha')
+
+            if ra.strip() == '':
+                erros.append("Ra inválido")
+            if senha.strip() == '':
+                erros.append("Senha inválida")
+
+            if not(erros):
+                cursor.execute("select * from Usuarios where USR_IdRa={} and USR_DssSenha ={}".format(ra, senha))
+                usuario = cursor.fetchall()
+
+                if not(usuario):
+                    erros.append("Usuário não existe")
+                    context["erros"] = erros
+                else:
+                    print("==============================================Entrei")
+                    # Salvar Sessão
+
+            else:
+                context["erros"] = erros
+                print("***************** ", context)
+                print("***************** ", erros)
+    finally:
+        fecharConexao(cursor, cnx)
+
+    print("============ ", context)
+    return render(request, 'login.html', context)
+
+
 def cadastro_usuario(request):
     cnx = abrirConexao()
     cursor = None
@@ -255,6 +298,34 @@ def teste_aberto(request):
 
 
 def teste_escolha(request):
+    cnx = abrirConexao()
+    cursor = None
+    context = {}
+
+    if cnx:
+        cursor = cnx.cursor()
+
+    if request.POST:
+        try:
+            resp1: request.POST.get("resp1")
+            resp2: request.POST.get("resp2")
+            resp3: request.POST.get("resp3")
+            resp4: request.POST.get("resp4")
+            resp5: request.POST.get("resp5")
+            resp6: request.POST.get("resp6")
+            resp7: request.POST.get("resp7")
+            resp8: request.POST.get("resp8")
+            resp9: request.POST.get("resp9")
+            resp10: request.POST.get("resp10")
+
+            query = ("INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');")
+
+        finally:
+            fecharConexao(cursor, cnx)
+
+
+
+
     return render(request, 'professor/teste_escolha.html')
 
 
