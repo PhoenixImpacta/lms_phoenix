@@ -97,26 +97,6 @@ def cadastro_curso(request):
     return render(request, 'cadastro_cursos.html', context)
 
 
-def cadastro_perfis(request):
-    if request.POST:
-        cnx = abrirConexao()
-        cursor = None
-
-        if cnx:
-            cursor = cnx.cursor()
-
-        try:
-            query = ("INSERT INTO Perfis(PRF_DSSPerfil)VALUES('{}')".format(request.POST.get('perfil')))
-
-            cursor.execute(query)
-
-            cnx.commit()
-        finally:
-            fecharConexao(cursor, cnx)
-
-    return render(request, 'cadastro_perfis.html')
-
-
 def cadastro_disciplinas_ementas(request):
     context = {}
     if request.POST:
