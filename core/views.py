@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from core.util.connection_db_mysql import abrirConexao, fecharConexao
+from core.util.EnviarEmail import enviarEmail
 
 
 # Create your views here.
@@ -37,6 +38,10 @@ def index(request):
         cursor.execute("SELECT * FROM CursosDisciplinas")
         context["cursosDisciplinas"] = cursor.fetchall()
 
+        usuario = request.session['usuario_logado']
+
+        #context["usuario_logado"] = usuario
+
         return render(request, 'index.html', context)
 
     finally:
@@ -65,14 +70,15 @@ def login(request):
                 erros.append("Senha inválida")
 
             if not (erros):
-                print(";;;;;;;;;;;;;;;;;;;",cursor.execute("select * from Usuarios where USR_IdRa={} and USR_DssSenha ='{}'".format(ra, senha)))
+                cursor.execute("select * from Usuarios where USR_IdRa={} and USR_DssSenha ='{}'".format(ra, senha))
                 usuario = cursor.fetchall()
 
-                if not(usuario):
+                if not (usuario):
                     erros.append("Usuário não existe")
                     context["erros"] = erros
                 else:
-                   return redirect('index')
+                    #request.session['usuario_logado'] = usuario
+                    return redirect('index')
 
                     # Salvar Sessão
 
@@ -303,8 +309,7 @@ def teste_aberto(request):
                 erros.append("Respostas Inválidas!")
 
             if not (erros):
-                # enviar email para o professr analizar as respostas !
-                pass
+                enviarEmail("michael.jordan.java@gmail.com", "Ola professor novas atividades realizadas!")
             else:
                 context['erros'] = erros
         finally:
@@ -334,7 +339,12 @@ def teste_escolha(request):
             resp9: request.POST.get("resp9")
             resp10: request.POST.get("resp10")
 
-            query = ("INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format(resp1,resp2,resp3,resp4,resp5,resp6,resp7,resp8,resp9,resp10))
+            query = (
+            "INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format(resp1, resp2,
+                                                                                                     resp3, resp4,
+                                                                                                     resp5, resp6,
+                                                                                                     resp7, resp8,
+                                                                                                     resp9, resp10))
             cursor.execute(query)
             cnx.commit()
 
