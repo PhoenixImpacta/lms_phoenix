@@ -3,9 +3,15 @@
 
 <form method="POST" action="">
     {% csrf_token %}
-    <input name="ra" placeholder="Usuario">
-    <input name="senha" placeholder="Senha">
+    <input type="number" name="ra" min="1000" required placeholder="Usuario">
+    <input type="password" name="senha" required placeholder="Senha">
     <button type="submit">Entrar</button>
+
+    {% if erros %}
+    {% for erro in erros %}
+    <p>{{erro}}</p>
+    {% endfor %}
+    {% endif %}
 </form>
 
 

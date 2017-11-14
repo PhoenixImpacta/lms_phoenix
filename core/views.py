@@ -16,8 +16,26 @@ def index(request):
         cursor.execute("SELECT * FROM Perfis")
         context = {'perfis': cursor.fetchall()}
 
-        # context = {'usuarios': Usuarios.objects.all(), 'cursos': Cursos.objects.all(), 'perfis': cursor, 'disciplinas_ementas': DisciplinasEmentas.objects.all(), 'planos_ensinos': PlanosEnsinos.objects.all(), 'disciplinas_planos_ensinos': DisciplinasPlanosEnsinos.objects.all(), 'cursos_disciplinas': CursosDisciplinas.objects.all()}
+        cursor.execute("SELECT * FROM Usuarios")
+        context["usuarios"] = cursor.fetchall()
 
+        cursor.execute("SELECT * FROM Cursos")
+        context["cursos"] = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM DisciplinasEmentas")
+        context["disciplinas"] = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM DisciplinasPlanosEnsinos")
+        context["disciplinas_planos_ensino"] = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM Cursos")
+        context["cursos"] = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM PlanosEnsinos")
+        context["planosEnsinos"] = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM CursosDisciplinas")
+        context["cursosDisciplinas"] = cursor.fetchall()
 
         return render(request, 'index.html', context)
 
@@ -46,25 +64,23 @@ def login(request):
             if senha.strip() == '':
                 erros.append("Senha inválida")
 
-            if not(erros):
-                cursor.execute("select * from Usuarios where USR_IdRa={} and USR_DssSenha ={}".format(ra, senha))
+            if not (erros):
+                print(";;;;;;;;;;;;;;;;;;;",cursor.execute("select * from Usuarios where USR_IdRa={} and USR_DssSenha ='{}'".format(ra, senha)))
                 usuario = cursor.fetchall()
 
                 if not(usuario):
                     erros.append("Usuário não existe")
                     context["erros"] = erros
                 else:
-                    print("==============================================Entrei")
+                   return redirect('index')
+
                     # Salvar Sessão
 
             else:
                 context["erros"] = erros
-                print("***************** ", context)
-                print("***************** ", erros)
     finally:
         fecharConexao(cursor, cnx)
 
-    print("============ ", context)
     return render(request, 'login.html', context)
 
 
@@ -318,13 +334,12 @@ def teste_escolha(request):
             resp9: request.POST.get("resp9")
             resp10: request.POST.get("resp10")
 
-            query = ("INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');")
+            query = ("INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format(resp1,resp2,resp3,resp4,resp5,resp6,resp7,resp8,resp9,resp10))
+            cursor.execute(query)
+            cnx.commit()
 
         finally:
             fecharConexao(cursor, cnx)
-
-
-
 
     return render(request, 'professor/teste_escolha.html')
 
