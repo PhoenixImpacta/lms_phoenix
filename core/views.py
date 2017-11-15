@@ -1,6 +1,9 @@
-from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, render_to_response
+from django.template import RequestContext
+
 from core.util.connection_db_mysql import abrirConexao, fecharConexao
-from core.util.EnviarEmail import enviarEmail
+import datetime
 
 
 # Create your views here.
@@ -38,10 +41,6 @@ def index(request):
         cursor.execute("SELECT * FROM CursosDisciplinas")
         context["cursosDisciplinas"] = cursor.fetchall()
 
-        usuario = request.session['usuario_logado']
-
-        #context["usuario_logado"] = usuario
-
         return render(request, 'index.html', context)
 
     finally:
@@ -51,14 +50,13 @@ def index(request):
 def login(request):
     cnx = abrirConexao()
     cursor = None
+    context = {}
 
     if cnx:
         cursor = cnx.cursor(dictionary=True)
 
     try:
         erros = []
-        cursor.execute("SELECT * FROM Usuarios")
-        context = {'usuarios': cursor.fetchall()}
 
         if request.POST:
             ra = request.POST.get('ra')
@@ -73,12 +71,16 @@ def login(request):
                 cursor.execute("select * from Usuarios where USR_IdRa={} and USR_DssSenha ='{}'".format(ra, senha))
                 usuario = cursor.fetchall()
 
-                if not (usuario):
+                if not(usuario):
                     erros.append("Usuário não existe")
                     context["erros"] = erros
                 else:
-                    #request.session['usuario_logado'] = usuario
-                    return redirect('index')
+                    resposta = render_to_response("index.html", context)
+                    max_age = 365 * 24 * 60 * 60  # one year
+                    expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
+                    resposta.set_cookie("chave", usuario, max_age=max_age, expires=expires, domain=None, secure=False)
+
+                    return resposta
 
                     # Salvar Sessão
 
@@ -309,7 +311,8 @@ def teste_aberto(request):
                 erros.append("Respostas Inválidas!")
 
             if not (erros):
-                enviarEmail("michael.jordan.java@gmail.com", "Ola professor novas atividades realizadas!")
+                # enviar email para o professr analizar as respostas !
+                pass
             else:
                 context['erros'] = erros
         finally:
@@ -339,12 +342,7 @@ def teste_escolha(request):
             resp9: request.POST.get("resp9")
             resp10: request.POST.get("resp10")
 
-            query = (
-            "INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format(resp1, resp2,
-                                                                                                     resp3, resp4,
-                                                                                                     resp5, resp6,
-                                                                                                     resp7, resp8,
-                                                                                                     resp9, resp10))
+            query = ("INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format(resp1,resp2,resp3,resp4,resp5,resp6,resp7,resp8,resp9,resp10))
             cursor.execute(query)
             cnx.commit()
 

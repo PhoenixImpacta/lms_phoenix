@@ -18,7 +18,7 @@ from django.contrib import admin
 from core.views import login, index, cadastro_usuario, cadastro_curso, cadastro_disciplinas_ementas, cadastro_planos_ensinos, cadastro_disciplinas_planos_ensinos, cadastro_cursos_disciplinas, opcao_testes_online, teste_aberto, teste_escolha, teste_v_f
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    #url(r'^admin/', admin.site.urls),
     url(r'^index/$', index, name='index'),
     url(r'^$', login, name='login'),
     url(r'^cadastro_usuario/$', cadastro_usuario, name='cadastro_usuario'),

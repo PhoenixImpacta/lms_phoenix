@@ -1,12 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if usuario_logado %}
-<h1>Ola usuario logado</h1>
-{% else %}
-<h1>Nao :(</h1>
-{% endif %}
-
 <h1>Lista usuários</h1>
 {% for usuario in usuarios %}
     <li>{{usuario.USR_DssNome}} - {{usuario.USR_IdPerfil}}</li>
