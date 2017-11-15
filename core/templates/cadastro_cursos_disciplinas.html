@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro de Curso Disciplinas{% endblock %}
+{% block content %}
+<h1>Cadastro de Curso Disciplinas</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <label id="selectCursos">Cursos</label>
+    <select name="curso" id="selectCursos" required>
+        {% for curso in cursos %}
+        <option value="{{curso.CUR_IdCurso}}">{{curso.CUR_DssCurso}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label id="selectDisciplinas">Disciplinas</label>
+    <select name="disciplina" id="selectDisciplinas" required>
+        {% for disciplina in disciplinas %}
+        <option value="{{disciplina.DIS_IdDisciplina}}">{{disciplina.DIS_DssDisciplina}}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" class="save btn btn-default">Salvar</button>
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
+</form>
+{% endblock %}
