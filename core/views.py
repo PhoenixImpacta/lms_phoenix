@@ -9,13 +9,12 @@ def index(request):
     cursor = None
     cnx = abrirConexao()
     usuario_logado = request.COOKIES['usuario_logado']
-    print("==========",usuario_logado)
+    print("==========", usuario_logado)
     context = {'usuario_logado': request.COOKIES['usuario_logado']}
     if cnx:
         cursor = cnx.cursor(buffered=True, dictionary=True)
 
     try:
-
 
         return render(request, 'index.html', context)
 
@@ -37,7 +36,7 @@ def login(request):
         if request.POST:
             ra = request.POST.get('ra')
             tipo = request.POST.get('tipo')
-            print("--------",tipo)
+            print("--------", tipo)
             if ra.strip() == '':
                 erros.append("Ra inválido")
 
@@ -58,7 +57,8 @@ def login(request):
                     max_age = 365 * 24 * 60 * 60  # one year
                     expires = datetime.datetime.strftime(
                         datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
-                    resposta.set_cookie("usuario_logado", usuario, max_age=max_age, expires=expires, domain=None, secure=False)
+                    resposta.set_cookie("usuario_logado", usuario, max_age=max_age, expires=expires, domain=None,
+                                        secure=False)
                     return resposta
 
             else:
@@ -67,6 +67,7 @@ def login(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'login.html', context)
+
 
 def enviar_avisos(request):
     cnx = abrirConexao()
@@ -81,25 +82,41 @@ def enviar_avisos(request):
     if cnx:
         cursor = cnx.cursor()
 
-    if request.POST:
-        erros = []
-        aviso = request.POST.get('aviso')
-        para = request.POST.get('para')
+    try:
 
-        if aviso.strip() == '':
-            erros.append("Aviso inválido")
+        if request.POST:
+            erros = []
+            aviso = request.POST.get('aviso')
+            para = request.POST.get('para')
 
-        if not(erros):
-            if para == 'alunos':
-                cursor.execute("SELECT email FROM Aluno;")
-                email = cursor.fetchall()
-                enviarEmail(email, aviso)
-            elif para == 'professores':
-                cursor.execute("select email from Professor;")
-                email = cursor.fetchall()
-                enviarEmail(email, aviso)
+            if aviso.strip() == '':
+                erros.append("Aviso inválido")
+
+            if not (erros):
+                if para == 'alunos':
+                    cursor.execute("SELECT email FROM Aluno;")
+                    email = cursor.fetchall()
+                    enviarEmail(email, aviso)
+                elif para == 'professores':
+                    cursor.execute("select email from Professor;")
+                    email = cursor.fetchall()
+                    enviarEmail(email, aviso)
+
+                    # Inserir histórico
+                    # cursor.execute("insert into HistoricoAvisos values({}, {}, {});".format(aviso, datetime.date, usuario_logado['ra']))
+    finally:
+        fecharConexao(cursor, cnx)
 
     return render(request, 'avisos.html', context)
+
+
+def enviar_aviso_nova_atividade(request):
+    usuario_logado = request.COOKIES['usuario_logado']
+    context = {'usuario_logado': usuario_logado}
+
+    return render(request, 'professor/cadastro_questoes.html', context)
+
+
 # 7486354
 
 def cadastro_usuario(request):
