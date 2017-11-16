@@ -1,8 +1,6 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect, render_to_response
-from django.template import RequestContext
-
 from core.util.connection_db_mysql import abrirConexao, fecharConexao
+from core.util.EnviarEmail import enviarEmail
 import datetime
 
 
@@ -10,36 +8,14 @@ import datetime
 def index(request):
     cursor = None
     cnx = abrirConexao()
-
+    usuario_logado = request.COOKIES['usuario_logado']
+    print("==========",usuario_logado)
+    context = {'usuario_logado': request.COOKIES['usuario_logado']}
     if cnx:
         cursor = cnx.cursor(buffered=True, dictionary=True)
-        # perfis = {}
-        # for (PRF_IdPerfil, PRF_DssPerfil) in cursor:
 
     try:
-        cursor.execute("SELECT * FROM Perfis")
-        context = {'perfis': cursor.fetchall()}
 
-        cursor.execute("SELECT * FROM Usuarios")
-        context["usuarios"] = cursor.fetchall()
-
-        cursor.execute("SELECT * FROM Cursos")
-        context["cursos"] = cursor.fetchall()
-
-        cursor.execute("SELECT * FROM DisciplinasEmentas")
-        context["disciplinas"] = cursor.fetchall()
-
-        cursor.execute("SELECT * FROM DisciplinasPlanosEnsinos")
-        context["disciplinas_planos_ensino"] = cursor.fetchall()
-
-        cursor.execute("SELECT * FROM Cursos")
-        context["cursos"] = cursor.fetchall()
-
-        cursor.execute("SELECT * FROM PlanosEnsinos")
-        context["planosEnsinos"] = cursor.fetchall()
-
-        cursor.execute("SELECT * FROM CursosDisciplinas")
-        context["cursosDisciplinas"] = cursor.fetchall()
 
         return render(request, 'index.html', context)
 
@@ -60,29 +36,30 @@ def login(request):
 
         if request.POST:
             ra = request.POST.get('ra')
-            senha = request.POST.get('senha')
-
+            tipo = request.POST.get('tipo')
+            print("--------",tipo)
             if ra.strip() == '':
                 erros.append("Ra inválido")
-            if senha.strip() == '':
-                erros.append("Senha inválida")
 
             if not (erros):
-                cursor.execute("select * from Usuarios where USR_IdRa={} and USR_DssSenha ='{}'".format(ra, senha))
-                usuario = cursor.fetchall()
+                usuario = None
+                if tipo == 'a':
+                    cursor.execute("select * from Aluno where ra={}".format(ra))
+                    usuario = cursor.fetchall()
+                elif tipo == 'p':
+                    cursor.execute("select * from Professor where ra={}".format(ra))
+                    usuario = cursor.fetchall()
 
-                if not(usuario):
+                if not (usuario):
                     erros.append("Usuário não existe")
                     context["erros"] = erros
                 else:
                     resposta = render_to_response("index.html", context)
                     max_age = 365 * 24 * 60 * 60  # one year
-                    expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
-                    resposta.set_cookie("chave", usuario, max_age=max_age, expires=expires, domain=None, secure=False)
-
+                    expires = datetime.datetime.strftime(
+                        datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
+                    resposta.set_cookie("usuario_logado", usuario, max_age=max_age, expires=expires, domain=None, secure=False)
                     return resposta
-
-                    # Salvar Sessão
 
             else:
                 context["erros"] = erros
@@ -91,6 +68,39 @@ def login(request):
 
     return render(request, 'login.html', context)
 
+def enviar_avisos(request):
+    cnx = abrirConexao()
+    cursor = None
+    context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
+    if cnx:
+        cursor = cnx.cursor()
+
+    if request.POST:
+        erros = []
+        aviso = request.POST.get('aviso')
+        para = request.POST.get('para')
+
+        if aviso.strip() == '':
+            erros.append("Aviso inválido")
+
+        if not(erros):
+            if para == 'alunos':
+                cursor.execute("SELECT email FROM Aluno;")
+                email = cursor.fetchall()
+                enviarEmail(email, aviso)
+            elif para == 'professores':
+                cursor.execute("select email from Professor;")
+                email = cursor.fetchall()
+                enviarEmail(email, aviso)
+
+    return render(request, 'avisos.html', context)
+# 7486354
 
 def cadastro_usuario(request):
     cnx = abrirConexao()
@@ -342,7 +352,12 @@ def teste_escolha(request):
             resp9: request.POST.get("resp9")
             resp10: request.POST.get("resp10")
 
-            query = ("INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format(resp1,resp2,resp3,resp4,resp5,resp6,resp7,resp8,resp9,resp10))
+            query = (
+                "INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format(resp1, resp2,
+                                                                                                         resp3, resp4,
+                                                                                                         resp5, resp6,
+                                                                                                         resp7, resp8,
+                                                                                                         resp9, resp10))
             cursor.execute(query)
             cnx.commit()
 

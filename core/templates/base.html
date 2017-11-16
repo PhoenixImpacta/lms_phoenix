@@ -6,6 +6,7 @@
 </head>
 <body>
 <nav>
+    {% if usuario_logado %}
     <li><a href="{% url 'login' %}">Home</a></li>
     <li><a href="{% url 'index' %}">Listagens</a></li>
     <li><a href="{% url 'cadastro_usuario' %}">Cadastro de Usuarios</a></li>
@@ -15,8 +16,12 @@
     <li><a href="{% url 'cadastro_disciplinas_planos_ensinos' %}">Cadastro de Disciplinas Planos Ensinos</a></li>
     <li><a href="{% url 'cadastro_cursos_disciplinas' %}">Cadastro de Cursos Disciplinas</a></li>
     <li><a href="{% url 'opcao_testes_online' %}">Aplicar Teste online</a></li>
+    {% endif %}
+    <li><a href="{% url 'avisos' %}">Enviar avisos</a></li>
+
     {% block url %}
     {% endblock %}
+
 </nav>
 <br>
 <br>

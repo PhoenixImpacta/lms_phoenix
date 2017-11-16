@@ -3,8 +3,12 @@
 
 <form method="POST" action="">
     {% csrf_token %}
-    <input type="number" name="ra" min="1000" required placeholder="Usuario">
-    <input type="password" name="senha" required placeholder="Senha">
+     <input type="radio" name="tipo" value="a" required> Aluno
+    <br>
+    <input type="radio" name="tipo" value="p" required> Professor
+    <br>
+    <br>
+    <input type="number" name="ra" min="1000" required placeholder="Ra">
     <button type="submit">Entrar</button>
 
     {% if erros %}
