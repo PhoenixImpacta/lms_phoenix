@@ -1,4 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<form action="" method="post">
+    {% csrf_token %}
+    <label id="txtDisciplina">Escolha a disciplina</label>
+    <br>
+    <select name="disciplina" id="txtDisciplina" required>
+        {% for disciplina in disciplinas %}
+            <option value="{{disciplina.nome_disciplina}}">{{disciplina.nome_disciplina}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label id="num">Número da questão</label>
+    <br>
+    <input  type="number" name="num_questao" id="num" required>
+    <br>
+    <label id="dtEntrega">Data limite de entrega</label>
+    <br>
+    <input  type="date" name="data_entrega" id="dtEntrega" required>
+    <br>
+    <label id="txtDescricao">Descrição da atividade</label>
+    <br>
+    <textarea name="descricao" id="txtDescricao" required></textarea>
+    <br>
+    <button type="submit">Enviar</button>
+
+</form>
+
+{% if erros %}
+{% for erro in erros %}
+<p>{{erro}}</p>
+{% endfor %}
+{% endif %}
+
 {% endblock %}

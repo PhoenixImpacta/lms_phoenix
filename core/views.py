@@ -111,14 +111,108 @@ def enviar_avisos(request):
 
 
 def enviar_aviso_nova_atividade(request):
-    usuario_logado = request.COOKIES['usuario_logado']
-    context = {'usuario_logado': usuario_logado}
+    cnx = abrirConexao()
+    cursor = None
+
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        usuario_logado = request.COOKIES['usuario_logado']
+        context = {'usuario_logado': usuario_logado}
+        cursor.execute('select nome_disciplina from Turma where ra_professor = 2000;')
+        disciplinas = cursor.fetchall()
+        context['disciplinas'] = disciplinas
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+
 
     return render(request, 'professor/cadastro_questoes.html', context)
 
+def opcao_testes_online(request):
+    return render(request, "professor/opcao_testes_online.html")
+
+
+def teste_aberto(request):
+    context = {}
+    if request.POST:
+        cnx = abrirConexao()
+        cursor = None
+
+        if cnx:
+            cursor = cnx.cursor()
+
+        try:
+            erros = []
+            resp_questao_1 = request.POST.get('resp1')
+            resp_questao_2 = request.POST.get('resp2')
+            resp_questao_3 = request.POST.get('resp3')
+            resp_questao_4 = request.POST.get('resp4')
+            resp_questao_5 = request.POST.get('resp5')
+            resp_questao_6 = request.POST.get('resp6')
+            resp_questao_7 = request.POST.get('resp7')
+            resp_questao_8 = request.POST.get('resp8')
+            resp_questao_9 = request.POST.get('resp9')
+            resp_questao_10 = request.POST.get('resp10')
+
+            if resp_questao_1.strip() == '' or resp_questao_2.strip() == '' or resp_questao_3.strip() == '' or resp_questao_4.strip() == '' or resp_questao_5.strip() == '' or resp_questao_6.strip() == '' or resp_questao_7.strip() == '' or resp_questao_8.strip() == '' or resp_questao_9.strip() == '' or resp_questao_10.strip() == '':
+                erros.append("Respostas Inválidas!")
+
+            if not (erros):
+                # enviar email para o professr analizar as respostas !
+                pass
+            else:
+                context['erros'] = erros
+        finally:
+            fecharConexao(cursor, cnx)
+
+    return render(request, 'professor/teste_aberto.html', context)
+
+
+def teste_escolha(request):
+    cnx = abrirConexao()
+    cursor = None
+    context = {}
+
+    if cnx:
+        cursor = cnx.cursor()
+
+    if request.POST:
+        try:
+            resp1: request.POST.get("resp1")
+            resp2: request.POST.get("resp2")
+            resp3: request.POST.get("resp3")
+            resp4: request.POST.get("resp4")
+            resp5: request.POST.get("resp5")
+            resp6: request.POST.get("resp6")
+            resp7: request.POST.get("resp7")
+            resp8: request.POST.get("resp8")
+            resp9: request.POST.get("resp9")
+            resp10: request.POST.get("resp10")
+
+            query = (
+                "INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format(resp1, resp2,
+                                                                                                         resp3, resp4,
+                                                                                                         resp5, resp6,
+                                                                                                         resp7, resp8,
+                                                                                                         resp9, resp10))
+            cursor.execute(query)
+            cnx.commit()
+
+        finally:
+            fecharConexao(cursor, cnx)
+
+    return render(request, 'professor/teste_escolha.html')
+
+
+def teste_v_f(request):
+    return render(request, 'professor/teste_v_f.html')
+
 
 # 7486354
-
+'''
 def cadastro_usuario(request):
     cnx = abrirConexao()
     cursor = None
@@ -306,83 +400,5 @@ def cadastro_cursos_disciplinas(request):
 
     return render(request, 'cadastro_cursos_disciplinas.html', context)
 
-
+'''
 # Funcionalidades Professor
-def opcao_testes_online(request):
-    return render(request, "professor/opcao_testes_online.html")
-
-
-def teste_aberto(request):
-    context = {}
-    if request.POST:
-        cnx = abrirConexao()
-        cursor = None
-
-        if cnx:
-            cursor = cnx.cursor()
-
-        try:
-            erros = []
-            resp_questao_1 = request.POST.get('resp1')
-            resp_questao_2 = request.POST.get('resp2')
-            resp_questao_3 = request.POST.get('resp3')
-            resp_questao_4 = request.POST.get('resp4')
-            resp_questao_5 = request.POST.get('resp5')
-            resp_questao_6 = request.POST.get('resp6')
-            resp_questao_7 = request.POST.get('resp7')
-            resp_questao_8 = request.POST.get('resp8')
-            resp_questao_9 = request.POST.get('resp9')
-            resp_questao_10 = request.POST.get('resp10')
-
-            if resp_questao_1.strip() == '' or resp_questao_2.strip() == '' or resp_questao_3.strip() == '' or resp_questao_4.strip() == '' or resp_questao_5.strip() == '' or resp_questao_6.strip() == '' or resp_questao_7.strip() == '' or resp_questao_8.strip() == '' or resp_questao_9.strip() == '' or resp_questao_10.strip() == '':
-                erros.append("Respostas Inválidas!")
-
-            if not (erros):
-                # enviar email para o professr analizar as respostas !
-                pass
-            else:
-                context['erros'] = erros
-        finally:
-            fecharConexao(cursor, cnx)
-
-    return render(request, 'professor/teste_aberto.html', context)
-
-
-def teste_escolha(request):
-    cnx = abrirConexao()
-    cursor = None
-    context = {}
-
-    if cnx:
-        cursor = cnx.cursor()
-
-    if request.POST:
-        try:
-            resp1: request.POST.get("resp1")
-            resp2: request.POST.get("resp2")
-            resp3: request.POST.get("resp3")
-            resp4: request.POST.get("resp4")
-            resp5: request.POST.get("resp5")
-            resp6: request.POST.get("resp6")
-            resp7: request.POST.get("resp7")
-            resp8: request.POST.get("resp8")
-            resp9: request.POST.get("resp9")
-            resp10: request.POST.get("resp10")
-
-            query = (
-                "INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format(resp1, resp2,
-                                                                                                         resp3, resp4,
-                                                                                                         resp5, resp6,
-                                                                                                         resp7, resp8,
-                                                                                                         resp9, resp10))
-            cursor.execute(query)
-            cnx.commit()
-
-        finally:
-            fecharConexao(cursor, cnx)
-
-    return render(request, 'professor/teste_escolha.html')
-
-
-def teste_v_f(request):
-    return render(request, 'professor/teste_v_f.html')

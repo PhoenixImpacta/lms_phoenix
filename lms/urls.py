@@ -15,18 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from core.views import login, index, cadastro_usuario, cadastro_curso, cadastro_disciplinas_ementas, cadastro_planos_ensinos, cadastro_disciplinas_planos_ensinos, cadastro_cursos_disciplinas, opcao_testes_online, teste_aberto, teste_escolha, teste_v_f, enviar_avisos, enviar_aviso_nova_atividade
+from core.views import login, index,  opcao_testes_online, teste_aberto, teste_escolha, teste_v_f, enviar_avisos, enviar_aviso_nova_atividade
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
     url(r'^index/$', index, name='index'),
     url(r'^$', login, name='login'),
-    url(r'^cadastro_usuario/$', cadastro_usuario, name='cadastro_usuario'),
-    url(r'^cadastro_curso/$', cadastro_curso, name='cadastro_curso'),
-    url(r'^cadastro_disciplinas_ementas/$', cadastro_disciplinas_ementas, name='cadastro_disciplinas_ementas'),
-    url(r'^cadastro_planos_ensinos/$', cadastro_planos_ensinos, name='cadastro_planos_ensinos'),
-    url(r'^cadastro_disciplinas_planos_ensinos/$', cadastro_disciplinas_planos_ensinos, name='cadastro_disciplinas_planos_ensinos'),
-    url(r'^cadastro_cursos_disciplinas/$', cadastro_cursos_disciplinas, name='cadastro_cursos_disciplinas'),
+    #url(r'^cadastro_usuario/$', cadastro_usuario, name='cadastro_usuario'),
+    #url(r'^cadastro_curso/$', cadastro_curso, name='cadastro_curso'),
+    #url(r'^cadastro_disciplinas_ementas/$', cadastro_disciplinas_ementas, name='cadastro_disciplinas_ementas'),
+    #url(r'^cadastro_planos_ensinos/$', cadastro_planos_ensinos, name='cadastro_planos_ensinos'),
+    #url(r'^cadastro_disciplinas_planos_ensinos/$', cadastro_disciplinas_planos_ensinos, name='cadastro_disciplinas_planos_ensinos'),
+    #url(r'^cadastro_cursos_disciplinas/$', cadastro_cursos_disciplinas, name='cadastro_cursos_disciplinas'),
     url(r'^opcao_testes_online/$', opcao_testes_online, name='opcao_testes_online'),
     url(r'^opcao_testes_online/teste_aberto/$', teste_aberto, name='teste_aberto'),
     url(r'^opcao_testes_online/teste_escolha/$', teste_escolha, name='teste_escolha'),
