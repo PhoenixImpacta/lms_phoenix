@@ -15,9 +15,23 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from core.views import login
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^login/', login, name='login'),
+from core.views import cadastro_perfis, login, index,  opcao_testes_online, teste_aberto, teste_escolha, teste_v_f, enviar_avisos, enviar_aviso_nova_atividade
 
+urlpatterns = [
+    #url(r'^admin/', admin.site.urls),
+    url(r'^index/$', index, name='index'),
+    url(r'^$', login, name='login'),
+    #url(r'^cadastro_usuario/$', cadastro_usuario, name='cadastro_usuario'),
+    #url(r'^cadastro_curso/$', cadastro_curso, name='cadastro_curso'),
+    #url(r'^cadastro_disciplinas_ementas/$', cadastro_disciplinas_ementas, name='cadastro_disciplinas_ementas'),
+    #url(r'^cadastro_planos_ensinos/$', cadastro_planos_ensinos, name='cadastro_planos_ensinos'),
+    #url(r'^cadastro_disciplinas_planos_ensinos/$', cadastro_disciplinas_planos_ensinos, name='cadastro_disciplinas_planos_ensinos'),
+    #url(r'^cadastro_cursos_disciplinas/$', cadastro_cursos_disciplinas, name='cadastro_cursos_disciplinas'),
+    url(r'^opcao_testes_online/$', opcao_testes_online, name='opcao_testes_online'),
+    url(r'^opcao_testes_online/teste_aberto/$', teste_aberto, name='teste_aberto'),
+    url(r'^opcao_testes_online/teste_escolha/$', teste_escolha, name='teste_escolha'),
+    url(r'^opcao_testes_online/teste_v_f/$', teste_v_f, name='teste_v_f'),
+    url(r'^avisos/$', enviar_avisos, name='avisos'),
+    url(r'^novas_atividades/$', enviar_aviso_nova_atividade, name='novas_atividades'),
+    url(r'^admin/$', cadastro_perfis, name='cadastro_perfis'),
 ]

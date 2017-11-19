@@ -2,9 +2,20 @@
 {% block content %}
 
 <form method="POST" action="">
-    <input name="ra" placeholder="Usuario">
-    <input name="senha" placeholder="Senha">
+    {% csrf_token %}
+     <input type="radio" name="tipo" value="a" required> Aluno
+    <br>
+    <input type="radio" name="tipo" value="p" required> Professor
+    <br>
+    <br>
+    <input type="number" name="ra" min="1000" required placeholder="Ra">
     <button type="submit">Entrar</button>
+
+    {% if erros %}
+    {% for erro in erros %}
+    <p>{{erro}}</p>
+    {% endfor %}
+    {% endif %}
 </form>
 
 

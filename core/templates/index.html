@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!--
 <h1>Lista usuários</h1>
 {% for usuario in usuarios %}
     <li>{{usuario.USR_DssNome}} - {{usuario.USR_IdPerfil}}</li>
@@ -19,7 +18,7 @@
 <br>
 
 <hr>
--->
+
 <h1>Lista perfis</h1>
 
 {% for perfil in perfis %}
@@ -27,11 +26,11 @@
 {% endfor %}
 
 <br>
-<!--
+
 <hr>
 
 <h1>Lista Disciplinas Ementas</h1>
-{% for disciplina_ementa in disciplinas_ementas %}
+{% for disciplina_ementa in disciplinas %}
     <li>{{disciplina_ementa.DIS_DssDisciplina}} - {{disciplina_ementa.DIS_DssEmenta}} </li>
 {% endfor %}
 
@@ -39,8 +38,8 @@
 
 <hr>
 
-<h1>Lista Disciplinas Ementas</h1>
-{% for plano_ensino in planos_ensinos %}
+<h1>Lista Planos Ensinos</h1>
+{% for plano_ensino in planosEnsinos %}
     <li>{{plano_ensino.PLE_DssPlanoEnsino}}</li>
 {% endfor %}
 
@@ -49,7 +48,7 @@
 <hr>
 
 <h1>Lista Disciplinas Planos de Ensinos</h1>
-{% for disciplina_plano_ensino in disciplinas_planos_ensinos %}
+{% for disciplina_plano_ensino in disciplinas_planos_ensino %}
     <li>{{disciplina_plano_ensino.DPL_IdDisciplina}} - {{disciplina_plano_ensino.DPL_IdPlanoEnsino}}</li>
 {% endfor %}
 
@@ -58,11 +57,9 @@
 <hr>
 
 <h1>Lista Curso Disciplinas</h1>
-{% for curso_disciplina in cursos_disciplinas %}
+{% for curso_disciplina in cursosDisciplinas %}
     <li>{{curso_disciplina.CDS_IdCurso}} - {{curso_disciplina.CDS_IdDisciplina}}</li>
 {% endfor %}
-
--->
 
 
 {% endblock %}
