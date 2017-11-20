@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from core.views import cadastro_perfis, login, index,  opcao_testes_online, teste_aberto, teste_escolha, teste_v_f, enviar_avisos, enviar_aviso_nova_atividade
+from core.views import cadastro_perfis, login, index,  opcao_testes_online, teste_aberto, teste_v_f, enviar_avisos, enviar_aviso_nova_atividade
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
@@ -29,7 +29,6 @@ urlpatterns = [
     #url(r'^cadastro_cursos_disciplinas/$', cadastro_cursos_disciplinas, name='cadastro_cursos_disciplinas'),
     url(r'^opcao_testes_online/$', opcao_testes_online, name='opcao_testes_online'),
     url(r'^opcao_testes_online/teste_aberto/$', teste_aberto, name='teste_aberto'),
-    url(r'^opcao_testes_online/teste_escolha/$', teste_escolha, name='teste_escolha'),
     url(r'^opcao_testes_online/teste_v_f/$', teste_v_f, name='teste_v_f'),
     url(r'^avisos/$', enviar_avisos, name='avisos'),
     url(r'^novas_atividades/$', enviar_aviso_nova_atividade, name='novas_atividades'),

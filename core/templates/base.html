@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<nav>
+    <li><a href="{% url 'login' %}">Home</a></li>
+    <li><a href="{% url 'index' %}">Listagens</a></li>
+    <li><a href="{% url 'opcao_testes_online' %}">Aplicar Teste online</a></li>
+    <li><a href="{% url 'novas_atividades' %}">Cadastrar nova atividade</a></li>
+    <li><a href="{% url 'avisos' %}">Enviar avisos</a></li>
+
+    {% block url %}
+    {% endblock %}
+</nav>
+<br>
+<br>
+
+{% block content %}
+
+{% endblock %}
+
+<br>
+<br>
+<footer>
+    Todos direitos reservados
+</footer>
+</body>
+</html>

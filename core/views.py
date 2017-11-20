@@ -49,6 +49,11 @@ def login(request):
                     cursor.execute("select * from Professor where ra={}".format(ra))
                     usuario = cursor.fetchall()
 
+                elif tipo == 'c':
+                    cursor.execute("select * from Coordenador where ra={}".format(ra))
+                    usuario = cursor.fetchall()
+                    return render_to_response("admin/admin.html", context)
+
                 if not (usuario):
                     erros.append("Usuário não existe")
                     context["erros"] = erros
@@ -169,7 +174,7 @@ def teste_aberto(request):
 
     return render(request, 'professor/teste_aberto.html', context)
 
-
+'''
 def teste_escolha(request):
     cnx = abrirConexao()
     cursor = None
@@ -205,7 +210,7 @@ def teste_escolha(request):
 
     return render(request, 'professor/teste_escolha.html')
 
-
+'''
 def teste_v_f(request):
     return render(request, 'professor/teste_v_f.html')
 

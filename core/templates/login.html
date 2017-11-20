@@ -3,10 +3,19 @@
 
 <form method="POST" action="">
     {% csrf_token %}
-     <input type="radio" name="tipo" value="a" required> Aluno
+
+     <input type="radio" name="tipo" value="a" id="aluno" required>
+    <label for="aluno">Aluno</label>
     <br>
-    <input type="radio" name="tipo" value="p" required> Professor
+
+    <input type="radio" name="tipo" value="p" id="professor" required>
+    <label for="professor">Professor</label>
     <br>
+
+    <input type="radio" name="tipo" value="c" id="admin" required>
+    <label for="admin">Admin</label>
+    <br>
+
     <br>
     <input type="number" name="ra" min="1000" required placeholder="Ra">
     <button type="submit">Entrar</button>
