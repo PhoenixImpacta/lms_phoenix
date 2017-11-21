@@ -1,16 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}Cadastro de Admin{% endblock %}
 {% block content %}
+
+<br/>
+<a href="{% url 'cadastro_disciplina' %}">Cadastro de disciplinas</a>
+<br/>
+
 <h1>Cadastro de perfis</h1>
+
+
+
 <form action="" method="post">
     {% csrf_token %}
-    <label id="txtNome">Nome:</label>
+    <label for="txtNome">Nome:</label>
     <input type="text" name="nome" id="txtNome"  maxlength="40" required><br/>
 
-    <label id="txtRa">RA:</label>
+    <label for="txtRa">RA:</label>
     <input type="number" name="ra" id="txtRa"  maxlength="40" required><br/>
 
-    <label id="txtEmail">Email:</label>
+    <label for="txtEmail">Email:</label>
     <input type="email" name="email" id="txtEmail" required><br/>
 
     <button type="submit">Salvar</button>
@@ -20,4 +28,5 @@
         {% endfor %}
     {% endif %}
 </form>
+
 {% endblock %}

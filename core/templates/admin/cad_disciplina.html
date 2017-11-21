@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro de Admin{% endblock %}
+{% block content %}
+
+<br/>
+<a href="{% url 'cadastro_perfis' %}">Cadastro de perfis</a>
+<br/>
+
+
+<h1>Cadastro de disciplinas</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="disciplina">Nome da disciplina:</label>
+    <input type="text" name="disciplina" id="disciplina" required><br/><br/>
+
+    <ul>
+    {% for curso in cursos %}
+
+        <li><label for="{{curso}}">{{ curso.nome_disciplina  }}</label>
+            <input type="checkbox" id="{{curso}}" name="curso" value="{{ curso.nome_disciplina }}"><br/>
+    </li>
+    {% endfor %}
+    </ul>
+    <button type="submit">Salvar</button>
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
+</form>
+{% endblock %}

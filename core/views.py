@@ -438,3 +438,55 @@ def cadastro_perfis(request):
             fecharConexao(cursor, cnx)
 
     return render(request, 'admin/admin.html', context)
+
+
+
+def cadastro_disciplina(request):
+    cnx = abrirConexao()
+    cursor = None
+
+
+
+
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+
+
+    try:
+        erros = []
+        cursor.execute("select * from CursoTurma")
+        context={'cursos': cursor.fetchall()}
+
+
+        if request.POST:
+            disciplina = request.POST.get('disciplina')
+            curso = request.POST.get('curso')
+            print("--------", curso)
+            if disciplina.strip() == '':
+                erros.append("Curso inválido")
+
+            if not (erros):
+                usuario = None
+
+                cursor.execute("select * from CursoTurma where nome_disciplina={}".format(curso.nome_disciplina))
+                cursos = cursor.fetchall()
+
+                if curso in cursos:
+                    query = cursor.execute("insert into CursoTurma(sigla_curso, nome_disciplina)values({}, {});".format(disciplina, curso))
+                    cursor.execute(query)
+                    cnx.commit()
+
+
+
+
+                else:
+                    erros.append("Seleção invalida")
+                    context["erros"] = erros
+
+
+            else:
+                context["erros"] = erros
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/cad_disciplina.html', context)
