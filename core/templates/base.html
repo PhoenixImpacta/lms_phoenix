@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+	<link href="estilos.css" rel="stylesheet">
 </head>
 <body>
-<nav>
+
+
+<ul>
     <li><a href="{% url 'login' %}">Home</a></li>
     <li><a href="{% url 'index' %}">Listagens</a></li>
     <li><a href="{% url 'opcao_testes_online' %}">Aplicar Teste online</a></li>
     <li><a href="{% url 'novas_atividades' %}">Cadastrar nova atividade</a></li>
     <li><a href="{% url 'avisos' %}">Enviar avisos</a></li>
+ </ul>
+ 
+{% block url %}
+{% endblock %}
 
-    {% block url %}
-    {% endblock %}
-</nav>
 <br>
 <br>
 
@@ -25,7 +29,7 @@
 <br>
 <br>
 <footer>
-    Todos direitos reservados
+    Todos direitos reservados ©
 </footer>
 </body>
 </html>
