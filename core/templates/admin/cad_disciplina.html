@@ -16,8 +16,8 @@
     <ul>
     {% for curso in cursos %}
 
-        <li><label for="{{curso}}">{{ curso.nome_disciplina  }}</label>
-            <input type="checkbox" id="{{curso}}" name="curso" value="{{ curso.nome_disciplina }}"><br/>
+        <li><label for="{{curso}}">{{ curso.nome }}</label>
+            <input type="checkbox" id="{{curso}}" name="curso" value="{{ curso.nome }}"><br/>
     </li>
     {% endfor %}
     </ul>

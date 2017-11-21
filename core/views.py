@@ -27,6 +27,10 @@ def login(request):
     cursor = None
     context = {}
 
+
+
+
+
     if cnx:
         cursor = cnx.cursor(dictionary=True)
 
@@ -34,6 +38,7 @@ def login(request):
         erros = []
 
         if request.POST:
+
             ra = request.POST.get('ra')
             tipo = request.POST.get('tipo')
             print("--------", tipo)
@@ -41,18 +46,31 @@ def login(request):
                 erros.append("Ra inválido")
 
             if not (erros):
+
                 usuario = None
                 if tipo == 'a':
                     cursor.execute("select * from Aluno where ra={}".format(ra))
                     usuario = cursor.fetchall()
-                elif tipo == 'p':
-                    cursor.execute("select * from Professor where ra={}".format(ra))
-                    usuario = cursor.fetchall()
+
 
                 elif tipo == 'c':
                     cursor.execute("select * from Coordenador where ra={}".format(ra))
                     usuario = cursor.fetchall()
-                    return render_to_response("admin/admin.html", context)
+
+
+
+
+
+
+
+                elif tipo == 'p':
+                    cursor.execute("select * from Professor where ra={}".format(ra))
+                    usuario = cursor.fetchall()
+
+                if tipo == 'c':
+                    return render(request, "admin/admin.html", context)
+
+
 
                 if not (usuario):
                     erros.append("Usuário não existe")
@@ -454,7 +472,7 @@ def cadastro_disciplina(request):
 
     try:
         erros = []
-        cursor.execute("select * from CursoTurma")
+        cursor.execute("select * from Curso")
         context={'cursos': cursor.fetchall()}
 
 
@@ -468,23 +486,18 @@ def cadastro_disciplina(request):
             if not (erros):
                 usuario = None
 
-                cursor.execute("select * from CursoTurma where nome_disciplina={}".format(curso.nome_disciplina))
-                cursos = cursor.fetchall()
+                '''cursor.execute("select * from Curso where nome={}".format(curso))
+                cursos = cursor.fetchall()'''
 
-                if curso in cursos:
-                    query = cursor.execute("insert into CursoTurma(sigla_curso, nome_disciplina)values({}, {});".format(disciplina, curso))
-                    cursor.execute(query)
-                    cnx.commit()
+                '''if curso in cursos:'''
+                query = cursor.execute("insert into Disciplina(nome)values({});".format(curso))
+                cursor.execute(query)
+                cnx.commit()
 
-
-
-
-                else:
-                    erros.append("Seleção invalida")
-                    context["erros"] = erros
 
 
             else:
+                erros.append("Seleção invalida")
                 context["erros"] = erros
     finally:
         fecharConexao(cursor, cnx)
