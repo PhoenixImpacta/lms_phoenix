@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label id="txtRa">Informe seu RA</label>
+    <br>
+    <input type="number" name="ra" min="1000" id="txtRa" required>
+    <br>
+    <label id="txtFile">Escolha um arquivo</label>
+    <br>
+    <input type="file" name="file" id="txtFile" required>
+    <br>
+    <button type="submit">Salvar foto</button>
+</form>
+
+{% if erros %}
+{% for erro in erros %}
+<p>{{erro}}</p>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <label txtMensagem>Aviso</label> <br> <textarea name="aviso" id="txtMensagem" required></textarea>
+    <br>
+    <button type="submit">Enviar</button>
+</form>
+
+{% if erros %}
+{% for erro in erros %}
+<p>{{erro}}</p>
+{% endfor %}
+{% endif %}
+
+
+{% endblock %}

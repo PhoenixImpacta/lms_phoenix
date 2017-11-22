@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for aviso in avisos %}
+<div style="border: 1px solid #000;">
+    <h4>{{aviso.aviso}}</h4>
+    <h5>{{aviso.data_envio}}</h5>
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}

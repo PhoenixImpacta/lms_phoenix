@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Envie sua mensagem!</h1>
+{% for professor in professores %}
+<li><a href="{% url 'aviso_professor' ra_professor=professor.ra %}">{{professor.ra}} - {{professor.nome}}</a></li>
+{% endfor %}
+{% endblock %}

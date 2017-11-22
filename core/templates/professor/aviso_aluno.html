@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Envie sua mensagem!</h1>
+{% for aluno in alunos %}
+<li><a href="{% url 'aviso_aluno' ra_aluno=aluno.ra %}">{{aluno.ra}} - {{aluno.nome}}</a></li>
+{% endfor %}
+{% endblock %}

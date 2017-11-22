@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect, render_to_response
 from core.util.connection_db_mysql import abrirConexao, fecharConexao
 from core.util.EnviarEmail import enviarEmail
-import datetime
+from core.util.UploadFoto import save as salvar_foto
+import datetime, ast
 
 
 # Create your views here.
 def index(request):
     cursor = None
     cnx = abrirConexao()
-    usuario_logado = request.COOKIES['usuario_logado']
-    print("==========", usuario_logado)
-    context = {'usuario_logado': request.COOKIES['usuario_logado']}
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {'usuario_logado': usuario_logado}
     if cnx:
         cursor = cnx.cursor(buffered=True, dictionary=True)
 
@@ -36,7 +36,6 @@ def login(request):
         if request.POST:
             ra = request.POST.get('ra')
             tipo = request.POST.get('tipo')
-            print("--------", tipo)
             if ra.strip() == '':
                 erros.append("Ra inválido")
 
@@ -53,12 +52,14 @@ def login(request):
                     erros.append("Usuário não existe")
                     context["erros"] = erros
                 else:
+                    usuario_logado = dict(usuario[0])
                     resposta = render_to_response("index.html", context)
                     max_age = 365 * 24 * 60 * 60  # one year
                     expires = datetime.datetime.strftime(
                         datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
-                    resposta.set_cookie("usuario_logado", usuario, max_age=max_age, expires=expires, domain=None,
+                    resposta.set_cookie("usuario_logado", usuario_logado, max_age=max_age, expires=expires, domain=None,
                                         secure=False)
+
                     return resposta
 
             else:
@@ -74,7 +75,7 @@ def enviar_avisos(request):
     cursor = None
     context = {}
 
-    usuario_logado = request.COOKIES['usuario_logado']
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
 
     if usuario_logado:
         context = {'usuario_logado': usuario_logado}
@@ -97,13 +98,31 @@ def enviar_avisos(request):
                     cursor.execute("SELECT email FROM Aluno;")
                     email = cursor.fetchall()
                     enviarEmail(email, aviso)
+                    cursor.execute("select ra from Aluno;")
+                    ids = cursor.fetchall()
+
+                    for x in range(0, len(ids)):
+                        # Inserir histórico
+                        if ids[x][0] != usuario_logado['ra']:
+                            cursor.execute(
+                                "insert into HistoricoAvisos(aviso, data_envio, ra_usuario, ra_remetente) values ('{}', '{}', {}, {} );".format(
+                                    aviso, datetime.date.today(), usuario_logado['ra'], ids[x][0]))
+
                 elif para == 'professores':
                     cursor.execute("select email from Professor;")
                     email = cursor.fetchall()
                     enviarEmail(email, aviso)
+                    cursor.execute("select ra from Professor;")
+                    ids = cursor.fetchall()
 
-                    # Inserir histórico
-                    # cursor.execute("insert into HistoricoAvisos values({}, {}, {});".format(aviso, datetime.date, usuario_logado['ra']))
+                    for x in range(0, len(ids)):
+                        # Inserir histórico
+                        if ids[x][0] != usuario_logado['ra']:
+                            cursor.execute(
+                                "insert into HistoricoAvisos(aviso, data_envio, ra_usuario, ra_remetente) values ('{}', '{}', {}, {} );".format(
+                                    aviso, datetime.date.today(), usuario_logado['ra'], ids[x][0]))
+            else:
+                context['erros'] = erros
     finally:
         fecharConexao(cursor, cnx)
 
@@ -116,18 +135,161 @@ def enviar_aviso_nova_atividade(request):
 
     try:
         if cnx:
-            cursor = cnx.cursor(dictionary=True)
+            cursor = cnx.cursor()
 
         usuario_logado = request.COOKIES['usuario_logado']
         context = {'usuario_logado': usuario_logado}
-        cursor.execute('select nome_disciplina from Turma where ra_professor = 2000;')
-        disciplinas = cursor.fetchall()
-        context['disciplinas'] = disciplinas
+
+        if request.POST:
+            erros = []
+            nome = request.POST.get('nome')
+            sumario = request.POST.get('sumario')
+            instrucoes = request.POST.get('instrucoes')
+            data = request.POST.get('data')
+
+            if nome.strip() == '':
+                erros.append('Nome inválido!')
+            if sumario.strip() == '':
+                erros.append('Sumário inválido!')
+            if instrucoes.strip() == '':
+                erros.append('Instruções inválidas!')
+            if data.strip() == '':
+                erros.append('Data inválida!')
+
+            if not (erros):
+                cursor.execute('select email from Aluno;')
+                alunos = cursor.fetchall()
+
+                cursor.execute(
+                    "insert into HistoricoAtividade (sumario, nome, ra_professor, instrucoes, data_entrega) values('{}', '{}', {} , '{}', '{}');".format(
+                        sumario, nome, 2000, instrucoes, datetime.datetime.strptime(data, '%d/%m/%Y').date()))
+                enviarEmail(alunos, 'ola aluno tem nova atividade')
+            else:
+                context['erros'] = erros
 
     finally:
         fecharConexao(cursor, cnx)
 
+    return render(request, 'professor/aviso_nova_atividade.html', context)
 
+
+def enviar_aviso_para_aluno(request):
+    cnx = abrirConexao()
+    cursor = None
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {}
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        cursor.execute(
+            "select ra, nome from Aluno as a inner join Matricula as m on a.ra = m.ra_aluno inner join Turma as t where m.id_turma = t.id_turma and t.ra_professor = {} group by a.nome;".format(
+                usuario_logado['ra']))
+        context['alunos'] = cursor.fetchall()
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, "professor/aviso_aluno.html", context)
+
+
+def aviso_aluno(request, ra_aluno):
+    cnx = abrirConexao()
+    cursor = None
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {}
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+    try:
+        if cnx:
+            cursor = cnx.cursor()
+
+        if request.POST:
+            erros = []
+            aviso = request.POST.get('aviso')
+
+            if aviso.strip() == '':
+                erros.append("Aviso inválido")
+
+            if not (erros):
+                cursor.execute("SELECT email FROM Aluno where ra = {};".format(ra_aluno))
+                email = cursor.fetchall()
+                enviarEmail(email, aviso)
+
+                cursor.execute(
+                    "insert into HistoricoAvisos(aviso, data_envio, ra_usuario, ra_remetente) values ('{}', '{}', {}, {} );".format(
+                        aviso, datetime.date.today(), usuario_logado['ra'], ra_aluno))
+            else:
+                context['erros'] = erros
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, "professor/aviso_area_aluno.html", context)
+
+def visualizar_avisos_professor(request):
+    cnx = abrirConexao()
+    cursor = None
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {}
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        cursor.execute("select aviso, data_envio from HistoricoAvisos where ra_remetente = {};".format(usuario_logado['ra']))
+        avisos = cursor.fetchall()
+        context['avisos'] = avisos
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'professor/visualizar_avisos_professor.html', context)
+
+def cadastrar_questoes(request):
+    cnx = abrirConexao()
+    cursor = None
+
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+        context = {'usuario_logado': usuario_logado}
+        cursor.execute('select nome_disciplina from Turma where ra_professor = {};'.format(usuario_logado['ra']))
+        disciplinas = cursor.fetchall()
+        context['disciplinas'] = disciplinas
+
+        if request.POST:
+            disciplina = request.POST.get('disciplina')
+            num_questao = request.POST.get('num_questao')
+            data_entrega = request.POST.get('data_entrega')
+            descricao = request.POST.get('descricao')
+
+            cursor.execute("select * from DisciplinaOfertada where nome_disciplina = '{}';".format(disciplina))
+            disciplina_ofertada = cursor.fetchall()
+
+            cursor.execute("select id_turma from Turma where nome_disciplina = '{}';".format(disciplina))
+            id_turma = cursor.fetchall()
+
+            cursor.execute("insert into Questao values('{}', {}, '{}', {}, {}, '{}', '{}', '{}')".format(
+                disciplina_ofertada[0]['nome_disciplina'], disciplina_ofertada[0]['ano'],
+                disciplina_ofertada[0]['semestre'], id_turma[0]['id_turma'], num_questao,
+                datetime.datetime.strptime(data_entrega, '%d/%m/%Y').date(), descricao, datetime.date.today()))
+
+            enviarEmail('michael.jordan.java@gmail.com', 'ola aluno temos novas atividades')
+
+    finally:
+        fecharConexao(cursor, cnx)
 
     return render(request, 'professor/cadastro_questoes.html', context)
 
@@ -211,7 +373,150 @@ def teste_v_f(request):
     return render(request, 'professor/teste_v_f.html')
 
 
-# 7486354
+
+# ALUNO
+def visualizar_avisos(request):
+    cnx = abrirConexao()
+    cursor = None
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {}
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        cursor.execute("select aviso, data_envio from HistoricoAvisos where ra_remetente = {};".format(usuario_logado['ra']))
+        avisos = cursor.fetchall()
+        context['avisos'] = avisos
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'aluno/visualizar_avisos_aluno.html', context)
+
+def aviso_professor(request, ra_professor):
+    cnx = abrirConexao()
+    cursor = None
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {}
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+    try:
+        if cnx:
+            cursor = cnx.cursor()
+
+        if request.POST:
+            erros = []
+            aviso = request.POST.get('aviso')
+
+            if aviso.strip() == '':
+                erros.append("Aviso inválido")
+
+            if not (erros):
+                cursor.execute("SELECT email FROM Professor where ra = {};".format(ra_professor))
+                email = cursor.fetchall()
+                enviarEmail(email, aviso)
+
+                cursor.execute(
+                    "insert into HistoricoAvisos(aviso, data_envio, ra_usuario, ra_remetente) values ('{}', '{}', {}, {} );".format(
+                        aviso, datetime.date.today(), usuario_logado['ra'], ra_professor))
+            else:
+                context['erros'] = erros
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, "aluno/aviso_area_professor.html", context)
+
+def enviar_aviso_para_professor(request):
+    cnx = abrirConexao()
+    cursor = None
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {}
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        cursor.execute(
+            "select ra, nome from Professor as p inner join Matricula as m on m.ra_aluno = {}  inner join Turma as t on t.id_turma = m.id_turma  where t.ra_professor = p.ra group by p.nome order by p.ra;".format(
+                usuario_logado['ra']))
+        context['professores'] = cursor.fetchall()
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, "aluno/aviso_professor.html", context)
+
+def upload_foto(request):
+    cnx = abrirConexao()
+    cursor = None
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {}
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+    try:
+        if cnx:
+            cursor = cnx.cursor()
+
+        if request.POST and request.FILES['file']:
+            erros = []
+            ra = request.POST.get('ra')
+
+
+            if int(ra) < 1000:
+                erros.append("RA Inválido!")
+
+            if not(erros):
+                file = request.FILES['file']
+                caminho = salvar_foto(file)
+                caminho = caminho.replace('core/static/', '').replace('%20', ' ')
+                cursor.execute("insert into AlunoFoto(ra_aluno, caminho_foto) values ({}, '{}');".format(int(ra), caminho))
+
+            else:
+                context['erros'] = erros
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'aluno/upload_foto.html', context)
+
+    # 7486354
+
+
+def perfil_aluno(request):
+    cnx = abrirConexao()
+    cursor = None
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {}
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        cursor.execute("select * from AlunoFoto where ra_aluno = {};".format(usuario_logado['ra']))
+
+        foto_aluno = cursor.fetchall()[0]
+        context['foto_aluno'] = foto_aluno
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'aluno/perfil.html', context)
+
+
 '''
 def cadastro_usuario(request):
     cnx = abrirConexao()

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% if usuario_logado %}
+<p>'{{foto_aluno.caminho_foto}}'</p>
+<div style="width: 200px; height: 200px; border: 1px solid #000;">
+    <img src="{% static 'img/qrcode.png' %}" alt="{{usuario_logado.nome}}" />
+</div>
+<p>{{usuario_logado.nome}}</p>
+<p>{{usuario_logado.email}}</p>
+<p>{{usuario_logado.celular}}</p>
+<p>{{usuario_logado.sigla_curso}}</p>
+{% endif %}
+
+{% endblock %}

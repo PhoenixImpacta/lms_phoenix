@@ -8,9 +8,19 @@
 <nav>
     <li><a href="{% url 'login' %}">Home</a></li>
     <li><a href="{% url 'index' %}">Listagens</a></li>
-    <li><a href="{% url 'opcao_testes_online' %}">Aplicar Teste online</a></li>
-    <li><a href="{% url 'novas_atividades' %}">Cadastrar nova atividade</a></li>
     <li><a href="{% url 'avisos' %}">Enviar avisos</a></li>
+    {% if usuario_logado.ra == 2000 %}
+    <li><a href="{% url 'opcao_testes_online' %}">Aplicar Teste online</a></li>
+    <li><a href="{% url 'nova_questao' %}">Cadastrar nova questão</a></li>
+    <li><a href="{% url 'novas_atividades' %}">Avisar sobre nova atividade</a></li>
+    <li><a href="{% url 'avisos_aluno' %}">Enviar avisos para aluno</a></li>
+    <li><a href="{% url 'visualizar_avisos_professor' %}">Avisos</a></li>
+    {% elif usuario_logado.ra == 1000%}
+    <li><a href="{% url 'visualizar_avisos' %}">Avisos</a></li>
+    <li><a href="{% url 'avisos_professor' %}">Enviar aviso para professor</a></li>
+    <li><a href="{% url 'upload_foto' %}">Upload de foto</a></li>
+    <li><a href="{% url 'perfil_aluno' %}">Perfil</a></li>
+    {% endif %}
 
     {% block url %}
     {% endblock %}
