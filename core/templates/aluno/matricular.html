@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if codigo_acesso %}
+<h1>Seu codigo {{codigo_acesso}}</h1>
+{% endif %}
+
+{% if disciplina %}
+<h1>Disciplina: {{disciplina.nome_disciplina}}</h1>
+{% endif %}
+
+{% endblock %}

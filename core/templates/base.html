@@ -15,6 +15,7 @@
     <li><a href="{% url 'novas_atividades' %}">Avisar sobre nova atividade</a></li>
     <li><a href="{% url 'avisos_aluno' %}">Enviar avisos para aluno</a></li>
     <li><a href="{% url 'visualizar_avisos_professor' %}">Avisos</a></li>
+    <li><a href="{% url 'abrir_matricula' %}">Abrir matricula</a></li>
     {% elif usuario_logado.ra == 1000%}
     <li><a href="{% url 'visualizar_avisos' %}">Avisos</a></li>
     <li><a href="{% url 'avisos_professor' %}">Enviar aviso para professor</a></li>

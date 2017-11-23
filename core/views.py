@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect, render_to_response, HttpResponse
 from core.util.connection_db_mysql import abrirConexao, fecharConexao
-from core.util.EnviarEmail import enviarEmail
+from core.util.EnviarEmail import enviarEmail, enviarLink
 from core.util.UploadFoto import save as salvar_foto
-import datetime, ast
+from core.util.CodigoAcesso import gerar_codigo
+import datetime, ast, random
 
 
 # Create your views here.
@@ -20,7 +21,6 @@ def index(request):
 
     finally:
         fecharConexao(cursor, cnx)
-
 
 def login(request):
     cnx = abrirConexao()
@@ -68,7 +68,6 @@ def login(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'login.html', context)
-
 
 def enviar_avisos(request):
     cnx = abrirConexao()
@@ -128,7 +127,6 @@ def enviar_avisos(request):
 
     return render(request, 'avisos.html', context)
 
-
 def enviar_aviso_nova_atividade(request):
     cnx = abrirConexao()
     cursor = None
@@ -172,7 +170,6 @@ def enviar_aviso_nova_atividade(request):
 
     return render(request, 'professor/aviso_nova_atividade.html', context)
 
-
 def enviar_aviso_para_aluno(request):
     cnx = abrirConexao()
     cursor = None
@@ -195,7 +192,6 @@ def enviar_aviso_para_aluno(request):
         fecharConexao(cursor, cnx)
 
     return render(request, "professor/aviso_aluno.html", context)
-
 
 def aviso_aluno(request, ra_aluno):
     cnx = abrirConexao()
@@ -296,7 +292,6 @@ def cadastrar_questoes(request):
 def opcao_testes_online(request):
     return render(request, "professor/opcao_testes_online.html")
 
-
 def teste_aberto(request):
     context = {}
     if request.POST:
@@ -331,7 +326,6 @@ def teste_aberto(request):
             fecharConexao(cursor, cnx)
 
     return render(request, 'professor/teste_aberto.html', context)
-
 
 def teste_escolha(request):
     cnx = abrirConexao()
@@ -368,13 +362,9 @@ def teste_escolha(request):
 
     return render(request, 'professor/teste_escolha.html')
 
-
 def teste_v_f(request):
     return render(request, 'professor/teste_v_f.html')
 
-
-
-# ALUNO
 def visualizar_avisos(request):
     cnx = abrirConexao()
     cursor = None
@@ -492,7 +482,6 @@ def upload_foto(request):
 
     # 7486354
 
-
 def perfil_aluno(request):
     cnx = abrirConexao()
     cursor = None
@@ -511,199 +500,82 @@ def perfil_aluno(request):
         foto_aluno = cursor.fetchall()[0]
         context['foto_aluno'] = foto_aluno
 
+
     finally:
         fecharConexao(cursor, cnx)
 
     return render(request, 'aluno/perfil.html', context)
 
+def abrir_matricula(request):
+    cnx = abrirConexao()
+    cursor = None
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {}
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        cursor.execute("select * from DisciplinaOfertada;")
+        disciplinas = cursor.fetchall()
+        context['disciplinas'] = disciplinas
+
+        codigo = gerar_codigo()
+        context['codigo'] = codigo
+
+        if request.POST:
+            '''1- Link da disciplina
+               2- Codigo de acesso: 30 seg duração
+               3- Os alunos acessam o link com o codigo de acesso
+               4- Enviam os dados ao professor (email) e não no banco'''
+            # salvar na sessão
+            dpl = request.POST.get('disciplina')
+            cursor.execute("select * from DisciplinaOfertada where nome_disciplina = '{}';".format(dpl))
+            disciplina = cursor.fetchall()
+            disciplina = dict(disciplina[0])
+
+            resposta = render_to_response('professor/abrir_matricula.html', context)
+            resposta.set_cookie("disciplina", disciplina, expires=datetime.timedelta(minutes=5), domain=None,secure=False)
+            resposta.set_cookie("codigo_acesso", codigo, expires=datetime.timedelta(seconds=30), domain=None,secure=False)
+
+            crs = cnx.cursor()
+            crs.execute("select email from Aluno;")
+            emails = crs.fetchall()
+            enviarLink(emails, "Acessem localhost:8000/matricular/")
+
+            return resposta
+
+    finally:
+        fecharConexao(cursor, cnx)
+    return render(request, 'professor/abrir_matricula.html', context)
+
+def matricular(request):
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    disciplina = ast.literal_eval(request.COOKIES['disciplina'])
+    codigo = request.COOKIES['codigo_acesso']
+
+    if usuario_logado and disciplina and codigo:
+        context = {'usuario_logado': usuario_logado, 'disciplina': disciplina, 'codigo_acesso': codigo}
+
+    # VERIFICICAR O TIPO DO USUARIO E REDIRECIONAR PARA TELA DE LOGIN, CASO CONTRARIO ABRE O FORMULARIO, CASO SEJA ALUNO E O CODIGO EXPIROU, EXIBE UM BOTAO DE SOLICITA CODIDO, ENVIA EMAIL PARA O RPOFESSOR E ELE ABRI A MATRICULA (HUEHUEHU SOU FODA)
+    print(usuario_logado)
+    print(disciplina)
+    print(codigo)
+
+    return render(request, 'aluno/matricular.html', context)
+
+
 
 '''
-def cadastro_usuario(request):
-    cnx = abrirConexao()
-    cursor = None
-
-    if cnx:
-        cursor = cnx.cursor(dictionary=True)
-
-    try:
-        erros = []
-        cursor.execute("SELECT * FROM Perfis")
-        context = {'perfis': cursor.fetchall()}
-
-        if request.POST:
-            ra = request.POST.get('ra')
-            nome = request.POST.get('nome')
-            senha = request.POST.get('senha')
-            perfil = request.POST.get('perfil')
-
-            if ra.strip() == '':
-                erros.append("Ra inválido")
-            if nome.strip() == '':
-                erros.append("Nome inválido")
-            if senha.strip() == '':
-                erros.append("Senha inválida")
-
-            if not (erros):
-                query = (
-                    "INSERT INTO Usuarios(USR_IdRA, USR_DssNome, USR_DssSenha, USR_IdPerfil)VALUES({}, '{}', '{}', {})".format(
-                        ra, nome, senha, perfil
-                    ))
-
-                cursor.execute(query)
-
-                cnx.commit()
-            else:
-                context["erros"] = erros
-    finally:
-        fecharConexao(cursor, cnx)
-
-    return render(request, 'cadastro_usuarios.html', context)
-
-
-def cadastro_curso(request):
-    context = {}
-    if request.POST:
-        cnx = abrirConexao()
-        cursor = None
-
-        if cnx:
-            cursor = cnx.cursor()
-
-        try:
-            erros = []
-            curso = request.POST.get("curso")
-
-            if curso.strip() == '':
-                erros.append("Curso inválido!")
-
-            if not (erros):
-                query = ("INSERT INTO Cursos(CUR_DssCurso)VALUES('{}');".format(curso))
-
-                cursor.execute(query)
-
-                cnx.commit()
-            else:
-                context["erros"] = erros
-        finally:
-            fecharConexao(cursor, cnx)
-
-    return render(request, 'cadastro_cursos.html', context)
-
-
-def cadastro_disciplinas_ementas(request):
-    context = {}
-    if request.POST:
-        cnx = abrirConexao()
-        cursor = None
-
-        if cnx:
-            cursor = cnx.cursor()
-
-        try:
-            erros = []
-
-            disciplina = request.POST.get('disciplina')
-            ementa = request.POST.get('ementa')
-
-            if disciplina.strip() == '':
-                erros.append("Disciplina inválida!")
-
-            if ementa.strip() == '':
-                erros.append("Ementa inválida!")
-
-            if not (erros):
-                query = ("INSERT INTO DisciplinasEmentas(DIS_DssDisciplina, DIS_DssEmenta)VALUES('{}', '{}');".format(
-                    disciplina, ementa))
-
-                cursor.execute(query)
-
-                cnx.commit()
-            else:
-                context["erros"] = erros
-        finally:
-            fecharConexao(cursor, cnx)
-
-    return render(request, 'cadastro_disciplinas_ementas.html')
-
-
-def cadastro_planos_ensinos(request):
-    context = {}
-    if request.POST:
-        cnx = abrirConexao()
-        cursor = None
-
-        if cnx:
-            cursor = cnx.cursor()
-
-        try:
-            erros = []
-            planoEnsino = request.POST.get('planoEnsino')
-
-            if planoEnsino.strip() == '':
-                erros.append("Plano Ensino inválido!")
-
-            if not (erros):
-
-                query = (
-                    "INSERT INTO PlanosEnsinos(PLE_DssPlanoEnsino)VALUES('{}');".format(planoEnsino))
-
-                cursor.execute(query)
-
-                cnx.commit()
-            else:
-                context["erros"] = erros
-        finally:
-            fecharConexao(cursor, cnx)
-
-    return render(request, 'cadastro_planos_ensinos.html')
-
-
-def cadastro_disciplinas_planos_ensinos(request):
-    cnx = abrirConexao()
-    cursor = None
-
-    if cnx:
-        cursor = cnx.cursor(dictionary=True)
-
-    try:
-        cursor.execute("SELECT * FROM DisciplinasEmentas")
-        context = {'disciplinas': cursor.fetchall()}
-        cursor.execute("SELECT * FROM PlanosEnsinos")
-        context['planosEnsinos'] = cursor.fetchall()
-
-        if request.POST:
-            cursor.execute(
-                "INSERT INTO DisciplinasPlanosEnsinos(DPL_IdDisciplina, DPL_IdPlanoEnsino)VALUES({}, {});".format(
-                    request.POST.get('disciplina'), request.POST.get('planoEnsino')))
-            cnx.commit()
-    finally:
-        fecharConexao(cursor, cnx)
-
-    return render(request, 'cadastro_disciplinas_planos_ensinos.html', context)
-
-
-def cadastro_cursos_disciplinas(request):
-    cnx = abrirConexao()
-    cursor = None
-
-    if cnx:
-        cursor = cnx.cursor(dictionary=True)
-
-    try:
-        cursor.execute("SELECT * FROM Cursos")
-        context = {'cursos': cursor.fetchall()}
-        cursor.execute("SELECT * FROM DisciplinasEmentas")
-        context['disciplinas'] = cursor.fetchall()
-
-        if request.POST:
-            cursor.execute(
-                "INSERT INTO CursosDisciplinas(CDS_IdCurso, CDS_IdDisciplina)VALUES({}, {});".format(
-                    request.POST.get('curso'), request.POST.get('disciplina')))
-            cnx.commit()
-    finally:
-        fecharConexao(cursor, cnx)
-
-    return render(request, 'cadastro_cursos_disciplinas.html', context)
+O professor disponibiliza sua disciplina aos alunos fornecendo um link da disciplina e um código de acesso aos alunos.
+Os alunos:
+1.	Entram na página do link fornecido pelo professor utilizando o código de acesso que dará permissão para preencher seus dados de matrícula.
+2.	Fornecem o nome completo, número de celular, foto do aluno e e-mail.
+3.	Submetem os dados de matrícula ao professor.
+O código de acesso tem duração de 30 segundos. Após esse tempo, o aluno precisa solicitar um novo código de acesso.
+Após submissão, o aluno receberá um e-mail para que ele possa confirmar o seu desejo em se matricular na disciplina; tendo o tempo máximo de 5 minutos para essa submissão.
 
 '''
-# Funcionalidades Professor

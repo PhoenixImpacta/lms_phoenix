@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <label id="txtDisciplina">Selecione a disciplina</label>
+    <br>
+    <select name="disciplina" id="txtDisciplina" required>
+        {% for disciplina in disciplinas %}
+            <option value="{{disciplina.nome_disciplina}}">{{disciplina.nome_disciplina}}</option>
+        {% endfor %}
+    </select>
+
+    <h1>Codigo gerado: {{codigo}}</h1>
+
+    <button type="submit">Enviar</button>
+</form>
+
+
+{% endblock %}

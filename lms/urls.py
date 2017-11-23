@@ -18,18 +18,13 @@ from django.contrib import admin
 from core.views import login, upload_foto, index, visualizar_avisos_professor, enviar_aviso_para_professor, \
     aviso_professor, \
     visualizar_avisos, perfil_aluno, opcao_testes_online, teste_aberto, teste_escolha, teste_v_f, \
-    enviar_avisos, enviar_aviso_nova_atividade, cadastrar_questoes, enviar_aviso_para_aluno, aviso_aluno
+    enviar_avisos, enviar_aviso_nova_atividade, cadastrar_questoes, enviar_aviso_para_aluno, aviso_aluno, \
+    abrir_matricula, matricular
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^index/$', index, name='index'),
     url(r'^$', login, name='login'),
-    # url(r'^cadastro_usuario/$', cadastro_usuario, name='cadastro_usuario'),
-    # url(r'^cadastro_curso/$', cadastro_curso, name='cadastro_curso'),
-    # url(r'^cadastro_disciplinas_ementas/$', cadastro_disciplinas_ementas, name='cadastro_disciplinas_ementas'),
-    # url(r'^cadastro_planos_ensinos/$', cadastro_planos_ensinos, name='cadastro_planos_ensinos'),
-    # url(r'^cadastro_disciplinas_planos_ensinos/$', cadastro_disciplinas_planos_ensinos, name='cadastro_disciplinas_planos_ensinos'),
-    # url(r'^cadastro_cursos_disciplinas/$', cadastro_cursos_disciplinas, name='cadastro_cursos_disciplinas'),
     url(r'^opcao_testes_online/$', opcao_testes_online, name='opcao_testes_online'),
     url(r'^opcao_testes_online/teste_aberto/$', teste_aberto, name='teste_aberto'),
     url(r'^opcao_testes_online/teste_escolha/$', teste_escolha, name='teste_escolha'),
@@ -45,4 +40,6 @@ urlpatterns = [
     url(r'^avisos_professor/professor/(?P<ra_professor>\d+)$', aviso_professor, name='aviso_professor'),
     url(r'^upload_foto/$', upload_foto, name='upload_foto'),
     url(r'^perfil_aluno/$', perfil_aluno, name='perfil_aluno'),
+    url(r'^abrir_matricula/$', abrir_matricula, name='abrir_matricula'),
+    url(r'^matricular/$', matricular, name='matricular'),
 ]
