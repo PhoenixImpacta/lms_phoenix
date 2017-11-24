@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phoenix</title>
+    <link href="estilos.css" rel="stylesheet">
+    <link href="scripts.js" rel="script">
+</head>
+<body>
+
+<img src="img_avatar2.png" alt="Avatar" class="avata">
+
+<div class="posi">
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Aluno</button>
+
+<div id="id01" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label><b>RA</b></label>
+      <input type="text" placeholder="Login RA" name="uname" required>
+
+      <label><b>SENHA</b></label>
+      <input type="password" placeholder="Senha" name="psw" required>
+
+      <button class="botao"type="submit">Login</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Professor</button>
+
+<div id="id02" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label><b>LOGIN</b></label>
+      <input type="text" placeholder="Login" name="uname" required>
+
+      <label><b>SENHA</b></label>
+      <input type="password" placeholder="Senha" name="psw" required>
+
+      <button class="botao" type="submit">Login</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+<button onclick="document.getElementById('id03').style.display='block'" style="width:auto;">Administrador</button>
+
+<div id="id03" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label><b>LOGIN</b></label>
+      <input type="text" placeholder="Login" name="uname" required>
+
+      <label><b>SENHA</b></label>
+      <input type="password" placeholder="Senha" name="psw" required>
+
+      <button class="botao" type="submit">Login</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+</div>
+<footer>
+    Todos direitos reservados ©
+</footer>
+
+</body>
+</html>
