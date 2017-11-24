@@ -22,6 +22,7 @@ def index(request):
     finally:
         fecharConexao(cursor, cnx)
 
+
 def login(request):
     cnx = abrirConexao()
     cursor = None
@@ -68,6 +69,7 @@ def login(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'login.html', context)
+
 
 def enviar_avisos(request):
     cnx = abrirConexao()
@@ -127,6 +129,7 @@ def enviar_avisos(request):
 
     return render(request, 'avisos.html', context)
 
+
 def enviar_aviso_nova_atividade(request):
     cnx = abrirConexao()
     cursor = None
@@ -170,6 +173,7 @@ def enviar_aviso_nova_atividade(request):
 
     return render(request, 'professor/aviso_nova_atividade.html', context)
 
+
 def enviar_aviso_para_aluno(request):
     cnx = abrirConexao()
     cursor = None
@@ -192,6 +196,7 @@ def enviar_aviso_para_aluno(request):
         fecharConexao(cursor, cnx)
 
     return render(request, "professor/aviso_aluno.html", context)
+
 
 def aviso_aluno(request, ra_aluno):
     cnx = abrirConexao()
@@ -229,6 +234,7 @@ def aviso_aluno(request, ra_aluno):
 
     return render(request, "professor/aviso_area_aluno.html", context)
 
+
 def visualizar_avisos_professor(request):
     cnx = abrirConexao()
     cursor = None
@@ -242,7 +248,8 @@ def visualizar_avisos_professor(request):
         if cnx:
             cursor = cnx.cursor(dictionary=True)
 
-        cursor.execute("select aviso, data_envio from HistoricoAvisos where ra_remetente = {};".format(usuario_logado['ra']))
+        cursor.execute(
+            "select aviso, data_envio from HistoricoAvisos where ra_remetente = {};".format(usuario_logado['ra']))
         avisos = cursor.fetchall()
         context['avisos'] = avisos
 
@@ -250,6 +257,7 @@ def visualizar_avisos_professor(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'professor/visualizar_avisos_professor.html', context)
+
 
 def cadastrar_questoes(request):
     cnx = abrirConexao()
@@ -289,8 +297,10 @@ def cadastrar_questoes(request):
 
     return render(request, 'professor/cadastro_questoes.html', context)
 
+
 def opcao_testes_online(request):
     return render(request, "professor/opcao_testes_online.html")
+
 
 def teste_aberto(request):
     context = {}
@@ -327,6 +337,7 @@ def teste_aberto(request):
 
     return render(request, 'professor/teste_aberto.html', context)
 
+
 def teste_escolha(request):
     cnx = abrirConexao()
     cursor = None
@@ -362,8 +373,10 @@ def teste_escolha(request):
 
     return render(request, 'professor/teste_escolha.html')
 
+
 def teste_v_f(request):
     return render(request, 'professor/teste_v_f.html')
+
 
 def visualizar_avisos(request):
     cnx = abrirConexao()
@@ -378,7 +391,8 @@ def visualizar_avisos(request):
         if cnx:
             cursor = cnx.cursor(dictionary=True)
 
-        cursor.execute("select aviso, data_envio from HistoricoAvisos where ra_remetente = {};".format(usuario_logado['ra']))
+        cursor.execute(
+            "select aviso, data_envio from HistoricoAvisos where ra_remetente = {};".format(usuario_logado['ra']))
         avisos = cursor.fetchall()
         context['avisos'] = avisos
 
@@ -386,6 +400,7 @@ def visualizar_avisos(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'aluno/visualizar_avisos_aluno.html', context)
+
 
 def aviso_professor(request, ra_professor):
     cnx = abrirConexao()
@@ -423,6 +438,7 @@ def aviso_professor(request, ra_professor):
 
     return render(request, "aluno/aviso_area_professor.html", context)
 
+
 def enviar_aviso_para_professor(request):
     cnx = abrirConexao()
     cursor = None
@@ -446,6 +462,7 @@ def enviar_aviso_para_professor(request):
 
     return render(request, "aluno/aviso_professor.html", context)
 
+
 def upload_foto(request):
     cnx = abrirConexao()
     cursor = None
@@ -463,15 +480,15 @@ def upload_foto(request):
             erros = []
             ra = request.POST.get('ra')
 
-
             if int(ra) < 1000:
                 erros.append("RA Inválido!")
 
-            if not(erros):
+            if not (erros):
                 file = request.FILES['file']
                 caminho = salvar_foto(file)
                 caminho = caminho.replace('core/static/', '').replace('%20', ' ')
-                cursor.execute("insert into AlunoFoto(ra_aluno, caminho_foto) values ({}, '{}');".format(int(ra), caminho))
+                cursor.execute(
+                    "insert into AlunoFoto(ra_aluno, caminho_foto) values ({}, '{}');".format(int(ra), caminho))
 
             else:
                 context['erros'] = erros
@@ -481,6 +498,7 @@ def upload_foto(request):
     return render(request, 'aluno/upload_foto.html', context)
 
     # 7486354
+
 
 def perfil_aluno(request):
     cnx = abrirConexao()
@@ -505,6 +523,7 @@ def perfil_aluno(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'aluno/perfil.html', context)
+
 
 def abrir_matricula(request):
     cnx = abrirConexao()
@@ -538,8 +557,9 @@ def abrir_matricula(request):
             disciplina = dict(disciplina[0])
 
             resposta = render_to_response('professor/abrir_matricula.html', context)
-            resposta.set_cookie("disciplina", disciplina, expires=datetime.timedelta(minutes=5), domain=None,secure=False)
-            resposta.set_cookie("codigo_acesso", codigo, expires=datetime.timedelta(seconds=30), domain=None,secure=False)
+            resposta.set_cookie("disciplina", disciplina, expires=datetime.timedelta(minutes=5), domain=None,
+                                secure=False)
+            resposta.set_cookie("codigo_acesso", codigo, max_age=30, domain=None, secure=False)
 
             crs = cnx.cursor()
             crs.execute("select email from Aluno;")
@@ -552,22 +572,31 @@ def abrir_matricula(request):
         fecharConexao(cursor, cnx)
     return render(request, 'professor/abrir_matricula.html', context)
 
+
 def matricular(request):
+    context = {}
     usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
     disciplina = ast.literal_eval(request.COOKIES['disciplina'])
     codigo = request.COOKIES['codigo_acesso']
 
-    if usuario_logado and disciplina and codigo:
-        context = {'usuario_logado': usuario_logado, 'disciplina': disciplina, 'codigo_acesso': codigo}
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+    else:
+        context['usuario_logado'] = None
+    if disciplina:
+        context['disciplina'] = disciplina
+    else:
+        context['disciplina'] = None
+    if codigo:
+        context['codigo_acesso'] = codigo
+    else:
+        context['codigo_acesso'] = None
 
     # VERIFICICAR O TIPO DO USUARIO E REDIRECIONAR PARA TELA DE LOGIN, CASO CONTRARIO ABRE O FORMULARIO, CASO SEJA ALUNO E O CODIGO EXPIROU, EXIBE UM BOTAO DE SOLICITA CODIDO, ENVIA EMAIL PARA O RPOFESSOR E ELE ABRI A MATRICULA (HUEHUEHU SOU FODA)
-    print(usuario_logado)
-    print(disciplina)
-    print(codigo)
-
-    return render(request, 'aluno/matricular.html', context)
-
-
+    if usuario_logado['tipo'] != 'ALUNO':
+        return render(request, 'login.html')
+    else:
+        return render(request, 'aluno/matricular.html', context)
 
 '''
 O professor disponibiliza sua disciplina aos alunos fornecendo um link da disciplina e um código de acesso aos alunos.
