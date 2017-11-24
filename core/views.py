@@ -574,10 +574,16 @@ def abrir_matricula(request):
 
 
 def matricular(request):
+    cnx = abrirConexao()
+    cursor = None
     context = {}
     usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
     disciplina = ast.literal_eval(request.COOKIES['disciplina'])
-    codigo = request.COOKIES['codigo_acesso']
+
+    try:
+        codigo = request.COOKIES['codigo_acesso']
+    except KeyError:
+        codigo = None
 
     if usuario_logado:
         context['usuario_logado'] = usuario_logado
@@ -592,11 +598,37 @@ def matricular(request):
     else:
         context['codigo_acesso'] = None
 
-    # VERIFICICAR O TIPO DO USUARIO E REDIRECIONAR PARA TELA DE LOGIN, CASO CONTRARIO ABRE O FORMULARIO, CASO SEJA ALUNO E O CODIGO EXPIROU, EXIBE UM BOTAO DE SOLICITA CODIDO, ENVIA EMAIL PARA O RPOFESSOR E ELE ABRI A MATRICULA (HUEHUEHU SOU FODA)
-    if usuario_logado['tipo'] != 'ALUNO':
-        return render(request, 'login.html')
-    else:
-        return render(request, 'aluno/matricular.html', context)
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        if request.POST and request.FILES['file']:
+            erros = []
+
+            nome = request.POST.get('nome')
+            celular = request.POST.get('celular')
+            email = request.POST.get('email')
+            file = request.FILES['file']
+
+            if nome.strip() == '':
+                erros.append('Nome inválido')
+            if celular.strip() == '':
+                erros.append('Celular inválido')
+            if email.strip() == '':
+                erros.append('Email inválido')
+
+            if not(erros):
+                cursor.execute("select id_turma from CursoTurma where sigla_curso = '{}';".format(usuario_logado['sigla_curso']))
+                id_turma = cursor.fetchall()[0][0]
+                print(id_turma)
+                #cursor.execute("insert into Matricula(ra_aluno, nome_disciplina, ano_ofertado, semestre_ofertado, id_turma) values ({}, '{}', {}, '{}', {});")
+            else:
+                context['erros'] = erros
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'aluno/matricular.html', context)
+
 
 '''
 O professor disponibiliza sua disciplina aos alunos fornecendo um link da disciplina e um código de acesso aos alunos.
