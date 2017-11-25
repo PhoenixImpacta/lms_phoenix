@@ -59,16 +59,11 @@ def login(request):
 
 
 
-
-
-
-
                 elif tipo == 'p':
                     cursor.execute("select * from Professor where ra={}".format(ra))
                     usuario = cursor.fetchall()
 
-                if tipo == 'c':
-                    return render(request, "admin/admin.html", context)
+
 
 
 
@@ -463,37 +458,57 @@ def cadastro_disciplina(request):
     cnx = abrirConexao()
     cursor = None
 
-
-
-
     if cnx:
         cursor = cnx.cursor(dictionary=True)
 
 
     try:
         erros = []
+        mensagem = []
         cursor.execute("select * from Curso")
-        context={'cursos': cursor.fetchall()}
+        cursos = cursor.fetchall()
+
+        cursor.execute("select * from CursoTurma")
+        CT = cursor.fetchall()
+
+        cursor.execute("select * from Turma")
+        turma = cursor.fetchall()
+
+        context={'cursos': cursos, 'CT': CT, 'turma': turma}
 
 
         if request.POST:
             disciplina = request.POST.get('disciplina')
             curso = request.POST.get('curso')
-            print("--------", curso)
+            id_turma = request.POST.get('idTurma')
+            '''ano_ofertado = request.POST.get('ano')
+            semestre_ofertado = request.POST.get('semestre')
+            id_turma = request.POST.get('idTurma')
+            carga_horaria = request.POST.get('carga_horaria')
+            teoria = request.POST.get('teoria')
+            pratica = request.POST.get('pratica')
+            ementa = request.POST.get('ementa')
+            competencias = request.POST.get('competencias')
+            habilidades = request.POST.get('habilidades')
+            conteudo = request.POST.get('conteudo')
+            bibliografia_basica = request.POST.get('bibliografia_basica')
+            bibliografia_complementar = request.POST.get('bibliografia_complementar')'''
+
+
+
             if disciplina.strip() == '':
                 erros.append("Curso inválido")
 
             if not (erros):
-                usuario = None
+                cursor.execute("select sigla from Curso where nome = '{}'".format(disciplina))
+                sigla = cursor.fetchall()
 
-                '''cursor.execute("select * from Curso where nome={}".format(curso))
-                cursos = cursor.fetchall()'''
-
-                '''if curso in cursos:'''
-                query = cursor.execute("insert into Disciplina(nome)values({});".format(curso))
-                cursor.execute(query)
+                cursoTurma = cursor.execute("insert into CursoTurma(sigla_curso, nome_disciplina, id_turma) values('{}', '{}', '{}')".format(sigla, disciplina, id_turma))
+                cursor.execute(cursoTurma)
                 cnx.commit()
 
+                mensagem.append("Cadastrado com sucesso")
+                context["mensagem"] = mensagem
 
 
             else:

@@ -8,20 +8,98 @@
 
 
 <h1>Cadastro de disciplinas</h1>
-<form action="" method="post">
+<form method="post" action="">
     {% csrf_token %}
     <label for="disciplina">Nome da disciplina:</label>
     <input type="text" name="disciplina" id="disciplina" required><br/><br/>
 
-    <ul>
-    {% for curso in cursos %}
 
-        <li><label for="{{curso}}">{{ curso.nome }}</label>
-            <input type="checkbox" id="{{curso}}" name="curso" value="{{ curso.nome }}"><br/>
-    </li>
-    {% endfor %}
-    </ul>
-    <button type="submit">Salvar</button>
+
+
+            Curso:
+            <select name="curso">
+                 <option>---------------------</option>
+                {% for curso in cursos %}
+
+                    <option>{{curso.nome}}</option>
+                {% endfor %}
+            </select>
+    <br/>
+    Id da Turma:
+            <select name="id_turma">
+                <option name="none">---------------------</option>
+                {% for id in turma %}
+                <option name = "{{id}}">{{ id.id_turma }}</option>
+                {% endfor %}
+
+            </select>
+    <br/>
+        <br/>
+
+        <br/>
+
+
+
+   <p>{{ mensagem }}</p>
+    <br/>
+   <!--
+     <label for="ano">Ano:</label>
+    <input type="number" name="ano" id="ano" required>
+
+    <br/>
+
+    <label for="semestre">Semestre:</label>
+    <input type="number" name="semestre" id="semestre" required>
+
+    <br/>
+
+    <label for="carga_horaria">Carga Horaria :</label>
+    <input type="number" name="carga_horaria" id="carga_horaria" required>
+
+    <br/>
+
+    <label for="teoria">Teoria :</label>
+    <input type="text" name="teoria" id="teoria" required>
+
+    <br/>
+
+    <label for="pratica">Pratica :</label>
+    <input type="text" name="pratica" id="pratica" required>
+
+    <br/>
+
+    <label for="ementa">Ementa :</label>
+    <input type="text" name="ementa" id="ementa" required>
+
+    <br/>
+
+    <label for="competencias">Competencias :</label>
+    <input type="text" name="competencias" id="competencias" required>
+
+    <br/>
+
+    <label for="habilidades">Habilidades :</label>
+    <input type="text" name="habilidades" id="habilidades" required>
+
+    <br/>
+
+    <label for="conteudo">Conteudo :</label>
+    <input type="text" name="conteudo" id="conteudo" required>
+
+    <br/>
+
+    <label for="bibliografia_basica">Bibliografia Básica:</label>
+    <input type="text" name="bibliografia_basica" id="bibliografia_basica" required>
+
+    <br/>
+
+    <label for="bibliografia_complementar">Bibliografia Complementar :</label>
+    <input type="text" name="bibliografia_complementar" id="bibliografia_complementar" required>
+
+    <br/>
+    -->
+
+    <button type="submit">Inserir</button>
     {% if erros %}
         {% for erro in erros %}
             <p>{{erro}}</p>
