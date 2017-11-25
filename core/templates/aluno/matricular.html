@@ -3,6 +3,7 @@
 
 {% if codigo_acesso %}
 <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <label id="txtNome">Informe o Nome Completo:</label>
     <input name="nome" id="txtNome" required>
     <br>

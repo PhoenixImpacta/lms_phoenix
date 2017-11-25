@@ -619,9 +619,14 @@ def matricular(request):
 
             if not(erros):
                 cursor.execute("select id_turma from CursoTurma where sigla_curso = '{}';".format(usuario_logado['sigla_curso']))
-                id_turma = cursor.fetchall()[0][0]
-                print(id_turma)
-                #cursor.execute("insert into Matricula(ra_aluno, nome_disciplina, ano_ofertado, semestre_ofertado, id_turma) values ({}, '{}', {}, '{}', {});")
+                id_turma = cursor.fetchall()[0]
+                cursor.execute("insert into Matricula(ra_aluno, nome_disciplina, ano_ofertado, semestre_ofertado, id_turma) values ({}, '{}', {}, '{}', {});".format(usuario_logado['sigla_curso'], disciplina['nome_disciplina'], disciplina['ano'], disciplina['semestre'], id_turma['id_turma']))
+
+                caminho = salvar_foto(file)
+                caminho = caminho.replace('core/static/', '').replace('%20', ' ')
+                cursor.execute(
+                    "insert into AlunoFoto(ra_aluno, caminho_foto) values ({}, '{}');".format(usuario_logado['ra'], caminho))
+
             else:
                 context['erros'] = erros
     finally:
