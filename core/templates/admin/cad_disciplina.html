@@ -13,23 +13,29 @@
     <label for="disciplina">Nome da disciplina:</label>
     <input type="text" name="disciplina" id="disciplina" required><br/><br/>
 
-
-
-
-            Curso:
+    Curso:
             <select name="curso">
                  <option>---------------------</option>
                 {% for curso in cursos %}
-
-                    <option>{{curso.nome}}</option>
+                    <option value="{{ curso.nome }}">{{curso.nome}}</option>
                 {% endfor %}
             </select>
     <br/>
     Id da Turma:
-            <select name="id_turma">
-                <option name="none">---------------------</option>
+            <select name = "idTurma" >
+                <option>---------------------</option>
                 {% for id in turma %}
-                <option name = "{{id}}">{{ id.id_turma }}</option>
+                    <option value="{{id.id_turma}}">{{ id.id_turma }}</option>
+                {% endfor %}
+
+            </select>
+    <br/>
+
+     Ano ofertado:
+            <select name = "ano" >
+                <option>---------------------</option>
+                {% for i in grade %}
+                    <option value="{{i.ano}}">{{ i.ano }}</option>
                 {% endfor %}
 
             </select>

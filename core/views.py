@@ -474,41 +474,44 @@ def cadastro_disciplina(request):
         cursor.execute("select * from Turma")
         turma = cursor.fetchall()
 
-        context={'cursos': cursos, 'CT': CT, 'turma': turma}
+        cursor.execute("select * from GradeCurricular")
+        grade = cursor.fetchall()
+
+        context={'cursos': cursos, 'CT': CT, 'turma': turma, 'grade': grade}
 
 
         if request.POST:
             disciplina = request.POST.get('disciplina')
             curso = request.POST.get('curso')
             id_turma = request.POST.get('idTurma')
-            '''ano_ofertado = request.POST.get('ano')
-            semestre_ofertado = request.POST.get('semestre')
-            id_turma = request.POST.get('idTurma')
-            carga_horaria = request.POST.get('carga_horaria')
-            teoria = request.POST.get('teoria')
-            pratica = request.POST.get('pratica')
-            ementa = request.POST.get('ementa')
-            competencias = request.POST.get('competencias')
-            habilidades = request.POST.get('habilidades')
-            conteudo = request.POST.get('conteudo')
-            bibliografia_basica = request.POST.get('bibliografia_basica')
-            bibliografia_complementar = request.POST.get('bibliografia_complementar')'''
-
+            ano = request.POST.get("ano")
 
 
             if disciplina.strip() == '':
                 erros.append("Curso inválido")
 
             if not (erros):
-                cursor.execute("select sigla from Curso where nome = '{}'".format(disciplina))
+
+
+
+                cursor.execute("select sigla from Curso where nome = '{}'".format(curso))
                 sigla = cursor.fetchall()
 
-                cursoTurma = cursor.execute("insert into CursoTurma(sigla_curso, nome_disciplina, id_turma) values('{}', '{}', '{}')".format(sigla, disciplina, id_turma))
+                s = sigla[0]
+                sig = s['sigla']
+
+                print(id_turma, curso, disciplina, sig)
+
+
+
+                cursoTurma = cursor.execute("insert into CursoTurma(sigla_curso, nome_disciplina, id_turma, ano_ofertado) values('{}', '{}', {}, {})".format(sig, disciplina, id_turma, ano))
                 cursor.execute(cursoTurma)
                 cnx.commit()
 
-                mensagem.append("Cadastrado com sucesso")
+
                 context["mensagem"] = mensagem
+                mensagem.append("Cadastrado com sucesso")
+
 
 
             else:
