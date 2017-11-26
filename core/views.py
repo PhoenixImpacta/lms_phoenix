@@ -452,11 +452,12 @@ def cadastro_perfis(request):
 
     return render(request, 'admin/admin.html', context)
 
+'''CADASTRO DE CURSOS E DISCIPLINAS POR TURMA'''
 
-
-def cadastro_disciplina(request):
+def cadastro_curso_turma(request):
     cnx = abrirConexao()
     cursor = None
+
 
     if cnx:
         cursor = cnx.cursor(dictionary=True)
@@ -477,7 +478,13 @@ def cadastro_disciplina(request):
         cursor.execute("select * from GradeCurricular")
         grade = cursor.fetchall()
 
-        context={'cursos': cursos, 'CT': CT, 'turma': turma, 'grade': grade}
+        cursor.execute("select * from Disciplina")
+        dis = cursor.fetchall()
+
+        cursor.execute("select nome from Disciplina")
+        nome_dis = cursor.fetchall()
+
+        context={'cursos': cursos, 'CT': CT, 'turma': turma, 'grade': grade, 'dis': dis}
 
 
         if request.POST:
@@ -485,32 +492,45 @@ def cadastro_disciplina(request):
             curso = request.POST.get('curso')
             id_turma = request.POST.get('idTurma')
             ano = request.POST.get("ano")
+            semestre = request.POST.get("semestre")
 
-
-            if disciplina.strip() == '':
-                erros.append("Curso inválido")
 
             if not (erros):
 
-
+                '''BUSCA A SIGLA DO CURSO SELECIONADO'''
 
                 cursor.execute("select sigla from Curso where nome = '{}'".format(curso))
                 sigla = cursor.fetchall()
 
                 s = sigla[0]
                 sig = s['sigla']
+                lista = {'sigla_curso': sig, 'nome_disciplina': disciplina, 'ano_ofertado': ano, 'semestre_ofertado': semestre, 'id_turma': id_turma}
 
-                print(id_turma, curso, disciplina, sig)
+                print(lista, '======', CT[0])
+                verifica = []
+                for i in range(0, len(CT)):
+                    CR = CT[i]
+                    print(CR)
+                    print(lista)
+                    for n in range(0, len(lista)):
+                        ver = (lista.get('sigla_curso') == CR.get('sigla_curso')and lista.get('nome_disciplina') == CR.get('nome_disciplina')and int(lista.get('id_turma')) == int(CR.get('id_turma')) and int(lista.get('ano_ofertado')) == int(CR.get('ano_ofertado'))and int(lista.get('semestre_ofertado')) == int(CR.get('semestre_ofertado')))
+                        verifica.append(ver)
+                        print(verifica)
 
 
+                '''INSERE NA TABELA CURSOTURMA OS VALORES SELECIONADOS'''
+                if True in verifica:
+                    mensagem.append("Já cadastrado")
+                    context['mensagem'] = mensagem
 
-                cursoTurma = cursor.execute("insert into CursoTurma(sigla_curso, nome_disciplina, id_turma, ano_ofertado) values('{}', '{}', {}, {})".format(sig, disciplina, id_turma, ano))
-                cursor.execute(cursoTurma)
-                cnx.commit()
+                else:
+                    cursoTurma = cursor.execute("insert into CursoTurma(sigla_curso, nome_disciplina, id_turma, ano_ofertado, semestre_ofertado) values('{}', '{}', {}, {}, {})".format(sig, disciplina, id_turma, ano, semestre))
+                    cursor.execute(cursoTurma)
+                    cnx.commit()
 
+                    mensagem.append("Cadastrado com sucesso")
+                    context['mensagem'] = mensagem
 
-                context["mensagem"] = mensagem
-                mensagem.append("Cadastrado com sucesso")
 
 
 
@@ -520,4 +540,36 @@ def cadastro_disciplina(request):
     finally:
         fecharConexao(cursor, cnx)
 
-    return render(request, 'admin/cad_disciplina.html', context)
+    return render(request, 'admin/cad_curso_turma.html', context)
+
+
+
+
+def cadastro_curso(request):
+    context = {}
+    if request.POST:
+        cnx = abrirConexao()
+        cursor = None
+
+        if cnx:
+            cursor = cnx.cursor()
+
+        try:
+            erros = []
+            curso = request.POST.get("curso")
+            sigla = request.POST.get("sigla")
+
+            if curso.strip() == '':
+                erros.append("Curso inválido!")
+
+            if not (erros):
+                query = ("INSERT INTO Curso(sigla, nome)VALUES('{}', '{}');".format(sigla, curso))
+                cursor.execute(query)
+                cnx.commit()
+            else:
+                context["erros"] = erros
+        finally:
+            fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/cadastro_cursos.html', context)
+

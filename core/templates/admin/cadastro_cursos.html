@@ -4,8 +4,12 @@
 <h1>Cadastro de Curso</h1>
 <form action="" method="post">
     {% csrf_token %}
-    <label id="txtCurso">Nome do curso:</label>
-    <input type="text" name="curso" id="txtCurso"  maxlength="40" required>
+    <label for="txtCurso">Nome do curso:</label>
+    <input type="text" name="curso" id="txtCurso"  maxlength="40" required><br/>
+
+    <label for="txtSigla">Sigla do curso:</label>
+    <input type="text" name="sigla" id="txtSigla"  maxlength="3" style="text-transform:uppercase" required>
+
     <button type="submit" class="save btn btn-default">Salvar</button>
     {% if erros %}
         {% for erro in erros %}

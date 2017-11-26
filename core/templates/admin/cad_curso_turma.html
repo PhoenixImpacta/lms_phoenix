@@ -4,14 +4,23 @@
 
 <br/>
 <a href="{% url 'cadastro_perfis' %}">Cadastro de perfis</a>
+<a href="{% url 'cadastro_curso' %}">Cadastro de curso</a>
+
 <br/>
 
 
-<h1>Cadastro de disciplinas</h1>
+<h1>Cadastro de disciplinas por cursos</h1>
 <form method="post" action="">
     {% csrf_token %}
-    <label for="disciplina">Nome da disciplina:</label>
-    <input type="text" name="disciplina" id="disciplina" required><br/><br/>
+     Disciplina:
+            <select name="disciplina">
+                 <option>---------------------</option>
+                {% for di in dis %}
+                    <option value="{{ di.nome }}">{{di.nome}}</option>
+                {% endfor %}
+            </select>
+    <br/>
+
 
     Curso:
             <select name="curso">
@@ -40,7 +49,16 @@
 
             </select>
     <br/>
-        <br/>
+
+
+     Semestre Ofertado:
+            <select name="semestre">
+                 <option>---------------------</option>
+                {% for i in grade %}
+                    <option value="{{ i.semestre }}">{{i.semestre}}</option>
+                {% endfor %}
+            </select>
+    <br/>
 
         <br/>
 

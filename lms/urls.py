@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from core.views import cadastro_disciplina, cadastro_perfis, login, index,  opcao_testes_online, teste_aberto, teste_v_f, enviar_avisos, enviar_aviso_nova_atividade
+from core.views import *
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
     url(r'^index/$', index, name='index'),
     url(r'^$', login, name='login'),
     #url(r'^cadastro_usuario/$', cadastro_usuario, name='cadastro_usuario'),
-    #url(r'^cadastro_curso/$', cadastro_curso, name='cadastro_curso'),
+    url(r'^cadastro_curso/$', cadastro_curso, name='cadastro_curso'),
     #url(r'^cadastro_disciplinas_ementas/$', cadastro_disciplinas_ementas, name='cadastro_disciplinas_ementas'),
     #url(r'^cadastro_planos_ensinos/$', cadastro_planos_ensinos, name='cadastro_planos_ensinos'),
     #url(r'^cadastro_disciplinas_planos_ensinos/$', cadastro_disciplinas_planos_ensinos, name='cadastro_disciplinas_planos_ensinos'),
@@ -33,5 +33,6 @@ urlpatterns = [
     url(r'^avisos/$', enviar_avisos, name='avisos'),
     url(r'^novas_atividades/$', enviar_aviso_nova_atividade, name='novas_atividades'),
     url(r'^admin/$', cadastro_perfis, name='cadastro_perfis'),
-    url(r'^disciplina/$', cadastro_disciplina, name='cadastro_disciplina'),
+    url(r'^disciplina/$', cadastro_curso_turma, name='cadastro_curso_turma'),
+    url(r'^cadastro_curso/$', cadastro_curso, name='cadastro_curso'),
 ]
