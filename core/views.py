@@ -833,22 +833,22 @@ def deleta_curso(request):
 
         try:
             erros = []
-            disciplina = request.POST.get('curso')
+            curso = request.POST.get('curso')
 
-            print(disciplina, '-----------------------')
+            print(curso, '-----------------------')
 
 
             if not (erros):
-                if cs == None:
+                if curso == None:
                     mensagem = ("ESCOLHA UM CURSO")
                     context['mensagem'] = mensagem
 
                 else:
-                    query = cursor.execute("delete from Curso where nome = '{}'".format(cs))
+                    query = cursor.execute("delete from Curso where nome = '{}'".format(curso))
                     cursor.execute(query)
                     cnx.commit()
 
-                mensagem = ("{} deletado".format(cs))
+                mensagem = ("{} deletado".format(curso))
                 context['mensagem'] = mensagem
 
             else:
