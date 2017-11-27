@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^avisos/$', enviar_avisos, name='avisos'),
     url(r'^novas_atividades/$', enviar_aviso_nova_atividade, name='novas_atividades'),
     url(r'^admin/$', cadastro_perfis, name='cadastro_perfis'),
-    url(r'^disciplina/$', cadastro_curso_turma, name='cadastro_curso_turma'),
-    url(r'^cadastro_curso/$', cadastro_curso, name='cadastro_curso'),
+    url(r'^curso/turma/$', cadastro_curso_turma, name='cadastro_curso_turma'),
+    url(r'^cadastro/curso/$', cadastro_curso, name='cadastro_curso'),
+    url(r'^cadastro/disciplina/$', cadastro_disciplina, name='cadastro_disciplina'),
 ]

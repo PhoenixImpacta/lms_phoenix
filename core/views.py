@@ -587,6 +587,8 @@ def cadastro_curso(request):
                     query = ("INSERT INTO Curso(sigla, nome)VALUES('{}', '{}');".format(sigla, curso))
                     cursor.execute(query)
                     cnx.commit()
+                    mensagem = ('Adicionado com sucesso')
+                    context['mensagem'] = mensagem
 
 
             else:
@@ -595,4 +597,55 @@ def cadastro_curso(request):
             fecharConexao(cursor, cnx)
 
     return render(request, 'admin/cadastro_cursos.html', context)
+
+
+def cadastro_disciplina(request):
+    context = {}
+    if request.POST:
+        cnx = abrirConexao()
+        cursor = None
+
+        if cnx:
+            cursor = cnx.cursor()
+        try:
+            erros = []
+            disciplina = request.POST.get('disciplina')
+
+            cursor.execute("select * from Disciplina")
+            dis = cursor.fetchall()
+            if not (erros):
+
+                lista_dis = {"nome": disciplina}
+                lista = []
+
+                dex = lista_dis.get('nome')
+
+                for i in range(0, len(dis)):
+                    lc = dis[i]
+                    for n in lc:
+                        lista.append(n)
+
+                if dex in lista:
+                    mensagem = ('Disciplina ja existente')
+                    context['mensagem'] = mensagem
+
+                else:
+                    query = cursor.execute("insert into Disciplina(nome) values('{}')".format(disciplina))
+                    cursor.execute(query)
+                    cnx.commit()
+                    mensagem = ('Adicionado com sucesso')
+                    context['mensagem'] = mensagem
+
+                if disciplina.strip() == '':
+                    erros.append("Disciplina inválida!")
+
+            else:
+                context["erros"] = erros
+
+
+        finally:
+            fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/cadastro_disciplina.html', context)
+
 
