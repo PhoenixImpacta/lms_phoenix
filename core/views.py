@@ -608,14 +608,14 @@ def cadastro_curso(request):
                 print(lista_curso)
 
                 if cs in lista_curso or sig in lista_curso:
-                    mensagem = ('Curso ja existente')
+                    mensagem = ('ALERTA: {} ja existente'.format(curso))
                     context['mensagem'] = mensagem
                 else:
 
                     query = ("INSERT INTO Curso(sigla, nome)VALUES('{}', '{}');".format(sigla, curso))
                     cursor.execute(query)
                     cnx.commit()
-                    mensagem = ('Adicionado com sucesso')
+                    mensagem = ('{} adicionado com sucesso'.format(curso))
                     context['mensagem'] = mensagem
 
 
@@ -750,5 +750,55 @@ def editar_disciplina(request):
             fecharConexao(cursor, cnx)
 
     return render(request, 'admin/edit_disciplina.html', context)
+
+
+def deleta_disciplina(request):
+    cnx = abrirConexao()
+    cursor = None
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
+    erros = []
+    cursor.execute("select * from Disciplina")
+    dis = cursor.fetchall()
+    context = {'disciplina': dis}
+
+
+    if request.POST:
+
+
+        try:
+            erros = []
+            disciplina = request.POST.get('disciplina')
+
+            print(disciplina, '-----------------------')
+
+
+            if not (erros):
+                if disciplina == None:
+                    mensagem = ("ESCOLHA UMA DISCIPLINA")
+                    context['mensagem'] = mensagem
+
+                else:
+                    query = cursor.execute("delete from Disciplina where nome = '{}'".format(disciplina))
+                    cursor.execute(query)
+                    cnx.commit()
+
+                mensagem = ("{} deletado".format(disciplina))
+                context['mensagem'] = mensagem
+
+            else:
+                context["erros"] = erros
+
+
+        finally:
+            fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/deleta_disciplina.html', context)
 
 

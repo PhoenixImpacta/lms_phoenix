@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+
+
+
+<h1>Deletar disciplina</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+
+        Disciplina :
+        <select name="disciplina" required>
+            <option value=""></option>
+            {% for disc in disciplina %}
+        <option value="{{ disc.nome }}">{{ disc.nome }}</option>
+        {% endfor %}
+
+        </select>
+        <br/>
+
+
+    <button type="submit">Deletar</button>
+    <br/>
+    {{mensagem}}
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
+</form>
+{% endblock %}
+
+

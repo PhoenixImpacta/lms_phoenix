@@ -9,12 +9,12 @@
     {% csrf_token %}
 
 
-        <select name="disciplina" required>
+        Disciplina :<select name="disciplina" required>
             <option value=""></option>
             {% for disc in disciplina %}
-        <option value="{{ disc.nome }}">{{ disc.nome }}
+        <option value="{{ disc.nome }}">{{ disc.nome }}</option>
         {% endfor %}
-        </option>
+
         </select>
         <br/>
 
@@ -36,32 +36,32 @@
     <br/>
 
     <label for="ementa">Ementa :</label>
-    <input type="text" name="ementa" id="ementa" required>
+    <textarea type="text" name="ementa" id="ementa" required></textarea>
 
     <br/>
 
     <label for="competencias">Competencias :</label>
-    <input type="text" name="competencias" id="competencias" required>
+    <textarea type="text" name="competencias" id="competencias" required></textarea>
 
     <br/>
 
     <label for="habilidades">Habilidades :</label>
-    <input type="text" name="habilidades" id="habilidades" required>
+    <textarea type="text" name="habilidades" id="habilidades" required></textarea>
 
     <br/>
 
     <label for="conteudo">Conteudo :</label>
-    <input type="text" name="conteudo" id="conteudo" required>
+    <textarea type="text" name="conteudo" id="conteudo" required></textarea>
 
     <br/>
 
     <label for="bibliografia_basica">Bibliografia Básica:</label>
-    <input type="text" name="bibliografia_basica" id="bibliografia_basica" required>
+    <textarea type="text" name="bibliografia_basica" id="bibliografia_basica" required></textarea>
 
     <br/>
 
     <label for="bibliografia_complementar">Bibliografia Complementar :</label>
-    <input type="text" name="bibliografia_complementar" id="bibliografia_complementar" required>
+    <textarea type="text" name="bibliografia_complementar" id="bibliografia_complementar" required></textarea>
 
     <br/>
 
