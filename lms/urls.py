@@ -19,7 +19,7 @@ from core.views import login, upload_foto, index, visualizar_avisos_professor, e
     aviso_professor, \
     visualizar_avisos, perfil_aluno, opcao_testes_online, teste_aberto, teste_escolha, teste_v_f, \
     enviar_avisos, enviar_aviso_nova_atividade, cadastrar_questoes, enviar_aviso_para_aluno, aviso_aluno, \
-    abrir_matricula, matricular
+    abrir_matricula, matricular, confirmar_matricula
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
@@ -41,5 +41,6 @@ urlpatterns = [
     url(r'^upload_foto/$', upload_foto, name='upload_foto'),
     url(r'^perfil_aluno/$', perfil_aluno, name='perfil_aluno'),
     url(r'^abrir_matricula/$', abrir_matricula, name='abrir_matricula'),
+    url(r'^confirmar_matricula/$', confirmar_matricula, name='confirmar_matricula'),
     url(r'^matricular/$', matricular, name='matricular'),
 ]

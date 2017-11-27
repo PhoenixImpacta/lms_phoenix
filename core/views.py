@@ -37,16 +37,17 @@ def login(request):
         if request.POST:
             ra = request.POST.get('ra')
             tipo = request.POST.get('tipo')
+            senha = request.POST.get('senha')
             if ra.strip() == '':
                 erros.append("Ra inválido")
 
             if not (erros):
                 usuario = None
                 if tipo == 'a':
-                    cursor.execute("select * from Aluno where ra={}".format(ra))
+                    cursor.execute("select * from Aluno where ra={} and senha='{}'".format(ra, senha))
                     usuario = cursor.fetchall()
                 elif tipo == 'p':
-                    cursor.execute("select * from Professor where ra={}".format(ra))
+                    cursor.execute("select * from Professor where ra={} and senha='{}'".format(ra, senha))
                     usuario = cursor.fetchall()
 
                 if not (usuario):
@@ -377,7 +378,6 @@ def teste_escolha(request):
 def teste_v_f(request):
     return render(request, 'professor/teste_v_f.html')
 
-
 def visualizar_avisos(request):
     cnx = abrirConexao()
     cursor = None
@@ -546,17 +546,13 @@ def abrir_matricula(request):
         context['codigo'] = codigo
 
         if request.POST:
-            '''1- Link da disciplina
-               2- Codigo de acesso: 30 seg duração
-               3- Os alunos acessam o link com o codigo de acesso
-               4- Enviam os dados ao professor (email) e não no banco'''
             # salvar na sessão
             dpl = request.POST.get('disciplina')
             cursor.execute("select * from DisciplinaOfertada where nome_disciplina = '{}';".format(dpl))
             disciplina = cursor.fetchall()
             disciplina = dict(disciplina[0])
 
-            resposta = render_to_response('professor/abrir_matricula.html', context)
+            resposta = render_to_response('index.html', context)
             resposta.set_cookie("disciplina", disciplina, expires=datetime.timedelta(minutes=5), domain=None,
                                 secure=False)
             resposta.set_cookie("codigo_acesso", codigo, max_age=30, domain=None, secure=False)
@@ -564,7 +560,8 @@ def abrir_matricula(request):
             crs = cnx.cursor()
             crs.execute("select email from Aluno;")
             emails = crs.fetchall()
-            enviarLink(emails, "Acessem localhost:8000/matricular/")
+            enviarLink(emails, "Acessem localhost:8000/matricular/\n"
+                               "Código de acesso: " + str(codigo))
 
             return resposta
 
@@ -617,22 +614,77 @@ def matricular(request):
             if email.strip() == '':
                 erros.append('Email inválido')
 
-            if not(erros):
-                cursor.execute("select id_turma from CursoTurma where sigla_curso = '{}';".format(usuario_logado['sigla_curso']))
-                id_turma = cursor.fetchall()[0]
-                cursor.execute("insert into Matricula(ra_aluno, nome_disciplina, ano_ofertado, semestre_ofertado, id_turma) values ({}, '{}', {}, '{}', {});".format(usuario_logado['sigla_curso'], disciplina['nome_disciplina'], disciplina['ano'], disciplina['semestre'], id_turma['id_turma']))
+            if not (erros):
+                if usuario_logado['tipo'] == 'ALUNO':
+                    caminho = salvar_foto(file)
+                    caminho = caminho.replace('core/static/', '').replace('%20', ' ')
+                    cursor.execute(
+                        "insert into AlunoFoto(ra_aluno, caminho_foto) values ({}, '{}');".format(usuario_logado['ra'],
+                                                                                                  caminho))
+                    cursor.execute("select id_turma from CursoTurma where sigla_curso = '{}';".format(
+                        usuario_logado['sigla_curso']))
+                    id_turma = cursor.fetchall()[0]
 
-                caminho = salvar_foto(file)
-                caminho = caminho.replace('core/static/', '').replace('%20', ' ')
-                cursor.execute(
-                    "insert into AlunoFoto(ra_aluno, caminho_foto) values ({}, '{}');".format(usuario_logado['ra'], caminho))
+                    matricula = {'nome': nome, 'celular': celular, 'email': email, 'caminho': caminho, 'id_turma': id_turma}
 
+                    print(datetime.timedelta(minutes=5))
+
+                    resposta = render_to_response('index.html', context)
+                    resposta.set_cookie("matricula", matricula, max_age=datetime.timedelta(minutes=5), expires=datetime.timedelta(minutes=5), domain=None,
+                                        secure=False)
+                    return resposta
             else:
                 context['erros'] = erros
     finally:
         fecharConexao(cursor, cnx)
 
     return render(request, 'aluno/matricular.html', context)
+
+
+def confirmar_matricula(request):
+    cnx = abrirConexao()
+    cursor = None
+    context = {}
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    disciplina = ast.literal_eval(request.COOKIES['disciplina'])
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+    else:
+        context['usuario_logado'] = None
+    if disciplina:
+        context['disciplina'] = disciplina
+    else:
+        context['disciplina'] = None
+
+    try:
+        matricula = request.COOKIES['matricula']
+    except KeyError:
+        matricula = None
+
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        if matricula:
+            context['matricula'] = matricula
+
+        if request.POST:
+            if matricula and usuario_logado['tipo'] == 'PROFESSOR':
+                opcao = request.POST.get('opcao')
+
+                if opcao == 'yes':
+                    cursor.execute(
+                        "insert into Matricula(ra_aluno, nome_disciplina, ano_ofertado, semestre_ofertado, id_turma) values ({}, '{}', {}, '{}', {});".format(
+                            usuario_logado['ra'], disciplina['nome_disciplina'], disciplina['ano'],
+                            disciplina['semestre'], matricula['id_turma']))
+                    enviarEmail(matricula['email'], "Parabéns sua matricula foi aprovada!")
+                else:
+                    enviarEmail(matricula['email'], "Parabéns sua matricula foi reprovada!!!\nPor favor fale com seu professor!")
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'professor/confirmar_matricula.html', context)
 
 
 '''

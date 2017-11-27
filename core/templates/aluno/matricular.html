@@ -19,17 +19,9 @@
     <br>
     <button type="submit">Enviar Matricula</button>
 </form>
+
 {% else %}
-
-<h1>O código expirou! Solicite um novo para o professor!</h1>
-<form action="" method="post">
-    <button type="submit">Solicitar novo código</button>
-</form>
-
-{% endif %}
-
-{% if disciplina %}
-<h1>Disciplina: {{disciplina.nome_disciplina}}</h1>
+<h1>Seu código expirou! Solicite um novo para o professor!</h1>
 {% endif %}
 
 {% endblock %}

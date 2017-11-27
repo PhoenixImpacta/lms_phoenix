@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="847e7136-ba87-4679-9ea0-34cd630815d1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/lms_phoenix.iml" afterPath="$PROJECT_DIR$/.idea/lms_phoenix.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/aluno/matricular.html" afterPath="$PROJECT_DIR$/core/templates/aluno/matricular.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/login.html" afterPath="$PROJECT_DIR$/core/templates/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/views.py" afterPath="$PROJECT_DIR$/core/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lms/urls.py" afterPath="$PROJECT_DIR$/lms/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,14 +22,40 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="647" column="0" lean-forward="true" selection-start-line="647" selection-start-column="0" selection-end-line="647" selection-end-column="0" />
+            <state relative-caret-position="474">
+              <caret line="572" column="24" lean-forward="false" selection-start-line="572" selection-start-column="24" selection-end-line="572" selection-end-column="24" />
               <folding>
-                <element signature="e#10441#11857#0" expanded="false" />
-                <element signature="e#11892#13273#0" expanded="false" />
-                <element signature="e#16970#17543#0" expanded="false" />
-                <element signature="e#17580#19273#0" expanded="false" />
+                <element signature="e#390#736#0" expanded="false" />
+                <element signature="e#763#2463#0" expanded="false" />
+                <element signature="e#2498#4666#0" expanded="false" />
+                <element signature="e#4715#6198#0" expanded="false" />
+                <element signature="e#6243#6941#0" expanded="false" />
+                <element signature="e#6984#8062#0" expanded="false" />
+                <element signature="e#8111#8731#0" expanded="false" />
+                <element signature="e#8771#10396#0" expanded="false" />
+                <element signature="e#10437#10497#0" expanded="false" />
+                <element signature="e#10531#11947#0" expanded="false" />
+                <element signature="e#11982#13363#0" expanded="false" />
+                <element signature="e#13394#13444#0" expanded="false" />
+                <element signature="e#13482#14094#0" expanded="false" />
+                <element signature="e#14145#15235#0" expanded="false" />
+                <element signature="e#15284#16006#0" expanded="false" />
+                <element signature="e#16039#17025#0" expanded="false" />
+                <element signature="e#17059#17632#0" expanded="false" />
+                <element signature="e#17669#19183#0" expanded="false" />
+                <element signature="e#19215#21801#0" expanded="false" />
+                <element signature="e#21842#23436#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="confirmar_matricula.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/templates/professor/confirmar_matricula.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -36,8 +63,8 @@
       <file leaf-file-name="EnviarEmail.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/util/EnviarEmail.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="26" column="3" lean-forward="false" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+            <state relative-caret-position="221">
+              <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -46,9 +73,11 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lms/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="625">
+              <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+              <folding>
+                <element signature="e#637#669#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -66,8 +95,8 @@
       <file leaf-file-name="matricular.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/aluno/matricular.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+            <state relative-caret-position="391">
+              <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -122,7 +151,6 @@
         <option value="$PROJECT_DIR$/core/templates/cadastro_usuarios.html" />
         <option value="$PROJECT_DIR$/core/util/VerificadorCamposVazios.py" />
         <option value="$PROJECT_DIR$/core/templates/index.html" />
-        <option value="$PROJECT_DIR$/core/templates/login.html" />
         <option value="$PROJECT_DIR$/core/templates/professor/cadastro_questoes.html" />
         <option value="$PROJECT_DIR$/core/templates/professor/aviso_nova_atividade.html" />
         <option value="$PROJECT_DIR$/core/templates/avisos.html" />
@@ -137,9 +165,11 @@
         <option value="$PROJECT_DIR$/core/templates/base.html" />
         <option value="$PROJECT_DIR$/core/templates/professor/abrir_matricula.html" />
         <option value="$PROJECT_DIR$/core/util/CodigoAcesso.py" />
-        <option value="$PROJECT_DIR$/lms/urls.py" />
         <option value="$PROJECT_DIR$/core/util/EnviarEmail.py" />
+        <option value="$PROJECT_DIR$/core/templates/login.html" />
         <option value="$PROJECT_DIR$/core/templates/aluno/matricular.html" />
+        <option value="$PROJECT_DIR$/core/templates/professor/confirmar_matricula.html" />
+        <option value="$PROJECT_DIR$/lms/urls.py" />
         <option value="$PROJECT_DIR$/core/views.py" />
       </list>
     </option>
@@ -313,10 +343,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08418741" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30229226" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928476" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928476" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -345,12 +375,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.2/system/python_stubs/-466250814/_mysql.py" />
     <entry file="file://$PROJECT_DIR$/core/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -418,13 +447,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/util/VerificadorCamposVazios.py" />
-    <entry file="file://$PROJECT_DIR$/core/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -628,14 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lms/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/util/CodigoAcesso.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -651,14 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/util/EnviarEmail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="26" column="3" lean-forward="false" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/aluno/upload_foto.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -667,23 +673,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="25" lean-forward="true" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/aluno/matricular.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        <state relative-caret-position="391">
+          <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/util/EnviarEmail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/professor/confirmar_matricula.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lms/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+          <folding>
+            <element signature="e#637#669#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="647" column="0" lean-forward="true" selection-start-line="647" selection-start-column="0" selection-end-line="647" selection-end-column="0" />
+        <state relative-caret-position="474">
+          <caret line="572" column="24" lean-forward="false" selection-start-line="572" selection-start-column="24" selection-end-line="572" selection-end-column="24" />
           <folding>
-            <element signature="e#10441#11857#0" expanded="false" />
-            <element signature="e#11892#13273#0" expanded="false" />
-            <element signature="e#16970#17543#0" expanded="false" />
-            <element signature="e#17580#19273#0" expanded="false" />
+            <element signature="e#390#736#0" expanded="false" />
+            <element signature="e#763#2463#0" expanded="false" />
+            <element signature="e#2498#4666#0" expanded="false" />
+            <element signature="e#4715#6198#0" expanded="false" />
+            <element signature="e#6243#6941#0" expanded="false" />
+            <element signature="e#6984#8062#0" expanded="false" />
+            <element signature="e#8111#8731#0" expanded="false" />
+            <element signature="e#8771#10396#0" expanded="false" />
+            <element signature="e#10437#10497#0" expanded="false" />
+            <element signature="e#10531#11947#0" expanded="false" />
+            <element signature="e#11982#13363#0" expanded="false" />
+            <element signature="e#13394#13444#0" expanded="false" />
+            <element signature="e#13482#14094#0" expanded="false" />
+            <element signature="e#14145#15235#0" expanded="false" />
+            <element signature="e#15284#16006#0" expanded="false" />
+            <element signature="e#16039#17025#0" expanded="false" />
+            <element signature="e#17059#17632#0" expanded="false" />
+            <element signature="e#17669#19183#0" expanded="false" />
+            <element signature="e#19215#21801#0" expanded="false" />
+            <element signature="e#21842#23436#0" expanded="false" />
           </folding>
         </state>
       </provider>
