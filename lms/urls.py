@@ -36,4 +36,6 @@ urlpatterns = [
     url(r'^curso/turma/$', cadastro_curso_turma, name='cadastro_curso_turma'),
     url(r'^cadastro/curso/$', cadastro_curso, name='cadastro_curso'),
     url(r'^cadastro/disciplina/$', cadastro_disciplina, name='cadastro_disciplina'),
+    url(r'^editar/disciplina/$', editar_disciplina, name='editar_disciplina'),
+
 ]

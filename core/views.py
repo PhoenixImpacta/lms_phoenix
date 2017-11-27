@@ -131,6 +131,11 @@ def enviar_aviso_nova_atividade(request):
     cnx = abrirConexao()
     cursor = None
 
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
     try:
         if cnx:
             cursor = cnx.cursor(dictionary=True)
@@ -154,6 +159,12 @@ def opcao_testes_online(request):
 
 def teste_aberto(request):
     context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
     if request.POST:
         cnx = abrirConexao()
         cursor = None
@@ -423,6 +434,12 @@ def cadastro_cursos_disciplinas(request):
 
 def cadastro_perfis(request):
     context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
     if request.POST:
         cnx = abrirConexao()
         cursor = None
@@ -457,6 +474,11 @@ def cadastro_perfis(request):
 def cadastro_curso_turma(request):
     cnx = abrirConexao()
     cursor = None
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
 
 
     if cnx:
@@ -545,6 +567,12 @@ def cadastro_curso_turma(request):
 #CADASTRO DE CURSOS
 def cadastro_curso(request):
     context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
     if request.POST:
         cnx = abrirConexao()
         cursor = None
@@ -601,6 +629,13 @@ def cadastro_curso(request):
 
 def cadastro_disciplina(request):
     context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
+
     if request.POST:
         cnx = abrirConexao()
         cursor = None
@@ -647,5 +682,73 @@ def cadastro_disciplina(request):
             fecharConexao(cursor, cnx)
 
     return render(request, 'admin/cadastro_disciplina.html', context)
+
+
+
+
+
+def editar_disciplina(request):
+    cnx = abrirConexao()
+    cursor = None
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
+    erros = []
+    cursor.execute("select * from Disciplina")
+    dis = cursor.fetchall()
+    context = {'disciplina': dis}
+
+
+
+
+
+    if request.POST:
+
+
+        try:
+            erros = []
+            disciplina = request.POST.get('disciplina')
+            carga_horaria = request.POST.get('carga_horaria')
+            teoria = request.POST.get('teoria')
+            pratica = request.POST.get('pratica')
+            ementa = request.POST.get('ementa')
+            competencias = request.POST.get('competencias')
+            habilidades = request.POST.get('habilidades')
+            conteudo = request.POST.get('conteudo')
+            bibliografia_basica = request.POST.get('bibliografia_basica')
+            bibliografia_complementar = request.POST.get('bibliografia_complementar')
+
+            print(disciplina, '-----------------------')
+
+
+            if not (erros):
+                if disciplina == None:
+                    mensagem = ("ESCOLHA UMA DISCIPLINA")
+                    context['mensagem'] = mensagem
+
+                else:
+                    query = cursor.execute(
+                    "update Disciplina set carga_horaria = '{}', teoria = '{}', pratica = '{}', ementa = '{}', competencias = '{}', habilidades = '{}', conteudo = '{}', bibliografia_basica = '{}', bibliografia_complementar = '{}' where nome='{}'".format(
+                            carga_horaria, teoria, pratica, ementa, competencias, habilidades, conteudo,
+                            bibliografia_basica, bibliografia_complementar, disciplina))
+                    cursor.execute(query)
+                    cnx.commit()
+
+                mensagem = ("{} editado".format(disciplina))
+                context['mensagem'] = mensagem
+
+            else:
+                context["erros"] = erros
+
+
+        finally:
+            fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/edit_disciplina.html', context)
 
 

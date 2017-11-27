@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro de Admin{% endblock %}
+{% block content %}
+
+
+
+<h1>Editar disciplina</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+
+
+        <select name="disciplina" required>
+            <option value=""></option>
+            {% for disc in disciplina %}
+        <option value="{{ disc.nome }}">{{ disc.nome }}
+        {% endfor %}
+        </option>
+        </select>
+        <br/>
+
+
+
+    <label for="carga_horaria">Carga Horaria :</label>
+    <input type="number" name="carga_horaria" id="carga_horaria" required>
+
+    <br/>
+
+    <label for="teoria">Teoria :</label>
+    <input type="number" name="teoria" id="teoria" required>
+
+    <br/>
+
+    <label for="pratica">Pratica :</label>
+    <input type="number" name="pratica" id="pratica" required>
+
+    <br/>
+
+    <label for="ementa">Ementa :</label>
+    <input type="text" name="ementa" id="ementa" required>
+
+    <br/>
+
+    <label for="competencias">Competencias :</label>
+    <input type="text" name="competencias" id="competencias" required>
+
+    <br/>
+
+    <label for="habilidades">Habilidades :</label>
+    <input type="text" name="habilidades" id="habilidades" required>
+
+    <br/>
+
+    <label for="conteudo">Conteudo :</label>
+    <input type="text" name="conteudo" id="conteudo" required>
+
+    <br/>
+
+    <label for="bibliografia_basica">Bibliografia Básica:</label>
+    <input type="text" name="bibliografia_basica" id="bibliografia_basica" required>
+
+    <br/>
+
+    <label for="bibliografia_complementar">Bibliografia Complementar :</label>
+    <input type="text" name="bibliografia_complementar" id="bibliografia_complementar" required>
+
+    <br/>
+
+
+    <button type="submit">Editar</button>
+    <br/>
+    {{mensagem}}
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
+</form>
+{% endblock %}
+
+
