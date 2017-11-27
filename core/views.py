@@ -661,14 +661,14 @@ def cadastro_disciplina(request):
                         lista.append(n)
 
                 if dex in lista:
-                    mensagem = ('Disciplina ja existente')
+                    mensagem = ('{} ja existente'.format(disciplina))
                     context['mensagem'] = mensagem
 
                 else:
                     query = cursor.execute("insert into Disciplina(nome) values('{}')".format(disciplina))
                     cursor.execute(query)
                     cnx.commit()
-                    mensagem = ('Adicionado com sucesso')
+                    mensagem = ('{} adicionado com sucesso'.format(disciplina))
                     context['mensagem'] = mensagem
 
                 if disciplina.strip() == '':
