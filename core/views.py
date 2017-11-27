@@ -506,12 +506,10 @@ def cadastro_curso_turma(request):
                 sig = s['sigla']
                 lista = {'sigla_curso': sig, 'nome_disciplina': disciplina, 'ano_ofertado': ano, 'semestre_ofertado': semestre, 'id_turma': id_turma}
 
-                print(lista, '======', CT[0])
+
                 verifica = []
                 for i in range(0, len(CT)):
                     CR = CT[i]
-                    print(CR)
-                    print(lista)
                     for n in range(0, len(lista)):
                         ver = (lista.get('sigla_curso') == CR.get('sigla_curso')and lista.get('nome_disciplina') == CR.get('nome_disciplina')and int(lista.get('id_turma')) == int(CR.get('id_turma')) and int(lista.get('ano_ofertado')) == int(CR.get('ano_ofertado'))and int(lista.get('semestre_ofertado')) == int(CR.get('semestre_ofertado')))
                         verifica.append(ver)
@@ -520,7 +518,7 @@ def cadastro_curso_turma(request):
 
                 '''INSERE NA TABELA CURSOTURMA OS VALORES SELECIONADOS'''
                 if True in verifica:
-                    mensagem.append("Já cadastrado")
+                    mensagem = ("Já cadastrado")
                     context['mensagem'] = mensagem
 
                 else:
@@ -528,7 +526,7 @@ def cadastro_curso_turma(request):
                     cursor.execute(cursoTurma)
                     cnx.commit()
 
-                    mensagem.append("Cadastrado com sucesso")
+                    mensagem = ("Cadastrado com sucesso")
                     context['mensagem'] = mensagem
 
 
@@ -544,7 +542,7 @@ def cadastro_curso_turma(request):
 
 
 
-
+#CADASTRO DE CURSOS
 def cadastro_curso(request):
     context = {}
     if request.POST:
@@ -559,13 +557,38 @@ def cadastro_curso(request):
             curso = request.POST.get("curso")
             sigla = request.POST.get("sigla")
 
+            cursor.execute("select * from Curso")
+            cursos = cursor.fetchall()
+
             if curso.strip() == '':
                 erros.append("Curso inválido!")
 
             if not (erros):
-                query = ("INSERT INTO Curso(sigla, nome)VALUES('{}', '{}');".format(sigla, curso))
-                cursor.execute(query)
-                cnx.commit()
+
+
+                lista = {'curso': curso, 'sigla': sigla}
+                lista_curso = []
+
+                cs = lista.get('curso')
+                sig = lista.get('sigla')
+
+                for i in range(0, len(cursos)):
+                    lc = cursos[i]
+                    for n in lc:
+                        lista_curso.append(n)
+
+                print(lista_curso)
+
+                if cs in lista_curso or sig in lista_curso:
+                    mensagem = ('Curso ja existente')
+                    context['mensagem'] = mensagem
+                else:
+
+                    query = ("INSERT INTO Curso(sigla, nome)VALUES('{}', '{}');".format(sigla, curso))
+                    cursor.execute(query)
+                    cnx.commit()
+
+
             else:
                 context["erros"] = erros
         finally:
