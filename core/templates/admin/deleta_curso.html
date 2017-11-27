@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+
+
+
+<h1>Deletar cursos</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+
+        Curso :
+        <select name="curso" required>
+            <option value=""></option>
+            {% for c in curso %}
+        <option value="{{ c.nome }}">{{ c.nome }}</option>
+        {% endfor %}
+
+        </select>
+        <br/>
+
+
+    <button type="submit">Deletar</button>
+    <br/>
+    {{mensagem}}
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
+</form>
+{% endblock %}
+
+

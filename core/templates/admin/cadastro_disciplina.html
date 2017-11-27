@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
-{% block title %}Cadastro de Perfis{% endblock %}
+{% block title %}Cadastro de Curso{% endblock %}
 {% block content %}
-<h1>Cadastro de Perfis</h1>
+
+
+
+<h1>Cadastro de Disciplinas</h1>
 <form action="" method="post">
     {% csrf_token %}
-    <label id="txtPerfil">Perfil:</label>
-    <input type="text" name="perfil" id="txtPerfil"  maxlength="15" required>
+
+    <label for="txtDisciplina">Nome da disciplina:</label>
+    <input type="text" name="disciplina" id="txtDisciplina"  maxlength="40" required><br/>
+
+    <br/>
+
     <button type="submit" class="save btn btn-default">Salvar</button>
+<br/>
+    <br/>
+
+    {{ mensagem }}
     {% if erros %}
         {% for erro in erros %}
             <p>{{erro}}</p>

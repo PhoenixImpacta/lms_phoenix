@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro de Admin{% endblock %}
+{% block content %}
+
+
+
+<h1>Editar disciplina</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+
+
+        Disciplina :<select name="disciplina" required>
+            <option value=""></option>
+            {% for disc in disciplina %}
+        <option value="{{ disc.nome }}">{{ disc.nome }}</option>
+        {% endfor %}
+
+        </select>
+        <br/>
+
+
+
+    <label for="carga_horaria">Carga Horaria :</label>
+    <input type="number" name="carga_horaria" id="carga_horaria" required>
+
+    <br/>
+
+    <label for="teoria">Teoria :</label>
+    <input type="number" name="teoria" id="teoria" required>
+
+    <br/>
+
+    <label for="pratica">Pratica :</label>
+    <input type="number" name="pratica" id="pratica" required>
+
+    <br/>
+
+    <label for="ementa">Ementa :</label>
+    <textarea type="text" name="ementa" id="ementa" required></textarea>
+
+    <br/>
+
+    <label for="competencias">Competencias :</label>
+    <textarea type="text" name="competencias" id="competencias" required></textarea>
+
+    <br/>
+
+    <label for="habilidades">Habilidades :</label>
+    <textarea type="text" name="habilidades" id="habilidades" required></textarea>
+
+    <br/>
+
+    <label for="conteudo">Conteudo :</label>
+    <textarea type="text" name="conteudo" id="conteudo" required></textarea>
+
+    <br/>
+
+    <label for="bibliografia_basica">Bibliografia Básica:</label>
+    <textarea type="text" name="bibliografia_basica" id="bibliografia_basica" required></textarea>
+
+    <br/>
+
+    <label for="bibliografia_complementar">Bibliografia Complementar :</label>
+    <textarea type="text" name="bibliografia_complementar" id="bibliografia_complementar" required></textarea>
+
+    <br/>
+
+
+    <button type="submit">Editar</button>
+    <br/>
+    {{mensagem}}
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
+</form>
+{% endblock %}
+
+

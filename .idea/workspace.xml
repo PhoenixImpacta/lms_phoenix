@@ -2,11 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="847e7136-ba87-4679-9ea0-34cd630815d1" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/templates/admin/admin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/templates/admin/cad_curso_turma.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/templates/admin/cadastro_disciplina.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/templates/admin/deleta_curso.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/templates/admin/deleta_disciplina.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/templates/admin/edit_disciplina.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/templates/admin/lista_curso.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/templates/admin/lista_disciplina.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/projeto.iml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/templates/cadastro_cursos.html" afterPath="$PROJECT_DIR$/core/templates/admin/cadastro_cursos.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/lms_phoenix.iml" afterPath="$PROJECT_DIR$/.idea/lms_phoenix.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/aluno/matricular.html" afterPath="$PROJECT_DIR$/core/templates/aluno/matricular.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/login.html" afterPath="$PROJECT_DIR$/core/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/base.html" afterPath="$PROJECT_DIR$/core/templates/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/cadastro_cursos_disciplinas.html" afterPath="$PROJECT_DIR$/core/templates/cadastro_cursos_disciplinas.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/cadastro_disciplinas_ementas.html" afterPath="$PROJECT_DIR$/core/templates/cadastro_disciplinas_ementas.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/cadastro_disciplinas_planos_ensinos.html" afterPath="$PROJECT_DIR$/core/templates/cadastro_disciplinas_planos_ensinos.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/cadastro_perfis.html" afterPath="$PROJECT_DIR$/core/templates/cadastro_perfis.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/cadastro_planos_ensinos.html" afterPath="$PROJECT_DIR$/core/templates/cadastro_planos_ensinos.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/cadastro_usuarios.html" afterPath="$PROJECT_DIR$/core/templates/cadastro_usuarios.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/templates/professor/confirmar_matricula.html" afterPath="$PROJECT_DIR$/core/templates/professor/confirmar_matricula.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/views.py" afterPath="$PROJECT_DIR$/core/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lms/urls.py" afterPath="$PROJECT_DIR$/lms/urls.py" />
     </list>
@@ -19,33 +35,111 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="572" column="24" lean-forward="false" selection-start-line="572" selection-start-column="24" selection-end-line="572" selection-end-column="24" />
+            <state relative-caret-position="481">
+              <caret line="1156" column="0" lean-forward="true" selection-start-line="1156" selection-start-column="0" selection-end-line="1156" selection-end-column="0" />
               <folding>
-                <element signature="e#390#736#0" expanded="false" />
-                <element signature="e#763#2463#0" expanded="false" />
-                <element signature="e#2498#4666#0" expanded="false" />
-                <element signature="e#4715#6198#0" expanded="false" />
-                <element signature="e#6243#6941#0" expanded="false" />
-                <element signature="e#6984#8062#0" expanded="false" />
-                <element signature="e#8111#8731#0" expanded="false" />
-                <element signature="e#8771#10396#0" expanded="false" />
-                <element signature="e#10437#10497#0" expanded="false" />
-                <element signature="e#10531#11947#0" expanded="false" />
-                <element signature="e#11982#13363#0" expanded="false" />
-                <element signature="e#13394#13444#0" expanded="false" />
-                <element signature="e#13482#14094#0" expanded="false" />
-                <element signature="e#14145#15235#0" expanded="false" />
-                <element signature="e#15284#16006#0" expanded="false" />
-                <element signature="e#16039#17025#0" expanded="false" />
-                <element signature="e#17059#17632#0" expanded="false" />
-                <element signature="e#17669#19183#0" expanded="false" />
-                <element signature="e#19215#21801#0" expanded="false" />
-                <element signature="e#21842#23436#0" expanded="false" />
+                <element signature="e#0#79#0" expanded="true" />
+                <element signature="e#2351#4519#0" expanded="false" />
+                <element signature="e#4567#6050#0" expanded="false" />
+                <element signature="e#6094#6792#0" expanded="false" />
+                <element signature="e#6834#7912#0" expanded="false" />
+                <element signature="e#7960#8580#0" expanded="false" />
+                <element signature="e#8619#10244#0" expanded="false" />
+                <element signature="e#10284#10344#0" expanded="false" />
+                <element signature="e#10377#11793#0" expanded="false" />
+                <element signature="e#11827#13208#0" expanded="false" />
+                <element signature="e#13238#13288#0" expanded="false" />
+                <element signature="e#13326#13938#0" expanded="false" />
+                <element signature="e#13988#15078#0" expanded="false" />
+                <element signature="e#15126#15848#0" expanded="false" />
+                <element signature="e#15880#16866#0" expanded="false" />
+                <element signature="e#16899#17472#0" expanded="false" />
+                <element signature="e#17508#19022#0" expanded="false" />
+                <element signature="e#19053#21712#0" expanded="false" />
+                <element signature="e#21752#23684#0" expanded="false" />
+                <element signature="e#23711#23901#0" expanded="false" />
+                <element signature="e#23997#24924#0" expanded="false" />
+                <element signature="e#25015#28124#0" expanded="false" />
+                <element signature="e#29890#31428#0" expanded="false" />
+                <element signature="e#31466#33598#0" expanded="false" />
+                <element signature="e#33638#34908#0" expanded="false" />
+                <element signature="e#34943#36150#0" expanded="false" />
+                <element signature="e#36187#36756#0" expanded="false" />
+                <element signature="e#36788#37341#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cadastro_cursos_disciplinas.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/templates/cadastro_cursos_disciplinas.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="25" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/templates/admin/admin.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cadastro_cursos.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/templates/admin/cadastro_cursos.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cadastro_questoes.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/templates/professor/cadastro_questoes.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="49" lean-forward="false" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="aviso_nova_atividade.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/templates/professor/aviso_nova_atividade.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/templates/logout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="430">
+              <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -53,18 +147,8 @@
       <file leaf-file-name="confirmar_matricula.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/professor/confirmar_matricula.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EnviarEmail.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/util/EnviarEmail.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+            <state relative-caret-position="289">
+              <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -73,41 +157,11 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lms/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
-              <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+            <state relative-caret-position="549">
+              <caret line="53" column="29" lean-forward="true" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
               <folding>
                 <element signature="e#637#669#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CodigoAcesso.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/util/CodigoAcesso.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="matricular.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/templates/aluno/matricular.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="upload_foto.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/templates/aluno/upload_foto.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="8" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="12" selection-end-column="8" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -117,8 +171,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -162,22 +216,24 @@
         <option value="$PROJECT_DIR$/core/templates/aluno/upload_foto.html" />
         <option value="$PROJECT_DIR$/core/util/UploadFoto.py" />
         <option value="$PROJECT_DIR$/core/templates/aluno/perfil.html" />
-        <option value="$PROJECT_DIR$/core/templates/base.html" />
         <option value="$PROJECT_DIR$/core/templates/professor/abrir_matricula.html" />
         <option value="$PROJECT_DIR$/core/util/CodigoAcesso.py" />
         <option value="$PROJECT_DIR$/core/util/EnviarEmail.py" />
         <option value="$PROJECT_DIR$/core/templates/login.html" />
         <option value="$PROJECT_DIR$/core/templates/aluno/matricular.html" />
         <option value="$PROJECT_DIR$/core/templates/professor/confirmar_matricula.html" />
-        <option value="$PROJECT_DIR$/lms/urls.py" />
+        <option value="$PROJECT_DIR$/core/templates/logout.html" />
+        <option value="$PROJECT_DIR$/core/util/teste.py" />
         <option value="$PROJECT_DIR$/core/views.py" />
+        <option value="$PROJECT_DIR$/lms/urls.py" />
+        <option value="$PROJECT_DIR$/core/templates/base.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="720" />
-    <option name="width" value="720" />
-    <option name="height" value="788" />
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -201,33 +257,37 @@
         <subPane>
           <expand>
             <path>
-              <item name="projeto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto" type="462c0819:PsiDirectoryNode" />
+              <item name="lms_phoenix" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lms_phoenix" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="projeto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto" type="462c0819:PsiDirectoryNode" />
+              <item name="lms_phoenix" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lms_phoenix" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="projeto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto" type="462c0819:PsiDirectoryNode" />
+              <item name="lms_phoenix" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lms_phoenix" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lms_phoenix" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lms_phoenix" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lms_phoenix" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lms_phoenix" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="projeto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="aluno" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="professor" type="462c0819:PsiDirectoryNode" />
+              <item name="lms_phoenix" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lms_phoenix" type="462c0819:PsiDirectoryNode" />
+              <item name="lms" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -236,22 +296,22 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../lms_phoenix-Desenvolvimento" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/User/Desktop/projeto/lms/urls.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\projeto\core\static\js" />
+      <recent name="C:\Users\User\Desktop\projeto\core\templates" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Cirino\Desktop\PROFISSIONAL\PROJETO_FACUL\lms_phoenix\core\templates" />
       <recent name="C:\Users\User\Desktop\projeto\core\static\img" />
       <recent name="C:\Users\User\Desktop\projeto\core\templates\aluno" />
       <recent name="C:\Users\User\Desktop\projeto\core\templates\professor" />
       <recent name="C:\Users\User\Desktop\projeto\core\util" />
-      <recent name="C:\Users\User\Desktop\projeto\core\templates" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\User\Desktop\projeto\core\static\js" />
-      <recent name="C:\Users\User\Desktop\projeto\core\templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -266,7 +326,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.CodigoAcesso">
+  <component name="RunManager" selected="Python.teste">
     <configuration name="CodigoAcesso" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -301,14 +361,33 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <list size="2">
+    <configuration name="teste" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/core/util" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="lms_phoenix" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/core/util/teste.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Python.UploadFoto" />
       <item index="1" class="java.lang.String" itemvalue="Python.CodigoAcesso" />
+      <item index="2" class="java.lang.String" itemvalue="Python.teste" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.CodigoAcesso" />
-        <item index="1" class="java.lang.String" itemvalue="Python.UploadFoto" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.teste" />
+        <item index="1" class="java.lang.String" itemvalue="Python.CodigoAcesso" />
+        <item index="2" class="java.lang.String" itemvalue="Python.UploadFoto" />
       </list>
     </recent_temporary>
   </component>
@@ -343,13 +422,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30229226" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25549048" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928476" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928476" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279743" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280507" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -362,7 +442,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928476" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -375,33 +454,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/python_axolotl-0.1.39-py3.6.egg!/axolotl/util/byteutil.py" />
     <entry file="file://$PROJECT_DIR$/core/static/js/validador.js" />
     <entry file="file://$PROJECT_DIR$/lms/settings.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -451,13 +508,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="3" column="11" lean-forward="false" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/professor/aviso_nova_atividade.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -545,13 +595,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/cadastro_cursos_disciplinas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="25" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/util/UploadFoto.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -563,13 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="70" lean-forward="false" selection-start-line="17" selection-start-column="70" selection-end-line="17" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -598,13 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
           <caret line="119" column="20" lean-forward="false" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/professor/cadastro_questoes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="49" lean-forward="false" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -650,14 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/util/CodigoAcesso.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/django/http/request.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2040">
@@ -665,27 +686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/aluno/upload_foto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="8" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="12" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="25" lean-forward="true" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/aluno/matricular.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -693,54 +697,140 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/util/CodigoAcesso.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/aluno/upload_foto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="8" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="12" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/aluno/matricular.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="7" lean-forward="false" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/util/teste.py" />
     <entry file="file://$PROJECT_DIR$/core/templates/professor/confirmar_matricula.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+        <state relative-caret-position="289">
+          <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/logout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/professor/cadastro_questoes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="49" lean-forward="false" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/professor/aviso_nova_atividade.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/cadastro_cursos_disciplinas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="25" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/admin/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/admin/cadastro_cursos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="1156" column="0" lean-forward="true" selection-start-line="1156" selection-start-column="0" selection-end-line="1156" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#79#0" expanded="true" />
+            <element signature="e#2351#4519#0" expanded="false" />
+            <element signature="e#4567#6050#0" expanded="false" />
+            <element signature="e#6094#6792#0" expanded="false" />
+            <element signature="e#6834#7912#0" expanded="false" />
+            <element signature="e#7960#8580#0" expanded="false" />
+            <element signature="e#8619#10244#0" expanded="false" />
+            <element signature="e#10284#10344#0" expanded="false" />
+            <element signature="e#10377#11793#0" expanded="false" />
+            <element signature="e#11827#13208#0" expanded="false" />
+            <element signature="e#13238#13288#0" expanded="false" />
+            <element signature="e#13326#13938#0" expanded="false" />
+            <element signature="e#13988#15078#0" expanded="false" />
+            <element signature="e#15126#15848#0" expanded="false" />
+            <element signature="e#15880#16866#0" expanded="false" />
+            <element signature="e#16899#17472#0" expanded="false" />
+            <element signature="e#17508#19022#0" expanded="false" />
+            <element signature="e#19053#21712#0" expanded="false" />
+            <element signature="e#21752#23684#0" expanded="false" />
+            <element signature="e#23711#23901#0" expanded="false" />
+            <element signature="e#23997#24924#0" expanded="false" />
+            <element signature="e#25015#28124#0" expanded="false" />
+            <element signature="e#29890#31428#0" expanded="false" />
+            <element signature="e#31466#33598#0" expanded="false" />
+            <element signature="e#33638#34908#0" expanded="false" />
+            <element signature="e#34943#36150#0" expanded="false" />
+            <element signature="e#36187#36756#0" expanded="false" />
+            <element signature="e#36788#37341#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lms/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+        <state relative-caret-position="549">
+          <caret line="53" column="29" lean-forward="true" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
           <folding>
             <element signature="e#637#669#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/views.py">
+    <entry file="file://$PROJECT_DIR$/core/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="572" column="24" lean-forward="false" selection-start-line="572" selection-start-column="24" selection-end-line="572" selection-end-column="24" />
-          <folding>
-            <element signature="e#390#736#0" expanded="false" />
-            <element signature="e#763#2463#0" expanded="false" />
-            <element signature="e#2498#4666#0" expanded="false" />
-            <element signature="e#4715#6198#0" expanded="false" />
-            <element signature="e#6243#6941#0" expanded="false" />
-            <element signature="e#6984#8062#0" expanded="false" />
-            <element signature="e#8111#8731#0" expanded="false" />
-            <element signature="e#8771#10396#0" expanded="false" />
-            <element signature="e#10437#10497#0" expanded="false" />
-            <element signature="e#10531#11947#0" expanded="false" />
-            <element signature="e#11982#13363#0" expanded="false" />
-            <element signature="e#13394#13444#0" expanded="false" />
-            <element signature="e#13482#14094#0" expanded="false" />
-            <element signature="e#14145#15235#0" expanded="false" />
-            <element signature="e#15284#16006#0" expanded="false" />
-            <element signature="e#16039#17025#0" expanded="false" />
-            <element signature="e#17059#17632#0" expanded="false" />
-            <element signature="e#17669#19183#0" expanded="false" />
-            <element signature="e#19215#21801#0" expanded="false" />
-            <element signature="e#21842#23436#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="430">
+          <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

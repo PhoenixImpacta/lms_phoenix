@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro de Admin{% endblock %}
+{% block content %}
+
+
+
+<h1>Cadastro de usuarios</h1>
+
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="txtNome">Nome:</label>
+    <input type="text" name="nome" id="txtNome"  maxlength="40" required><br/>
+
+    <label for="txtRa">RA:</label>
+    <input type="number" name="ra" id="txtRa"  maxlength="40" required><br/>
+
+    <label for="txtEmail">Email:</label>
+    <input type="email" name="email" id="txtEmail" required><br/>
+
+    <button type="submit">Salvar</button>
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
+</form>
+
+{% endblock %}

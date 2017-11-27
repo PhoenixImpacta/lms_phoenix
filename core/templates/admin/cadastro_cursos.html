@@ -1,14 +1,28 @@
 {% extends 'base.html' %}
 {% block title %}Cadastro de Curso{% endblock %}
 {% block content %}
+
+
+
 <h1>Cadastro de Curso</h1>
 <form action="" method="post">
     {% csrf_token %}
-    <label id="txtDisciplina">Disciplina</label>
-    <input type="text" name="disciplina" id="txtDisciplina" maxlength="40" required>
-    <label id="txtEmenta">Ementa:</label>
-    <textarea name="ementa" id="txtEmenta" maxlength="300" required></textarea>
+
+    <label for="txtCurso">Nome do curso:</label>
+    <input type="text" name="curso" id="txtCurso"  maxlength="40" required><br/>
+
+
+
+    <label for="txtSigla">Sigla do curso:</label>
+    <input type="text" name="sigla" id="txtSigla"  maxlength="3" style="text-transform:uppercase" required>
+
+    <br/>
+
     <button type="submit" class="save btn btn-default">Salvar</button>
+<br/>
+    <br/>
+
+    {{ mensagem }}
     {% if erros %}
         {% for erro in erros %}
             <p>{{erro}}</p>

@@ -14,15 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib import admin
 from core.views import login, upload_foto, index, visualizar_avisos_professor, enviar_aviso_para_professor, \
     aviso_professor, \
     visualizar_avisos, perfil_aluno, opcao_testes_online, teste_aberto, teste_escolha, teste_v_f, \
     enviar_avisos, enviar_aviso_nova_atividade, cadastrar_questoes, enviar_aviso_para_aluno, aviso_aluno, \
-    abrir_matricula, matricular, confirmar_matricula
+    abrir_matricula, matricular, confirmar_matricula, logout, cadastro_perfis, cadastro_curso_turma, cadastro_curso, \
+    cadastro_disciplina, editar_disciplina, deleta_disciplina, lista_disciplina, lista_curso, deleta_curso
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
     url(r'^index/$', index, name='index'),
     url(r'^$', login, name='login'),
     url(r'^opcao_testes_online/$', opcao_testes_online, name='opcao_testes_online'),
@@ -43,4 +42,14 @@ urlpatterns = [
     url(r'^abrir_matricula/$', abrir_matricula, name='abrir_matricula'),
     url(r'^confirmar_matricula/$', confirmar_matricula, name='confirmar_matricula'),
     url(r'^matricular/$', matricular, name='matricular'),
+    url(r'^logout/$', logout, name='logout'),
+    url(r'^admin/$', cadastro_perfis, name='cadastro_perfis'),
+    url(r'^curso/turma/$', cadastro_curso_turma, name='cadastro_curso_turma'),
+    url(r'^cadastro/curso/$', cadastro_curso, name='cadastro_curso'),
+    url(r'^cadastro/disciplina/$', cadastro_disciplina, name='cadastro_disciplina'),
+    url(r'^editar/disciplina/$', editar_disciplina, name='editar_disciplina'),
+    url(r'^deleta/disciplina/$', deleta_disciplina, name='deleta_disciplina'),
+    url(r'^lista/disciplina/$', lista_disciplina, name='lista_disciplina'),
+    url(r'^lista/curso/$', lista_curso, name='lista_curso'),
+    url(r'^deleta/curso/$', deleta_curso, name='deleta_curso'),
 ]
