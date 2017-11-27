@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro de Admin{% endblock %}
+{% block content %}
+
+
+
+<h1>Lista de cursos</h1>
+{% csrf_token %}
+    <ul>
+        <option value=""></option>
+        {% for c in curso %}
+        <li>{{ c.sigla }} : {{ c.nome }}</li>
+        {% endfor %}
+    </ul>
+
+{% if erros %}
+    {% for erro in erros %}
+        <p>{{erro}}</p>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
+
+

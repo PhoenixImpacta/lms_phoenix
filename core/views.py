@@ -807,6 +807,61 @@ def deleta_disciplina(request):
 
 
 
+def deleta_curso(request):
+
+
+    cnx = abrirConexao()
+    cursor = None
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
+    erros = []
+    cursor.execute("select * from Curso")
+    cs = cursor.fetchall()
+    context = {'curso': cs}
+    title = ('Deleta curso')
+    context['title'] = title
+
+
+    if request.POST:
+
+
+        try:
+            erros = []
+            disciplina = request.POST.get('curso')
+
+            print(disciplina, '-----------------------')
+
+
+            if not (erros):
+                if cs == None:
+                    mensagem = ("ESCOLHA UM CURSO")
+                    context['mensagem'] = mensagem
+
+                else:
+                    query = cursor.execute("delete from Curso where nome = '{}'".format(cs))
+                    cursor.execute(query)
+                    cnx.commit()
+
+                mensagem = ("{} deletado".format(cs))
+                context['mensagem'] = mensagem
+
+            else:
+                context["erros"] = erros
+
+
+        finally:
+            fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/deleta_curso.html', context)
+
+
+
 
 
 def lista_disciplina(request):
@@ -838,3 +893,36 @@ def lista_disciplina(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'admin/lista_disciplina.html', context)
+
+
+
+
+def lista_curso(request):
+    cnx = abrirConexao()
+    cursor = None
+    context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+
+    try:
+        cursor.execute("select * from Curso")
+        curso = cursor.fetchall()
+
+        context['curso'] = curso
+
+        title = ('Lista de cursos')
+
+        context['title'] = title
+
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/lista_curso.html', context)
