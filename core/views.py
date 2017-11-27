@@ -540,7 +540,7 @@ def cadastro_curso_turma(request):
 
                 '''INSERE NA TABELA CURSOTURMA OS VALORES SELECIONADOS'''
                 if True in verifica:
-                    mensagem = ("Já cadastrado")
+                    mensagem = ("ALERTA : Cadastro para {} já existente".format(curso))
                     context['mensagem'] = mensagem
 
                 else:
@@ -548,7 +548,7 @@ def cadastro_curso_turma(request):
                     cursor.execute(cursoTurma)
                     cnx.commit()
 
-                    mensagem = ("Cadastrado com sucesso")
+                    mensagem = ("{} editado com sucesso".format(curso))
                     context['mensagem'] = mensagem
 
 

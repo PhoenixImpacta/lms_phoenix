@@ -20,48 +20,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="735" column="58" lean-forward="true" selection-start-line="735" selection-start-column="58" selection-end-line="735" selection-end-column="58" />
+            <state relative-caret-position="293">
+              <caret line="552" column="0" lean-forward="true" selection-start-line="552" selection-start-column="0" selection-end-line="552" selection-end-column="0" />
               <folding>
                 <element signature="e#0#65#0" expanded="true" />
-                <marker date="1511758859374" expanded="true" signature="1164:1193" ph="select * fro... Aluno" />
-                <marker date="1511758859374" expanded="true" signature="1329:1364" ph="select * fro... Coordenador" />
-                <marker date="1511758859374" expanded="true" signature="1354:1364" ph="select * fro... Coordenador" />
-                <marker date="1511758859374" expanded="true" signature="1501:1534" ph="select * fro... Professor" />
-                <marker date="1511758859374" expanded="true" signature="3033:3056" ph="SELECT email... Aluno" />
-                <marker date="1511758859374" expanded="true" signature="3232:3259" ph="select email... Professor" />
-                <marker date="1511758859374" expanded="true" signature="4067:4126" ph="select nome_... Turma" />
-                <marker date="1511758859374" expanded="true" signature="6686:6764" ph="INSERT INTO Questoes... " />
-                <marker date="1511758859374" expanded="true" signature="7727:7747" ph="SELECT * FRO... Perfis" />
-                <marker date="1511758859374" expanded="true" signature="8320:8417" ph="INSERT INTO Usuarios... " />
-                <marker date="1511758859374" expanded="true" signature="9131:9175" ph="INSERT INTO Cursos... " />
-                <marker date="1511758859374" expanded="true" signature="10002:10084" ph="INSERT INTO DisciplinasEmentas... " />
-                <marker date="1511758859374" expanded="true" signature="10835:10892" ph="INSERT INTO PlanosEnsinos... " />
-                <marker date="1511758859374" expanded="true" signature="11347:11379" ph="SELECT * FRO... DisciplinasEmentas" />
-                <marker date="1511758859374" expanded="true" signature="11459:11486" ph="SELECT * FRO... PlanosEnsinos" />
-                <marker date="1511758859374" expanded="true" signature="11613:11700" ph="INSERT INTO DisciplinasPlanosEnsinos... " />
-                <marker date="1511758859374" expanded="true" signature="12130:12150" ph="SELECT * FRO... Cursos" />
-                <marker date="1511758859374" expanded="true" signature="12225:12257" ph="SELECT * FRO... DisciplinasEmentas" />
-                <marker date="1511758859374" expanded="true" signature="12382:12456" ph="INSERT INTO CursosDisciplinas... " />
-                <marker date="1511758859374" expanded="true" signature="13359:13421" ph="INSERT INTO Coordenador... " />
-                <marker date="1511758859374" expanded="true" signature="14087:14106" ph="select * fro... Curso" />
-                <marker date="1511758859374" expanded="true" signature="14169:14193" ph="select * fro... CursoTurma" />
-                <marker date="1511758859374" expanded="true" signature="14252:14271" ph="select * fro... Turma" />
-                <marker date="1511758859374" expanded="true" signature="14333:14362" ph="select * fro... GradeCurricular" />
-                <marker date="1511758859374" expanded="true" signature="14424:14448" ph="select * fro... Disciplina" />
-                <marker date="1511758859374" expanded="true" signature="14508:14535" ph="select nome Disciplina" />
-                <marker date="1511758859374" expanded="true" signature="14508:14537" ph="select nome Disciplina" />
-                <marker date="1511758859374" expanded="true" signature="15060:15101" ph="select sigla... Curso" />
-                <marker date="1511758859374" expanded="true" signature="16242:16368" ph="insert into CursoTurma... " />
-                <marker date="1511758859374" expanded="true" signature="17321:17340" ph="select * fro... Curso" />
-                <marker date="1511758859374" expanded="true" signature="18088:18136" ph="INSERT INTO Curso... " />
-                <marker date="1511758859374" expanded="true" signature="18961:18985" ph="select * fro... Disciplina" />
-                <marker date="1511758859374" expanded="true" signature="19536:19577" ph="insert into Disciplina... " />
-                <marker date="1511758859374" expanded="true" signature="20381:20405" ph="select * fro... Disciplina" />
-                <marker date="1511758859374" expanded="true" signature="21452:21676" ph="update Disci... " />
+                <marker date="1511759641246" expanded="true" signature="1164:1193" ph="select * fro... Aluno" />
+                <marker date="1511759641246" expanded="true" signature="1329:1364" ph="select * fro... Coordenador" />
+                <marker date="1511759641246" expanded="true" signature="1354:1364" ph="select * fro... Coordenador" />
+                <marker date="1511759641246" expanded="true" signature="1501:1534" ph="select * fro... Professor" />
+                <marker date="1511759641246" expanded="true" signature="3033:3056" ph="SELECT email... Aluno" />
+                <marker date="1511759641246" expanded="true" signature="3232:3259" ph="select email... Professor" />
+                <marker date="1511759641246" expanded="true" signature="4067:4126" ph="select nome_... Turma" />
+                <marker date="1511759641246" expanded="true" signature="6686:6764" ph="INSERT INTO Questoes... " />
+                <marker date="1511759641246" expanded="true" signature="7727:7747" ph="SELECT * FRO... Perfis" />
+                <marker date="1511759641246" expanded="true" signature="8320:8417" ph="INSERT INTO Usuarios... " />
+                <marker date="1511759641246" expanded="true" signature="9131:9175" ph="INSERT INTO Cursos... " />
+                <marker date="1511759641246" expanded="true" signature="10002:10084" ph="INSERT INTO DisciplinasEmentas... " />
+                <marker date="1511759641246" expanded="true" signature="10835:10892" ph="INSERT INTO PlanosEnsinos... " />
+                <marker date="1511759641246" expanded="true" signature="11347:11379" ph="SELECT * FRO... DisciplinasEmentas" />
+                <marker date="1511759641246" expanded="true" signature="11459:11486" ph="SELECT * FRO... PlanosEnsinos" />
+                <marker date="1511759641246" expanded="true" signature="11613:11700" ph="INSERT INTO DisciplinasPlanosEnsinos... " />
+                <marker date="1511759641246" expanded="true" signature="12130:12150" ph="SELECT * FRO... Cursos" />
+                <marker date="1511759641246" expanded="true" signature="12225:12257" ph="SELECT * FRO... DisciplinasEmentas" />
+                <marker date="1511759641246" expanded="true" signature="12382:12456" ph="INSERT INTO CursosDisciplinas... " />
+                <marker date="1511759641246" expanded="true" signature="13359:13421" ph="INSERT INTO Coordenador... " />
+                <marker date="1511759641246" expanded="true" signature="14087:14106" ph="select * fro... Curso" />
+                <marker date="1511759641246" expanded="true" signature="14169:14193" ph="select * fro... CursoTurma" />
+                <marker date="1511759641246" expanded="true" signature="14252:14271" ph="select * fro... Turma" />
+                <marker date="1511759641246" expanded="true" signature="14333:14362" ph="select * fro... GradeCurricular" />
+                <marker date="1511759641246" expanded="true" signature="14424:14448" ph="select * fro... Disciplina" />
+                <marker date="1511759641246" expanded="true" signature="14508:14535" ph="select nome Disciplina" />
+                <marker date="1511759641246" expanded="true" signature="14508:14537" ph="select nome Disciplina" />
+                <marker date="1511759641246" expanded="true" signature="15060:15101" ph="select sigla... Curso" />
+                <marker date="1511759641246" expanded="true" signature="16281:16407" ph="insert into CursoTurma... " />
+                <marker date="1511759641246" expanded="true" signature="17374:17393" ph="select * fro... Curso" />
+                <marker date="1511759641246" expanded="true" signature="18141:18189" ph="INSERT INTO Curso... " />
+                <marker date="1511759641246" expanded="true" signature="19014:19038" ph="select * fro... Disciplina" />
+                <marker date="1511759641246" expanded="true" signature="19589:19630" ph="insert into Disciplina... " />
+                <marker date="1511759641246" expanded="true" signature="20434:20458" ph="select * fro... Disciplina" />
+                <marker date="1511759641246" expanded="true" signature="21505:21729" ph="update Disci... " />
               </folding>
             </state>
           </provider>
@@ -90,8 +90,8 @@
       <file leaf-file-name="edit_disciplina.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/admin/edit_disciplina.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-716">
-              <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+            <state relative-caret-position="816">
+              <caret line="48" column="67" lean-forward="false" selection-start-line="48" selection-start-column="59" selection-end-line="48" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -122,8 +122,8 @@
       <file leaf-file-name="cad_curso_turma.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/admin/cad_curso_turma.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+            <state relative-caret-position="-544">
+              <caret line="10" column="46" lean-forward="false" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -139,11 +139,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="12" column="59" lean-forward="true" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
+            <state relative-caret-position="527">
+              <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -204,15 +204,15 @@
         <option value="$PROJECT_DIR$/Pagina inicial/index.html" />
         <option value="$PROJECT_DIR$/core/templates/admin/cad_disciplina.html" />
         <option value="$PROJECT_DIR$/core/templates/cadastro_perfis.html" />
-        <option value="$PROJECT_DIR$/core/templates/admin/cad_curso_turma.html" />
         <option value="$PROJECT_DIR$/core/templates/admin/admin.html" />
         <option value="$PROJECT_DIR$/core/templates/admin/cadastro_cursos.html" />
         <option value="$PROJECT_DIR$/core/templates/admin/cadastro_disciplina.html" />
         <option value="$PROJECT_DIR$/core/templates/admin/acao.html" />
         <option value="$PROJECT_DIR$/core/templates/admin/edit_disciplina.html" />
-        <option value="$PROJECT_DIR$/core/views.py" />
         <option value="$PROJECT_DIR$/lms/urls.py" />
         <option value="$PROJECT_DIR$/core/templates/base.html" />
+        <option value="$PROJECT_DIR$/core/templates/admin/cad_curso_turma.html" />
+        <option value="$PROJECT_DIR$/core/views.py" />
       </list>
     </option>
   </component>
@@ -409,7 +409,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4243421" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.088815786" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -473,41 +473,41 @@
           <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
           <folding>
             <element signature="e#0#65#0" expanded="true" />
-            <marker date="1511758859374" expanded="true" signature="1164:1193" ph="select * fro... Aluno" />
-            <marker date="1511758859374" expanded="true" signature="1329:1364" ph="select * fro... Coordenador" />
-            <marker date="1511758859374" expanded="true" signature="1354:1364" ph="select * fro... Coordenador" />
-            <marker date="1511758859374" expanded="true" signature="1501:1534" ph="select * fro... Professor" />
-            <marker date="1511758859374" expanded="true" signature="3033:3056" ph="SELECT email... Aluno" />
-            <marker date="1511758859374" expanded="true" signature="3232:3259" ph="select email... Professor" />
-            <marker date="1511758859374" expanded="true" signature="4067:4126" ph="select nome_... Turma" />
-            <marker date="1511758859374" expanded="true" signature="6686:6764" ph="INSERT INTO Questoes... " />
-            <marker date="1511758859374" expanded="true" signature="7727:7747" ph="SELECT * FRO... Perfis" />
-            <marker date="1511758859374" expanded="true" signature="8320:8417" ph="INSERT INTO Usuarios... " />
-            <marker date="1511758859374" expanded="true" signature="9131:9175" ph="INSERT INTO Cursos... " />
-            <marker date="1511758859374" expanded="true" signature="10002:10084" ph="INSERT INTO DisciplinasEmentas... " />
-            <marker date="1511758859374" expanded="true" signature="10835:10892" ph="INSERT INTO PlanosEnsinos... " />
-            <marker date="1511758859374" expanded="true" signature="11347:11379" ph="SELECT * FRO... DisciplinasEmentas" />
-            <marker date="1511758859374" expanded="true" signature="11459:11486" ph="SELECT * FRO... PlanosEnsinos" />
-            <marker date="1511758859374" expanded="true" signature="11613:11700" ph="INSERT INTO DisciplinasPlanosEnsinos... " />
-            <marker date="1511758859374" expanded="true" signature="12130:12150" ph="SELECT * FRO... Cursos" />
-            <marker date="1511758859374" expanded="true" signature="12225:12257" ph="SELECT * FRO... DisciplinasEmentas" />
-            <marker date="1511758859374" expanded="true" signature="12382:12456" ph="INSERT INTO CursosDisciplinas... " />
-            <marker date="1511758859374" expanded="true" signature="13359:13421" ph="INSERT INTO Coordenador... " />
-            <marker date="1511758859374" expanded="true" signature="14087:14106" ph="select * fro... Curso" />
-            <marker date="1511758859374" expanded="true" signature="14169:14193" ph="select * fro... CursoTurma" />
-            <marker date="1511758859374" expanded="true" signature="14252:14271" ph="select * fro... Turma" />
-            <marker date="1511758859374" expanded="true" signature="14333:14362" ph="select * fro... GradeCurricular" />
-            <marker date="1511758859374" expanded="true" signature="14424:14448" ph="select * fro... Disciplina" />
-            <marker date="1511758859374" expanded="true" signature="14508:14535" ph="select nome Disciplina" />
-            <marker date="1511758859374" expanded="true" signature="14508:14537" ph="select nome Disciplina" />
-            <marker date="1511758859374" expanded="true" signature="15060:15101" ph="select sigla... Curso" />
-            <marker date="1511758859374" expanded="true" signature="16242:16368" ph="insert into CursoTurma... " />
-            <marker date="1511758859374" expanded="true" signature="17321:17340" ph="select * fro... Curso" />
-            <marker date="1511758859374" expanded="true" signature="18088:18136" ph="INSERT INTO Curso... " />
-            <marker date="1511758859374" expanded="true" signature="18961:18985" ph="select * fro... Disciplina" />
-            <marker date="1511758859374" expanded="true" signature="19536:19577" ph="insert into Disciplina... " />
-            <marker date="1511758859374" expanded="true" signature="20381:20405" ph="select * fro... Disciplina" />
-            <marker date="1511758859374" expanded="true" signature="21452:21676" ph="update Disci... " />
+            <marker date="1511759641246" expanded="true" signature="1164:1193" ph="select * fro... Aluno" />
+            <marker date="1511759641246" expanded="true" signature="1329:1364" ph="select * fro... Coordenador" />
+            <marker date="1511759641246" expanded="true" signature="1354:1364" ph="select * fro... Coordenador" />
+            <marker date="1511759641246" expanded="true" signature="1501:1534" ph="select * fro... Professor" />
+            <marker date="1511759641246" expanded="true" signature="3033:3056" ph="SELECT email... Aluno" />
+            <marker date="1511759641246" expanded="true" signature="3232:3259" ph="select email... Professor" />
+            <marker date="1511759641246" expanded="true" signature="4067:4126" ph="select nome_... Turma" />
+            <marker date="1511759641246" expanded="true" signature="6686:6764" ph="INSERT INTO Questoes... " />
+            <marker date="1511759641246" expanded="true" signature="7727:7747" ph="SELECT * FRO... Perfis" />
+            <marker date="1511759641246" expanded="true" signature="8320:8417" ph="INSERT INTO Usuarios... " />
+            <marker date="1511759641246" expanded="true" signature="9131:9175" ph="INSERT INTO Cursos... " />
+            <marker date="1511759641246" expanded="true" signature="10002:10084" ph="INSERT INTO DisciplinasEmentas... " />
+            <marker date="1511759641246" expanded="true" signature="10835:10892" ph="INSERT INTO PlanosEnsinos... " />
+            <marker date="1511759641246" expanded="true" signature="11347:11379" ph="SELECT * FRO... DisciplinasEmentas" />
+            <marker date="1511759641246" expanded="true" signature="11459:11486" ph="SELECT * FRO... PlanosEnsinos" />
+            <marker date="1511759641246" expanded="true" signature="11613:11700" ph="INSERT INTO DisciplinasPlanosEnsinos... " />
+            <marker date="1511759641246" expanded="true" signature="12130:12150" ph="SELECT * FRO... Cursos" />
+            <marker date="1511759641246" expanded="true" signature="12225:12257" ph="SELECT * FRO... DisciplinasEmentas" />
+            <marker date="1511759641246" expanded="true" signature="12382:12456" ph="INSERT INTO CursosDisciplinas... " />
+            <marker date="1511759641246" expanded="true" signature="13359:13421" ph="INSERT INTO Coordenador... " />
+            <marker date="1511759641246" expanded="true" signature="14087:14106" ph="select * fro... Curso" />
+            <marker date="1511759641246" expanded="true" signature="14169:14193" ph="select * fro... CursoTurma" />
+            <marker date="1511759641246" expanded="true" signature="14252:14271" ph="select * fro... Turma" />
+            <marker date="1511759641246" expanded="true" signature="14333:14362" ph="select * fro... GradeCurricular" />
+            <marker date="1511759641246" expanded="true" signature="14424:14448" ph="select * fro... Disciplina" />
+            <marker date="1511759641246" expanded="true" signature="14508:14535" ph="select nome Disciplina" />
+            <marker date="1511759641246" expanded="true" signature="14508:14537" ph="select nome Disciplina" />
+            <marker date="1511759641246" expanded="true" signature="15060:15101" ph="select sigla... Curso" />
+            <marker date="1511759641246" expanded="true" signature="16281:16407" ph="insert into CursoTurma... " />
+            <marker date="1511759641246" expanded="true" signature="17374:17393" ph="select * fro... Curso" />
+            <marker date="1511759641246" expanded="true" signature="18141:18189" ph="INSERT INTO Curso... " />
+            <marker date="1511759641246" expanded="true" signature="19014:19038" ph="select * fro... Disciplina" />
+            <marker date="1511759641246" expanded="true" signature="19589:19630" ph="insert into Disciplina... " />
+            <marker date="1511759641246" expanded="true" signature="20434:20458" ph="select * fro... Disciplina" />
+            <marker date="1511759641246" expanded="true" signature="21505:21729" ph="update Disci... " />
           </folding>
         </state>
       </provider>
@@ -765,72 +765,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/admin/cad_curso_turma.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lms/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/admin/edit_disciplina.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-716">
-          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="735" column="58" lean-forward="true" selection-start-line="735" selection-start-column="58" selection-end-line="735" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#65#0" expanded="true" />
-            <marker date="1511758859374" expanded="true" signature="1164:1193" ph="select * fro... Aluno" />
-            <marker date="1511758859374" expanded="true" signature="1329:1364" ph="select * fro... Coordenador" />
-            <marker date="1511758859374" expanded="true" signature="1354:1364" ph="select * fro... Coordenador" />
-            <marker date="1511758859374" expanded="true" signature="1501:1534" ph="select * fro... Professor" />
-            <marker date="1511758859374" expanded="true" signature="3033:3056" ph="SELECT email... Aluno" />
-            <marker date="1511758859374" expanded="true" signature="3232:3259" ph="select email... Professor" />
-            <marker date="1511758859374" expanded="true" signature="4067:4126" ph="select nome_... Turma" />
-            <marker date="1511758859374" expanded="true" signature="6686:6764" ph="INSERT INTO Questoes... " />
-            <marker date="1511758859374" expanded="true" signature="7727:7747" ph="SELECT * FRO... Perfis" />
-            <marker date="1511758859374" expanded="true" signature="8320:8417" ph="INSERT INTO Usuarios... " />
-            <marker date="1511758859374" expanded="true" signature="9131:9175" ph="INSERT INTO Cursos... " />
-            <marker date="1511758859374" expanded="true" signature="10002:10084" ph="INSERT INTO DisciplinasEmentas... " />
-            <marker date="1511758859374" expanded="true" signature="10835:10892" ph="INSERT INTO PlanosEnsinos... " />
-            <marker date="1511758859374" expanded="true" signature="11347:11379" ph="SELECT * FRO... DisciplinasEmentas" />
-            <marker date="1511758859374" expanded="true" signature="11459:11486" ph="SELECT * FRO... PlanosEnsinos" />
-            <marker date="1511758859374" expanded="true" signature="11613:11700" ph="INSERT INTO DisciplinasPlanosEnsinos... " />
-            <marker date="1511758859374" expanded="true" signature="12130:12150" ph="SELECT * FRO... Cursos" />
-            <marker date="1511758859374" expanded="true" signature="12225:12257" ph="SELECT * FRO... DisciplinasEmentas" />
-            <marker date="1511758859374" expanded="true" signature="12382:12456" ph="INSERT INTO CursosDisciplinas... " />
-            <marker date="1511758859374" expanded="true" signature="13359:13421" ph="INSERT INTO Coordenador... " />
-            <marker date="1511758859374" expanded="true" signature="14087:14106" ph="select * fro... Curso" />
-            <marker date="1511758859374" expanded="true" signature="14169:14193" ph="select * fro... CursoTurma" />
-            <marker date="1511758859374" expanded="true" signature="14252:14271" ph="select * fro... Turma" />
-            <marker date="1511758859374" expanded="true" signature="14333:14362" ph="select * fro... GradeCurricular" />
-            <marker date="1511758859374" expanded="true" signature="14424:14448" ph="select * fro... Disciplina" />
-            <marker date="1511758859374" expanded="true" signature="14508:14535" ph="select nome Disciplina" />
-            <marker date="1511758859374" expanded="true" signature="14508:14537" ph="select nome Disciplina" />
-            <marker date="1511758859374" expanded="true" signature="15060:15101" ph="select sigla... Curso" />
-            <marker date="1511758859374" expanded="true" signature="16242:16368" ph="insert into CursoTurma... " />
-            <marker date="1511758859374" expanded="true" signature="17321:17340" ph="select * fro... Curso" />
-            <marker date="1511758859374" expanded="true" signature="18088:18136" ph="INSERT INTO Curso... " />
-            <marker date="1511758859374" expanded="true" signature="18961:18985" ph="select * fro... Disciplina" />
-            <marker date="1511758859374" expanded="true" signature="19536:19577" ph="insert into Disciplina... " />
-            <marker date="1511758859374" expanded="true" signature="20381:20405" ph="select * fro... Disciplina" />
-            <marker date="1511758859374" expanded="true" signature="21452:21676" ph="update Disci... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -846,9 +785,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="12" column="59" lean-forward="true" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
+        <state relative-caret-position="527">
+          <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/admin/edit_disciplina.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="67" lean-forward="false" selection-start-line="48" selection-start-column="59" selection-end-line="48" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/templates/admin/cad_curso_turma.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-544">
+          <caret line="10" column="46" lean-forward="false" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="552" column="0" lean-forward="true" selection-start-line="552" selection-start-column="0" selection-end-line="552" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#65#0" expanded="true" />
+            <marker date="1511759641246" expanded="true" signature="1164:1193" ph="select * fro... Aluno" />
+            <marker date="1511759641246" expanded="true" signature="1329:1364" ph="select * fro... Coordenador" />
+            <marker date="1511759641246" expanded="true" signature="1354:1364" ph="select * fro... Coordenador" />
+            <marker date="1511759641246" expanded="true" signature="1501:1534" ph="select * fro... Professor" />
+            <marker date="1511759641246" expanded="true" signature="3033:3056" ph="SELECT email... Aluno" />
+            <marker date="1511759641246" expanded="true" signature="3232:3259" ph="select email... Professor" />
+            <marker date="1511759641246" expanded="true" signature="4067:4126" ph="select nome_... Turma" />
+            <marker date="1511759641246" expanded="true" signature="6686:6764" ph="INSERT INTO Questoes... " />
+            <marker date="1511759641246" expanded="true" signature="7727:7747" ph="SELECT * FRO... Perfis" />
+            <marker date="1511759641246" expanded="true" signature="8320:8417" ph="INSERT INTO Usuarios... " />
+            <marker date="1511759641246" expanded="true" signature="9131:9175" ph="INSERT INTO Cursos... " />
+            <marker date="1511759641246" expanded="true" signature="10002:10084" ph="INSERT INTO DisciplinasEmentas... " />
+            <marker date="1511759641246" expanded="true" signature="10835:10892" ph="INSERT INTO PlanosEnsinos... " />
+            <marker date="1511759641246" expanded="true" signature="11347:11379" ph="SELECT * FRO... DisciplinasEmentas" />
+            <marker date="1511759641246" expanded="true" signature="11459:11486" ph="SELECT * FRO... PlanosEnsinos" />
+            <marker date="1511759641246" expanded="true" signature="11613:11700" ph="INSERT INTO DisciplinasPlanosEnsinos... " />
+            <marker date="1511759641246" expanded="true" signature="12130:12150" ph="SELECT * FRO... Cursos" />
+            <marker date="1511759641246" expanded="true" signature="12225:12257" ph="SELECT * FRO... DisciplinasEmentas" />
+            <marker date="1511759641246" expanded="true" signature="12382:12456" ph="INSERT INTO CursosDisciplinas... " />
+            <marker date="1511759641246" expanded="true" signature="13359:13421" ph="INSERT INTO Coordenador... " />
+            <marker date="1511759641246" expanded="true" signature="14087:14106" ph="select * fro... Curso" />
+            <marker date="1511759641246" expanded="true" signature="14169:14193" ph="select * fro... CursoTurma" />
+            <marker date="1511759641246" expanded="true" signature="14252:14271" ph="select * fro... Turma" />
+            <marker date="1511759641246" expanded="true" signature="14333:14362" ph="select * fro... GradeCurricular" />
+            <marker date="1511759641246" expanded="true" signature="14424:14448" ph="select * fro... Disciplina" />
+            <marker date="1511759641246" expanded="true" signature="14508:14535" ph="select nome Disciplina" />
+            <marker date="1511759641246" expanded="true" signature="14508:14537" ph="select nome Disciplina" />
+            <marker date="1511759641246" expanded="true" signature="15060:15101" ph="select sigla... Curso" />
+            <marker date="1511759641246" expanded="true" signature="16281:16407" ph="insert into CursoTurma... " />
+            <marker date="1511759641246" expanded="true" signature="17374:17393" ph="select * fro... Curso" />
+            <marker date="1511759641246" expanded="true" signature="18141:18189" ph="INSERT INTO Curso... " />
+            <marker date="1511759641246" expanded="true" signature="19014:19038" ph="select * fro... Disciplina" />
+            <marker date="1511759641246" expanded="true" signature="19589:19630" ph="insert into Disciplina... " />
+            <marker date="1511759641246" expanded="true" signature="20434:20458" ph="select * fro... Disciplina" />
+            <marker date="1511759641246" expanded="true" signature="21505:21729" ph="update Disci... " />
+          </folding>
         </state>
       </provider>
     </entry>

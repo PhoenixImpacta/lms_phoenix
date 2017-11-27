@@ -8,38 +8,38 @@
 <form method="post" action="">
     {% csrf_token %}
      Disciplina:
-            <select name="disciplina">
-                 <option>---------------------</option>
+            <select name="disciplina" required>
+                 <option value=""></option>
                 {% for di in dis %}
-                    <option value="{{ di.nome }}">{{di.nome}}</option>
+                    <option value="{{ di.nome }}" required>{{di.nome}}</option>
                 {% endfor %}
             </select>
     <br/>
 
 
     Curso:
-            <select name="curso">
-                 <option>---------------------</option>
+            <select name="curso" required>
+                 <option value=""></option>
                 {% for curso in cursos %}
-                    <option value="{{ curso.nome }}">{{curso.nome}}</option>
+                    <option value="{{ curso.nome }}" required>{{curso.nome}}</option>
                 {% endfor %}
             </select>
     <br/>
     Id da Turma:
-            <select name = "idTurma" >
-                <option>---------------------</option>
+            <select name = "idTurma" required>
+                <option value=""></option>
                 {% for id in turma %}
-                    <option value="{{id.id_turma}}">{{ id.id_turma }}</option>
+                    <option value="{{id.id_turma}}" >{{ id.id_turma }}</option>
                 {% endfor %}
 
             </select>
     <br/>
 
      Ano ofertado:
-            <select name = "ano" >
-                <option>---------------------</option>
+            <select name = "ano" required>
+                <option value=""></option>
                 {% for i in grade %}
-                    <option value="{{i.ano}}">{{ i.ano }}</option>
+                    <option value="{{i.ano}}" >{{ i.ano }}</option>
                 {% endfor %}
 
             </select>
@@ -47,8 +47,8 @@
 
 
      Semestre Ofertado:
-            <select name="semestre">
-                 <option>---------------------</option>
+            <select name="semestre" required>
+                 <option value=""></option>
                 {% for i in grade %}
                     <option value="{{ i.semestre }}">{{i.semestre}}</option>
                 {% endfor %}
