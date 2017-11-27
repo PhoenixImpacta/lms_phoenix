@@ -753,6 +753,8 @@ def editar_disciplina(request):
 
 
 def deleta_disciplina(request):
+
+
     cnx = abrirConexao()
     cursor = None
     if cnx:
@@ -767,6 +769,8 @@ def deleta_disciplina(request):
     cursor.execute("select * from Disciplina")
     dis = cursor.fetchall()
     context = {'disciplina': dis}
+    title = ('Deleta disciplina')
+    context['title'] = title
 
 
     if request.POST:
@@ -802,3 +806,35 @@ def deleta_disciplina(request):
     return render(request, 'admin/deleta_disciplina.html', context)
 
 
+
+
+
+def lista_disciplina(request):
+    cnx = abrirConexao()
+    cursor = None
+    context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+
+    try:
+        cursor.execute("select * from Disciplina")
+        dis = cursor.fetchall()
+
+        context['disciplina'] = dis
+
+        title = ('Lista de disciplinas')
+
+        context['title'] = title
+
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/lista_disciplina.html', context)
