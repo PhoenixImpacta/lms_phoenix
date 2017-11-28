@@ -1,0 +1,118 @@
+.formContato {
+   width: 100%;  
+}  
+.formContato input {  
+   width: 90%;  
+   margin-left: 10px;  
+   margin-right: 10px;  
+}  
+.formContato textarea {  
+   width: 90%;  
+   margin-left: 10px;  
+   margin-right: 10px;  
+}  
+.botaoContato {  
+   margin-left: 10px;  
+   margin-right: 10px;  
+   margin-top: 1px;  
+}  
+.pgContato input {  
+   padding-left: 20px;  
+   color: #292929;  
+   font-size: 18px;  
+   background-color: #E9E9E9;  
+   border: 1px solid #E9E9E9;  
+   -moz-border-radius: 5px;  
+   -webkit-border-radius: 5px;  
+   border-radius: 5px;  
+   height: 40px;  
+   margin-bottom: 20px;  
+   border-bottom: 1px solid #ccc;  
+   border-left: 1px solid #ccc;  
+}  
+.pgContato textarea {  
+   padding-left: 20px;  
+   color: #292929;  
+   font-size: 18px;  
+   background-color: #E9E9E9;  
+   border: 1px solid #E9E9E9;  
+   -moz-border-radius: 5px;  
+   -webkit-border-radius: 5px;  
+   border-radius: 5px;  
+   height: 200px;  
+   margin-bottom: 20px;  
+   border-bottom: 1px solid #ccc;  
+   border-left: 1px solid #ccc;  
+}  
+.botaoContato {  
+   border-radius: 4px;  
+   color: #fff;  
+   padding: 2px 40px;  
+   height: 40px;  
+   margin-top: 18px;  
+   opacity: 0.9;  
+   margin-bottom: 20px;  
+   cursor: pointer;  
+   background: #B22222;  
+   display: inline-block;  
+   border: none;  
+   border-bottom: 1px solid #500707;  
+   border-right: 1px solid #500707;  
+}  
+.botaoContato:hover {  
+   opacity: 1.0;  
+   transition: 1s;  
+}form {
+  margin: 0 auto;
+  max-width: 850px;
+  padding: 20px 10px;
+  background-color: rgba(255,255,255,0.4)
+}
+  float: left;
+  width: 48%;
+  padding: 0 1% 20px;
+  position: relative;
+}
+
+.input.txt { width: 98%; } /*textarea 100%*/
+
+.input label {
+  display: block;
+  padding-bottom: 5px;
+  color: #666;
+}
+
+input label.error {
+  position: absolute;
+  right: 18px;
+  top: 35px;
+  color: #f00;
+}
+
+.input input,
+.input textarea {
+  padding-top: 10px;
+  padding-bottom: 9px;
+  border: none;
+  font-size: 16px;
+  font-weight: 100;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.input input {
+  width: 94%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.input textarea {
+  width: 97%;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+}
+
+@media screen and (max-width: 520px) {
+  .input {
+    width: 98%;
+  }
+}
