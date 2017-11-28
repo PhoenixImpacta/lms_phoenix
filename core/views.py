@@ -37,13 +37,16 @@ def login(request):
                 elif tipo == 'p':
                     cursor.execute("select * from Professor where ra={} and senha='{}'".format(ra, senha))
                     usuario = cursor.fetchall()
+                elif tipo == 'c':
+                    cursor.execute("select * from Coordenador where ra={} and senha='{}'".format(ra, senha))
+                    usuario = cursor.fetchall()
 
                 if not (usuario):
                     erros.append("Usuário não existe")
                     context["erros"] = erros
                 else:
                     usuario_logado = dict(usuario[0])
-                    print(context)
+                    context['usuario_logado'] = usuario_logado
                     resposta = render_to_response("index.html", context)
                     max_age = 365 * 24 * 60 * 60  # one year
                     expires = datetime.datetime.strftime(
@@ -601,8 +604,6 @@ def matricular(request):
                     matricula = {'nome': nome, 'celular': celular, 'email': email, 'caminho': caminho,
                                  'id_turma': id_turma}
 
-                    print(datetime.timedelta(minutes=5))
-
                     resposta = render_to_response('index.html', context)
                     resposta.set_cookie("matricula", matricula, max_age=datetime.timedelta(minutes=5),
                                         expires=datetime.timedelta(minutes=5), domain=None,
@@ -654,13 +655,15 @@ def confirmar_matricula(request):
                             disciplina['semestre'], matricula['id_turma']))
                     enviarEmail(matricula['email'], "Parabéns sua matricula foi aprovada!")
 
-                    resposta = render_to_response('index.html')
+                    context['usuario_logado'] = usuario_logado
+                    resposta = render_to_response('index.html', context)
                     resposta.delete_cookie('disciplina')
                     return resposta
                 else:
                     enviarEmail(matricula['email'],
                                 "Sua matricula foi reprovada!!!\nPor favor fale com seu professor!")
-                    resposta = render_to_response('index.html')
+                    context['usuario_logado'] = usuario_logado
+                    resposta = render_to_response('index.html', context)
                     resposta.delete_cookie('disciplina')
                     return resposta
     finally:
@@ -670,11 +673,11 @@ def confirmar_matricula(request):
 
 def logout(request):
     usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
-    resposta = render_to_response('login')
+    context = {}
+    context['usuario_logado'] = usuario_logado
+    resposta = render_to_response('login', context)
     resposta.delete_cookie('usuario_logado')
-    return redirect('login.html')
-
-
+    return resposta
 
 #========================================================
 def cadastro_perfis(request):
@@ -713,8 +716,6 @@ def cadastro_perfis(request):
             fecharConexao(cursor, cnx)
 
     return render(request, 'admin/admin.html', context)
-
-'''CADASTRO DE CURSOS E DISCIPLINAS POR TURMA'''
 
 def cadastro_curso_turma(request):
     cnx = abrirConexao()
@@ -807,7 +808,6 @@ def cadastro_curso_turma(request):
 
     return render(request, 'admin/cad_curso_turma.html', context)
 
-#CADASTRO DE CURSOS
 def cadastro_curso(request):
     context = {}
 
