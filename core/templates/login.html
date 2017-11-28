@@ -3,7 +3,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/estilo.css' %}" />
-<script src="{% static 'js/script.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,6 +16,7 @@
     <div id="id01" class="modal">
 
         <form class="modal-content animate" action="" method="post">
+            {% csrf_token %}
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <img src="{% static 'img/img_avatar.png' %}" alt="Avatar" class="avatar">
@@ -23,16 +24,17 @@
 
             <div class="container">
                 <label><b>RA</b></label>
-                <input type="text" placeholder="Login RA" name="ra" required>
+                <input type="number" min="1000" placeholder="Login RA" name="ra" required>
 
                 <label><b>SENHA</b></label>
                 <input type="password" placeholder="Senha" name="senha" required>
 
+                <input type="hidden" name="tipo" value="a">
                 <button class="botao" type="submit">Login</button>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
+                <button type="submit" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
                     Cancel
                 </button>
             </div>
@@ -44,6 +46,7 @@
     <div id="id02" class="modal">
 
         <form class="modal-content animate" action="" method="post">
+            {% csrf_token %}
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <img src="{% static 'img/img_avatar.png' %}" alt="Avatar" class="avatar">
@@ -51,16 +54,16 @@
 
             <div class="container">
                 <label><b>LOGIN</b></label>
-                <input type="text" placeholder="Login" name="ra" required>
+                <input type="number" min="1000" placeholder="Login" name="ra" required>
 
                 <label><b>SENHA</b></label>
                 <input type="password" placeholder="Senha" name="senha" required>
-
+                <input type="hidden" name="tipo" value="p">
                 <button class="botao" type="submit">Login</button>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">
+                <button type="submit" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">
                     Cancel
                 </button>
             </div>
@@ -73,6 +76,7 @@
     <div id="id03" class="modal">
 
         <form class="modal-content animate" action="" method="post">
+            {% csrf_token %}
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <img src="{% static 'img/img_avatar.png' %}" alt="Avatar" class="avatar">
@@ -80,16 +84,16 @@
 
             <div class="container">
                 <label><b>LOGIN</b></label>
-                <input type="text" placeholder="RA" name="ra" required>
+                <input type="number" min="1000" placeholder="RA" name="ra" required>
 
                 <label><b>SENHA</b></label>
                 <input type="password" placeholder="Senha" name="senha" required>
-
+                <input type="hidden" name="tipo" value="a">
                 <button class="botao" type="submit">Login</button>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">
+                <button type="submit" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">
                     Cancel
                 </button>
             </div>
