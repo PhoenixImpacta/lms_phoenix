@@ -19,7 +19,8 @@ from core.views import login, upload_foto, index, visualizar_avisos_professor, e
     visualizar_avisos, perfil_aluno, opcao_testes_online, teste_aberto, teste_escolha, teste_v_f, \
     enviar_avisos, enviar_aviso_nova_atividade, cadastrar_questoes, enviar_aviso_para_aluno, aviso_aluno, \
     abrir_matricula, matricular, confirmar_matricula, logout, cadastro_perfis, cadastro_curso_turma, cadastro_curso, \
-    cadastro_disciplina, editar_disciplina, deleta_disciplina, lista_disciplina, lista_curso, deleta_curso
+    cadastro_disciplina, editar_disciplina, deleta_disciplina, lista_disciplina, lista_curso, deleta_curso, \
+    busca_matricula_semestre_ano, cancelar_matricula
 
 urlpatterns = [
     url(r'^index/$', index, name='index'),
@@ -52,4 +53,6 @@ urlpatterns = [
     url(r'^lista/disciplina/$', lista_disciplina, name='lista_disciplina'),
     url(r'^lista/curso/$', lista_curso, name='lista_curso'),
     url(r'^deleta/curso/$', deleta_curso, name='deleta_curso'),
+    url(r'^matricula/matricula_semestre_ano/$', busca_matricula_semestre_ano, name='matricula_semestre_ano'),
+    url(r'^matricula/cancelar/$', cancelar_matricula, name='cancelar_matricula'),
 ]

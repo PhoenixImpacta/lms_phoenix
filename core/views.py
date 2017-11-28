@@ -5,11 +5,13 @@ from core.util.UploadFoto import save as salvar_foto
 from core.util.CodigoAcesso import gerar_codigo
 import datetime, ast, random
 
+
 # Create your views here.
 def index(request):
     usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
     context = {'usuario_logado': usuario_logado}
     return render(request, 'index.html', context)
+
 
 def login(request):
     cnx = abrirConexao()
@@ -62,6 +64,7 @@ def login(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'login.html', context)
+
 
 def enviar_avisos(request):
     cnx = abrirConexao()
@@ -121,16 +124,17 @@ def enviar_avisos(request):
 
     return render(request, 'avisos.html', context)
 
+
 def enviar_aviso_nova_atividade(request):
     cnx = abrirConexao()
     cursor = None
+    usuario_logado = request.COOKIES['usuario_logado']
+    context = {}
+    context['usuario_logado'] = usuario_logado
 
     try:
         if cnx:
             cursor = cnx.cursor()
-
-        usuario_logado = request.COOKIES['usuario_logado']
-        context = {'usuario_logado': usuario_logado}
 
         if request.POST:
             erros = []
@@ -164,6 +168,7 @@ def enviar_aviso_nova_atividade(request):
 
     return render(request, 'professor/aviso_nova_atividade.html', context)
 
+
 def enviar_aviso_para_aluno(request):
     cnx = abrirConexao()
     cursor = None
@@ -186,6 +191,7 @@ def enviar_aviso_para_aluno(request):
         fecharConexao(cursor, cnx)
 
     return render(request, "professor/aviso_aluno.html", context)
+
 
 def aviso_aluno(request, ra_aluno):
     cnx = abrirConexao()
@@ -223,6 +229,7 @@ def aviso_aluno(request, ra_aluno):
 
     return render(request, "professor/aviso_area_aluno.html", context)
 
+
 def visualizar_avisos_professor(request):
     cnx = abrirConexao()
     cursor = None
@@ -245,6 +252,7 @@ def visualizar_avisos_professor(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'professor/visualizar_avisos_professor.html', context)
+
 
 def cadastrar_questoes(request):
     cnx = abrirConexao()
@@ -284,8 +292,10 @@ def cadastrar_questoes(request):
 
     return render(request, 'professor/cadastro_questoes.html', context)
 
+
 def opcao_testes_online(request):
     return render(request, "professor/opcao_testes_online.html")
+
 
 def teste_aberto(request):
     context = {}
@@ -322,6 +332,7 @@ def teste_aberto(request):
 
     return render(request, 'professor/teste_aberto.html', context)
 
+
 def teste_escolha(request):
     cnx = abrirConexao()
     cursor = None
@@ -357,8 +368,10 @@ def teste_escolha(request):
 
     return render(request, 'professor/teste_escolha.html')
 
+
 def teste_v_f(request):
     return render(request, 'professor/teste_v_f.html')
+
 
 def visualizar_avisos(request):
     cnx = abrirConexao()
@@ -382,6 +395,7 @@ def visualizar_avisos(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'aluno/visualizar_avisos_aluno.html', context)
+
 
 def aviso_professor(request, ra_professor):
     cnx = abrirConexao()
@@ -419,6 +433,7 @@ def aviso_professor(request, ra_professor):
 
     return render(request, "aluno/aviso_area_professor.html", context)
 
+
 def enviar_aviso_para_professor(request):
     cnx = abrirConexao()
     cursor = None
@@ -441,6 +456,7 @@ def enviar_aviso_para_professor(request):
         fecharConexao(cursor, cnx)
 
     return render(request, "aluno/aviso_professor.html", context)
+
 
 def upload_foto(request):
     cnx = abrirConexao()
@@ -478,6 +494,7 @@ def upload_foto(request):
 
     # 7486354
 
+
 def perfil_aluno(request):
     cnx = abrirConexao()
     cursor = None
@@ -501,6 +518,7 @@ def perfil_aluno(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'aluno/perfil.html', context)
+
 
 def abrir_matricula(request):
     cnx = abrirConexao()
@@ -545,6 +563,7 @@ def abrir_matricula(request):
     finally:
         fecharConexao(cursor, cnx)
     return render(request, 'professor/abrir_matricula.html', context)
+
 
 def matricular(request):
     cnx = abrirConexao()
@@ -616,6 +635,7 @@ def matricular(request):
 
     return render(request, 'aluno/matricular.html', context)
 
+
 def confirmar_matricula(request):
     cnx = abrirConexao()
     cursor = None
@@ -671,15 +691,82 @@ def confirmar_matricula(request):
 
     return render(request, 'professor/confirmar_matricula.html', context)
 
+
+def cancelar_matricula(request):
+    cnx = abrirConexao()
+    cursor = None
+    context = {}
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+
+    context['usuario_logado'] = usuario_logado
+
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+    try:
+        cursor.execute("select * from Matricula where ativo = 1")
+        context['matriculas'] = cursor.fetchall()
+
+        if request.POST:
+            aluno = request.POST.get('aluno')
+            disciplina = request.POST.get('disciplina')
+
+            cursor.execute("UPDATE Matricula SET ativo = 0 WHERE ra_aluno = {} and nome_disciplina = '{}';".format(aluno, disciplina))
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'professor/cancelar_matricula.html', context)
+
+def buscar_matriculas_anteriores(request):
+    pass
+
+def busca_matricula_semestre_ano(request):
+    cnx = abrirConexao()
+    cursor = None
+    usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
+    context = {}
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+    try:
+        if cnx:
+            cursor = cnx.cursor(dictionary=True)
+
+        if request.POST:
+            erros = []
+            semestre = request.POST.get('semestre')
+            ano = request.POST.get('ano')
+
+            if len(semestre) > 1:
+                erros.append("Semestre Inválido!")
+
+            if len(ano) > 1:
+                erros.append("Ano Inválido!")
+
+            if not (erros):
+                cursor.execute(
+                    "select * from Matricula where semestre_ofertado = '{}' and ano_ofertado = '{}';".format(semestre,
+                                                                                                             ano))
+                context['matricula'] = cursor.fetchall()
+                print(context['matricula'])
+            else:
+                context['erros'] = erros
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'matricula_semestre_ano.html', context)
+
+
 def logout(request):
     usuario_logado = ast.literal_eval(request.COOKIES['usuario_logado'])
     context = {}
     context['usuario_logado'] = usuario_logado
-    resposta = render_to_response('login', context)
+    resposta = render_to_response('login.html', context)
     resposta.delete_cookie('usuario_logado')
     return resposta
 
-#========================================================
+
+# ========================================================
 def cadastro_perfis(request):
     context = {}
 
@@ -717,6 +804,7 @@ def cadastro_perfis(request):
 
     return render(request, 'admin/admin.html', context)
 
+
 def cadastro_curso_turma(request):
     cnx = abrirConexao()
     cursor = None
@@ -726,10 +814,8 @@ def cadastro_curso_turma(request):
     if usuario_logado:
         context = {'usuario_logado': usuario_logado}
 
-
     if cnx:
         cursor = cnx.cursor(dictionary=True)
-
 
     try:
         erros = []
@@ -752,8 +838,7 @@ def cadastro_curso_turma(request):
         cursor.execute("select nome from Disciplina")
         nome_dis = cursor.fetchall()
 
-        context={'cursos': cursos, 'CT': CT, 'turma': turma, 'grade': grade, 'dis': dis}
-
+        context = {'cursos': cursos, 'CT': CT, 'turma': turma, 'grade': grade, 'dis': dis}
 
         if request.POST:
             disciplina = request.POST.get('disciplina')
@@ -761,7 +846,6 @@ def cadastro_curso_turma(request):
             id_turma = request.POST.get('idTurma')
             ano = request.POST.get("ano")
             semestre = request.POST.get("semestre")
-
 
             if not (erros):
 
@@ -772,17 +856,21 @@ def cadastro_curso_turma(request):
 
                 s = sigla[0]
                 sig = s['sigla']
-                lista = {'sigla_curso': sig, 'nome_disciplina': disciplina, 'ano_ofertado': ano, 'semestre_ofertado': semestre, 'id_turma': id_turma}
-
+                lista = {'sigla_curso': sig, 'nome_disciplina': disciplina, 'ano_ofertado': ano,
+                         'semestre_ofertado': semestre, 'id_turma': id_turma}
 
                 verifica = []
                 for i in range(0, len(CT)):
                     CR = CT[i]
                     for n in range(0, len(lista)):
-                        ver = (lista.get('sigla_curso') == CR.get('sigla_curso')and lista.get('nome_disciplina') == CR.get('nome_disciplina')and int(lista.get('id_turma')) == int(CR.get('id_turma')) and int(lista.get('ano_ofertado')) == int(CR.get('ano_ofertado'))and int(lista.get('semestre_ofertado')) == int(CR.get('semestre_ofertado')))
+                        ver = (
+                            lista.get('sigla_curso') == CR.get('sigla_curso') and lista.get(
+                                'nome_disciplina') == CR.get(
+                                'nome_disciplina') and int(lista.get('id_turma')) == int(CR.get('id_turma')) and int(
+                                lista.get('ano_ofertado')) == int(CR.get('ano_ofertado')) and int(
+                                lista.get('semestre_ofertado')) == int(CR.get('semestre_ofertado')))
                         verifica.append(ver)
                         print(verifica)
-
 
                 '''INSERE NA TABELA CURSOTURMA OS VALORES SELECIONADOS'''
                 if True in verifica:
@@ -790,7 +878,9 @@ def cadastro_curso_turma(request):
                     context['mensagem'] = mensagem
 
                 else:
-                    cursoTurma = cursor.execute("insert into CursoTurma(sigla_curso, nome_disciplina, id_turma, ano_ofertado, semestre_ofertado) values('{}', '{}', {}, {}, {})".format(sig, disciplina, id_turma, ano, semestre))
+                    cursoTurma = cursor.execute(
+                        "insert into CursoTurma(sigla_curso, nome_disciplina, id_turma, ano_ofertado, semestre_ofertado) values('{}', '{}', {}, {}, {})".format(
+                            sig, disciplina, id_turma, ano, semestre))
                     cursor.execute(cursoTurma)
                     cnx.commit()
 
@@ -807,6 +897,7 @@ def cadastro_curso_turma(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'admin/cad_curso_turma.html', context)
+
 
 def cadastro_curso(request):
     context = {}
@@ -835,7 +926,6 @@ def cadastro_curso(request):
                 erros.append("Curso inválido!")
 
             if not (erros):
-
 
                 lista = {'curso': curso, 'sigla': sigla}
                 lista_curso = []
@@ -869,6 +959,7 @@ def cadastro_curso(request):
 
     return render(request, 'admin/cadastro_cursos.html', context)
 
+
 def cadastro_disciplina(request):
     context = {}
 
@@ -876,7 +967,6 @@ def cadastro_disciplina(request):
 
     if usuario_logado:
         context = {'usuario_logado': usuario_logado}
-
 
     if request.POST:
         cnx = abrirConexao()
@@ -925,6 +1015,7 @@ def cadastro_disciplina(request):
 
     return render(request, 'admin/cadastro_disciplina.html', context)
 
+
 def editar_disciplina(request):
     cnx = abrirConexao()
     cursor = None
@@ -941,12 +1032,7 @@ def editar_disciplina(request):
     dis = cursor.fetchall()
     context = {'disciplina': dis}
 
-
-
-
-
     if request.POST:
-
 
         try:
             erros = []
@@ -963,7 +1049,6 @@ def editar_disciplina(request):
 
             print(disciplina, '-----------------------')
 
-
             if not (erros):
                 if disciplina == None:
                     mensagem = ("ESCOLHA UMA DISCIPLINA")
@@ -971,7 +1056,7 @@ def editar_disciplina(request):
 
                 else:
                     query = cursor.execute(
-                    "update Disciplina set carga_horaria = '{}', teoria = '{}', pratica = '{}', ementa = '{}', competencias = '{}', habilidades = '{}', conteudo = '{}', bibliografia_basica = '{}', bibliografia_complementar = '{}' where nome='{}'".format(
+                        "update Disciplina set carga_horaria = '{}', teoria = '{}', pratica = '{}', ementa = '{}', competencias = '{}', habilidades = '{}', conteudo = '{}', bibliografia_basica = '{}', bibliografia_complementar = '{}' where nome='{}'".format(
                             carga_horaria, teoria, pratica, ementa, competencias, habilidades, conteudo,
                             bibliografia_basica, bibliografia_complementar, disciplina))
                     cursor.execute(query)
@@ -989,9 +1074,8 @@ def editar_disciplina(request):
 
     return render(request, 'admin/edit_disciplina.html', context)
 
+
 def deleta_disciplina(request):
-
-
     cnx = abrirConexao()
     cursor = None
     if cnx:
@@ -1009,16 +1093,13 @@ def deleta_disciplina(request):
     title = ('Deleta disciplina')
     context['title'] = title
 
-
     if request.POST:
-
 
         try:
             erros = []
             disciplina = request.POST.get('disciplina')
 
             print(disciplina, '-----------------------')
-
 
             if not (erros):
                 if disciplina == None:
@@ -1042,9 +1123,8 @@ def deleta_disciplina(request):
 
     return render(request, 'admin/deleta_disciplina.html', context)
 
+
 def deleta_curso(request):
-
-
     cnx = abrirConexao()
     cursor = None
     if cnx:
@@ -1062,16 +1142,13 @@ def deleta_curso(request):
     title = ('Deleta curso')
     context['title'] = title
 
-
     if request.POST:
-
 
         try:
             erros = []
             curso = request.POST.get('curso')
 
             print(curso, '-----------------------')
-
 
             if not (erros):
                 if curso == None:
@@ -1095,6 +1172,7 @@ def deleta_curso(request):
 
     return render(request, 'admin/deleta_curso.html', context)
 
+
 def lista_disciplina(request):
     cnx = abrirConexao()
     cursor = None
@@ -1104,7 +1182,6 @@ def lista_disciplina(request):
 
     if usuario_logado:
         context['usuario_logado'] = usuario_logado
-
 
     if cnx:
         cursor = cnx.cursor(dictionary=True)
@@ -1125,6 +1202,7 @@ def lista_disciplina(request):
 
     return render(request, 'admin/lista_disciplina.html', context)
 
+
 def lista_curso(request):
     cnx = abrirConexao()
     cursor = None
@@ -1134,7 +1212,6 @@ def lista_curso(request):
 
     if usuario_logado:
         context['usuario_logado'] = usuario_logado
-
 
     if cnx:
         cursor = cnx.cursor(dictionary=True)

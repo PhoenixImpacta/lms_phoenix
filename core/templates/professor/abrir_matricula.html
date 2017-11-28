@@ -2,7 +2,7 @@
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    <label id="txtDisciplina">Selecione a disciplina</label>
+    <label for="txtDisciplina">Selecione a disciplina</label>
     <br>
     <select name="disciplina" id="txtDisciplina" required>
         {% for disciplina in disciplinas %}
