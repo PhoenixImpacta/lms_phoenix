@@ -627,6 +627,9 @@ def cadastro_curso(request):
     return render(request, 'admin/cadastro_cursos.html', context)
 
 
+
+
+
 def cadastro_disciplina(request):
     context = {}
 
@@ -702,10 +705,6 @@ def editar_disciplina(request):
     cursor.execute("select * from Disciplina")
     dis = cursor.fetchall()
     context = {'disciplina': dis}
-
-
-
-
 
     if request.POST:
 
@@ -926,3 +925,185 @@ def lista_curso(request):
         fecharConexao(cursor, cnx)
 
     return render(request, 'admin/lista_curso.html', context)
+
+
+def cadastro_aluno(request):
+    context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
+    if request.POST:
+        cnx = abrirConexao()
+        cursor = None
+
+        if cnx:
+            cursor = cnx.cursor()
+
+        try:
+            erros = []
+            nome = request.POST.get("nome")
+            ra = request.POST.get("ra")
+            email = request.POST.get("email")
+
+            if nome.strip() == '' or ra.strip() == '':
+                erros.append("Perfil inválido!")
+
+            if not (erros):
+                query = ("INSERT INTO Aluno(nome, ra, email)VALUES('{}','{}','{}');".format(nome, ra, email))
+
+                cursor.execute(query)
+
+                cnx.commit()
+            else:
+                context["erros"] = erros
+        finally:
+            fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/cad_aluno.html', context)
+
+
+
+
+
+def cadastro_professor(request):
+    context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context = {'usuario_logado': usuario_logado}
+
+    if request.POST:
+        cnx = abrirConexao()
+        cursor = None
+
+        if cnx:
+            cursor = cnx.cursor()
+
+        try:
+            erros = []
+            nome = request.POST.get("nome")
+            ra = request.POST.get("ra")
+            email = request.POST.get("email")
+
+            if nome.strip() == '' or ra.strip() == '':
+                erros.append("Perfil inválido!")
+
+            if not (erros):
+                query = ("INSERT INTO Professor(nome, ra, email)VALUES('{}','{}','{}');".format(nome, ra, email))
+
+                cursor.execute(query)
+
+                cnx.commit()
+            else:
+                context["erros"] = erros
+        finally:
+            fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/cad_professor.html', context)
+
+
+
+
+
+
+def lista_coordenador(request):
+    cnx = abrirConexao()
+    cursor = None
+    context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+
+    try:
+        cursor.execute("select * from Coordenador")
+        coordenador = cursor.fetchall()
+
+        context['coordenador'] = coordenador
+
+        title = ('Lista de coordenadores')
+
+        context['title'] = title
+
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/lista_coordenador.html', context)
+
+
+
+
+def lista_professor(request):
+    cnx = abrirConexao()
+    cursor = None
+    context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+
+    try:
+        cursor.execute("select * from Professor")
+        professor = cursor.fetchall()
+
+        context['professor'] = professor
+
+        title = ('Lista de professor')
+
+        context['title'] = title
+
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/lista_professor.html', context)
+
+
+
+
+
+def lista_aluno(request):
+    cnx = abrirConexao()
+    cursor = None
+    context = {}
+
+    usuario_logado = request.COOKIES['usuario_logado']
+
+    if usuario_logado:
+        context['usuario_logado'] = usuario_logado
+
+
+    if cnx:
+        cursor = cnx.cursor(dictionary=True)
+
+    try:
+        cursor.execute("select * from Aluno")
+        aluno = cursor.fetchall()
+
+        context['aluno'] = aluno
+
+        title = ('Lista de aluno')
+
+        context['title'] = title
+
+
+    finally:
+        fecharConexao(cursor, cnx)
+
+    return render(request, 'admin/lista_aluno.html', context)
+

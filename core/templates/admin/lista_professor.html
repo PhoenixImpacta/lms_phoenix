@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}lista de professores{% endblock %}
+{% block content %}
+
+
+
+<h1>Lista de professores</h1>
+{% csrf_token %}
+    <ul>
+        <option value=""></option>
+        {% for n in professor %}
+        <li>{{ n.nome }}</li>
+        {% endfor %}
+    </ul>
+
+{% if erros %}
+    {% for erro in erros %}
+        <p>{{erro}}</p>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
+
+

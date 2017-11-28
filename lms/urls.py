@@ -41,5 +41,9 @@ urlpatterns = [
     url(r'^lista/disciplina/$', lista_disciplina, name='lista_disciplina'),
     url(r'^lista/curso/$', lista_curso, name='lista_curso'),
     url(r'^deleta/curso/$', deleta_curso, name='deleta_curso'),
-
+    url(r'^cadastra/aluno/$', cadastro_aluno, name='cadastra_aluno'),
+    url(r'^cadastra/professor/$', cadastro_professor, name='cadastra_professor'),
+    url(r'^lista/coordenador/$', lista_coordenador, name='lista_coordenador'),
+    url(r'^lista/professor/$', lista_professor, name='lista_professor'),
+    url(r'^lista/aluno/$', lista_aluno, name='lista_aluno'),
 ]

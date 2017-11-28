@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}lista de coordenadores{% endblock %}
+{% block content %}
+
+
+
+<h1>Lista de coordenadores</h1>
+{% csrf_token %}
+    <ul>
+        <option value=""></option>
+        {% for n in coordenador %}
+        <li>{{ n.nome }}</li>
+        {% endfor %}
+    </ul>
+
+{% if erros %}
+    {% for erro in erros %}
+        <p>{{erro}}</p>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
+
+
