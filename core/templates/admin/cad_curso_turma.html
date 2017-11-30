@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro de Admin{% endblock %}
+{% block content %}
+
+
+
+<h1>Cadastro de disciplinas por cursos</h1>
+<form method="post" action="">
+    {% csrf_token %}
+     Disciplina:
+            <select name="disciplina" required>
+                 <option value=""></option>
+                {% for di in dis %}
+                    <option value="{{ di.nome }}" required>{{di.nome}}</option>
+                {% endfor %}
+            </select>
+    <br/>
+
+
+    Curso:
+            <select name="curso" required>
+                 <option value=""></option>
+                {% for curso in cursos %}
+                    <option value="{{ curso.nome }}" required>{{curso.nome}}</option>
+                {% endfor %}
+            </select>
+    <br/>
+    Id da Turma:
+            <select name = "idTurma" required>
+                <option value=""></option>
+                {% for id in turma %}
+                    <option value="{{id.id_turma}}" >{{ id.id_turma }}</option>
+                {% endfor %}
+
+            </select>
+    <br/>
+
+     Ano ofertado:
+            <select name = "ano" required>
+                <option value=""></option>
+                {% for i in grade %}
+                    <option value="{{i.ano}}" >{{ i.ano }}</option>
+                {% endfor %}
+
+            </select>
+    <br/>
+
+
+     Semestre Ofertado:
+            <select name="semestre" required>
+                 <option value=""></option>
+                {% for i in grade %}
+                    <option value="{{ i.semestre }}">{{i.semestre}}</option>
+                {% endfor %}
+            </select>
+    <br/>
+
+        <br/>
+
+
+
+   <p>{{ mensagem }}</p>
+    <br/>
+   <!--
+     <label for="ano">Ano:</label>
+    <input type="number" name="ano" id="ano" required>
+
+    <br/>
+
+    <label for="semestre">Semestre:</label>
+    <input type="number" name="semestre" id="semestre" required>
+
+    <br/>
+
+    <label for="carga_horaria">Carga Horaria :</label>
+    <input type="number" name="carga_horaria" id="carga_horaria" required>
+
+    <br/>
+
+    <label for="teoria">Teoria :</label>
+    <input type="text" name="teoria" id="teoria" required>
+
+    <br/>
+
+    <label for="pratica">Pratica :</label>
+    <input type="text" name="pratica" id="pratica" required>
+
+    <br/>
+
+    <label for="ementa">Ementa :</label>
+    <input type="text" name="ementa" id="ementa" required>
+
+    <br/>
+
+    <label for="competencias">Competencias :</label>
+    <input type="text" name="competencias" id="competencias" required>
+
+    <br/>
+
+    <label for="habilidades">Habilidades :</label>
+    <input type="text" name="habilidades" id="habilidades" required>
+
+    <br/>
+
+    <label for="conteudo">Conteudo :</label>
+    <input type="text" name="conteudo" id="conteudo" required>
+
+    <br/>
+
+    <label for="bibliografia_basica">Bibliografia Básica:</label>
+    <input type="text" name="bibliografia_basica" id="bibliografia_basica" required>
+
+    <br/>
+
+    <label for="bibliografia_complementar">Bibliografia Complementar :</label>
+    <input type="text" name="bibliografia_complementar" id="bibliografia_complementar" required>
+
+    <br/>
+    -->
+
+    <button type="submit">Inserir</button>
+    {% if erros %}
+        {% for erro in erros %}
+            <p>{{erro}}</p>
+        {% endfor %}
+    {% endif %}
+</form>
+{% endblock %}

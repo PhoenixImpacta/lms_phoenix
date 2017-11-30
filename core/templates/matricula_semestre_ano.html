@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="txtAno">Informe o ano</label>
+    <input type="number" name="ano" id="txtAno" maxlength="1" required>
+    <br>
+    <label for="txtSemestre">Informe o semestre</label>
+    <input type="text" name="semestre" id="txtSemestre" maxlength="1" required>
+    <br>
+    <button type="submit">Buscar</button>
+</form>
+
+{% if matricula %}
+<table border="1">
+    <tr>
+        <td>Ra Aluno</td>
+        <td>Disciplina</td>
+    </tr>
+
+    {% for mtc in matricula %}
+    <tr>
+        <td>{{mtc.ra_aluno}}</td>
+        <td>{{mtc.nome_disciplina}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+<h1>Nenhum resultado encontrado</h1>
+{% endif %}
+
+{% endblock %}

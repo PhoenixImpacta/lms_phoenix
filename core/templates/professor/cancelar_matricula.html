@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="txtAluno">Selecione o aluno: </label>
+    <select name="aluno" id="txtAluno" required>
+        {% for matricula in matriculas %}
+        <option value="{{matricula.ra_aluno}}">{{matricula.ra_aluno}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="txtDisciplina">Selecione a disciplina do aluno: </label>
+    <select name="disciplina" id="txtDisciplina" required>
+        {% for matricula in matriculas %}
+        <option value="{{matricula.nome_disciplina}}">{{matricula.nome_disciplina}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <button type="submit">Cancelar Matricula</button>
+</form>
+{% endblock %}

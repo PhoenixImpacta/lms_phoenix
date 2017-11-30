@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if codigo_acesso %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label id="txtNome">Informe o Nome Completo:</label>
+    <input name="nome" id="txtNome" required>
+    <br>
+    <label id="txtCelular">Informe Número de celular</label>
+    <input name="celular" id="txtCelular" required>
+    <br>
+    <label id="txtEmail">Informe Email</label>
+    <input type="email" name="email" id="txtEmail" required>
+    <br>
+    <label id="txtFile">Escolha um foto</label>
+    <br>
+    <input type="file" name="file" id="txtFile" required>
+    <br>
+    <button type="submit">Enviar Matricula</button>
+</form>
+
+{% else %}
+<h1>Seu código expirou! Solicite um novo para o professor!</h1>
+{% endif %}
+
+{% endblock %}

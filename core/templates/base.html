@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+<nav>
+
+    <li><a href="{% url 'login' %}">Home</a></li>
+    {% if usuario_logado %}
+    <li><a href="{% url 'index' %}">index</a></li>
+    <li><a href="{% url 'avisos' %}">Enviar avisos</a></li>
+    {% if usuario_logado.tipo == 'PROFESSOR' %}
+    <li><a href="{% url 'opcao_testes_online' %}">Aplicar Teste online</a></li>
+    <li><a href="{% url 'nova_questao' %}">Cadastrar nova questão</a></li>
+    <li><a href="{% url 'novas_atividades' %}">Avisar sobre nova atividade</a></li>
+    <li><a href="{% url 'avisos_aluno' %}">Enviar avisos para aluno</a></li>
+    <li><a href="{% url 'visualizar_avisos_professor' %}">Avisos</a></li>
+    <li><a href="{% url 'abrir_matricula' %}">Abrir matricula</a></li>
+    <li><a href="{% url 'confirmar_matricula' %}">Confirmar matricula</a></li>
+    <li><a href="{% url 'cancelar_matricula' %}">Cancelar matricula</a></li>
+    <li><a href="{% url 'matricula_semestre_ano' %}">Buscar matricula</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    {% elif usuario_logado.tipo == 'ALUNO' %}
+    <li><a href="{% url 'visualizar_avisos' %}">Avisos</a></li>
+    <li><a href="{% url 'avisos_professor' %}">Enviar aviso para professor</a></li>
+    <li><a href="{% url 'upload_foto' %}">Upload de foto</a></li>
+    <li><a href="{% url 'perfil_aluno' %}">Perfil</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+
+    {% elif usuario_logado.tipo == 'COORDENADOR' %}
+    <li><a href="{% url 'cadastro_perfis' %}">Cadastro de usuarios</a></li>
+    <li><a href="{% url 'cadastro_curso_turma' %}">Cadastro de curso por turma</a></li>
+    <li><a href="{% url 'cadastro_curso' %}">Cadastro de curso</a></li>
+    <li><a href="{% url 'cadastro_disciplina' %}">Cadastro de disciplina</a></li>
+    <li><a href="{% url 'editar_disciplina' %}">Editar disciplinas</a></li>
+    <li><a href="{% url 'deleta_disciplina' %}">Deletar disciplinas</a></li>
+    <li><a href="{% url 'deleta_curso' %}">Deletar cursos</a></li>
+    <li><a href="{% url 'lista_disciplina' %}">Lista disciplinas</a></li>
+    <li><a href="{% url 'lista_curso' %}">Lista cursos</a></li>
+    <li><a href="{% url 'matricula_semestre_ano' %}">Buscar matricula</a></li>
+
+    {% endif %}
+    {% endif %}
+
+
+    {% block url %}
+    {% endblock %}
+</nav>
+<br>
+<br>
+
+{% block content %}
+
+{% endblock %}
+
+<br>
+<br>
+<footer>
+    Todos direitos reservados
+</footer>
+</body>
+</html>

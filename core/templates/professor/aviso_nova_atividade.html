@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <label id="txtNome">Nome da atividade</label>
+    <input type="text" name="nome" id="txtNome" required>
+    <br>
+    <label id="txtSumario">Sumário</label>
+    <textarea name="sumario" id="txtSumario" required></textarea>
+    <br>
+    <label id="txtInst">Instruções pertinentes</label>
+    <textarea name="instrucoes" id="txtInst" required></textarea>
+    <br>
+    <label id="txtData">Data de entrega</label>
+    <input type="date" name="data" id="txtData" required>
+    <br>
+    <button type="submit">Enviar</button>
+</form>
+
+{% if erros %}
+{% for erro in erros %}
+<p>{{erro}}</p>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

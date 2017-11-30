@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<img src="{{matricula.caminho}}" alt = 'foto do aluno'>
+<br>
+<p>{{matricula.nome}}</p>
+<p>{{matricula.celular}}</p>
+<p>{{matricula.email}}</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="radio" name="opcao" value="yes" required> Aceitar
+    <br>
+    <input type="radio" name="opcao" value="no" required> Negar
+    <br>
+    <button type="submit">Confirmar escolha</button>
+</form>
+
+{% endblock %}

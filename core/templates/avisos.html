@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="radio" name="para" value="alunos" required> Todos os alunos
+    <input type="radio" name="para" value="professores" required> Todos os professores
+    <br>
+    <br>
+    <label txtMensagem>Aviso</label> <br> <textarea name="aviso" id="txtMensagem" required></textarea>
+    <br>
+    <button type="submit">Enviar</button>
+</form>
+
+{% if erros %}
+{% for erro in erros %}
+<p>{{erro}}</p>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
