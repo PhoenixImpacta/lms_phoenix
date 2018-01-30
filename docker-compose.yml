@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  lms:
+    build: .
+    volumes:
+      - ./.:/usr/src/app
+    ports:
+      - 80:5000
+    command:  bash -c "python manage.py runserver"

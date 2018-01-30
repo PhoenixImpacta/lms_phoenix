@@ -1,8 +1,10 @@
+# coding: utf-8
+
 from django.shortcuts import render, redirect, render_to_response, HttpResponse
-from core.util.connection_db_mysql import abrirConexao, fecharConexao
-from core.util.EnviarEmail import enviarEmail, enviarLink
-from core.util.UploadFoto import save as salvar_foto
-from core.util.CodigoAcesso import gerar_codigo
+from util.connection_db_mysql import abrirConexao, fecharConexao
+from util.EnviarEmail import enviarEmail, enviarLink
+from util.UploadFoto import save as salvar_foto
+from util.CodigoAcesso import gerar_codigo
 import datetime, ast, random
 
 
@@ -29,7 +31,7 @@ def login(request):
             tipo = request.POST.get('tipo')
             senha = request.POST.get('senha')
             if ra.strip() == '':
-                erros.append("Ra inválido")
+                erros.append(u"Ra inválido")
 
             if not (erros):
                 usuario = None
@@ -343,16 +345,16 @@ def teste_escolha(request):
 
     if request.POST:
         try:
-            resp1: request.POST.get("resp1")
-            resp2: request.POST.get("resp2")
-            resp3: request.POST.get("resp3")
-            resp4: request.POST.get("resp4")
-            resp5: request.POST.get("resp5")
-            resp6: request.POST.get("resp6")
-            resp7: request.POST.get("resp7")
-            resp8: request.POST.get("resp8")
-            resp9: request.POST.get("resp9")
-            resp10: request.POST.get("resp10")
+            resp1 = request.POST.get("resp1")
+            resp2 = request.POST.get("resp2")
+            resp3 = request.POST.get("resp3")
+            resp4 = request.POST.get("resp4")
+            resp5 = request.POST.get("resp5")
+            resp6 = request.POST.get("resp6")
+            resp7 = request.POST.get("resp7")
+            resp8 = request.POST.get("resp8")
+            resp9 = request.POST.get("resp9")
+            resp10 = request.POST.get("resp10")
 
             query = (
                 "INSERT INTO Questoes VALUES('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}');".format(resp1, resp2,
